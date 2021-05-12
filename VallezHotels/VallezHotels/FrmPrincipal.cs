@@ -7,31 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
+using VallezHotels.Source.Core;
 
 namespace VallezHotels
 {
     public partial class FrmPrincipal : Form
     {
 
-        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-        private static extern IntPtr CreateRoundRectRgn(
-           int nLeftRect,
-           int nTopRect,
-           int nRightRect,
-           int nBottomRect,
-           int nWidthEllipse,
-           int nHeightEllipse
-       );
+        private FormsActivator _fa;
 
         public FrmPrincipal()
         {
 
             InitializeComponent();
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
-
+           
+            // Carregar a splash screen e o formulário de login antes do sistema iniciar.
+            /*
             this.TopLevel = false;
             this.Visible = false;
+
             SplashScreen splash = new SplashScreen();
             splash.principal = this;
             splash.ShowDialog();
@@ -39,22 +33,31 @@ namespace VallezHotels
             FrmLogin login = new FrmLogin();
             login.principal = this;
             login.Show();
+            */
+
+            // Ativar a dashboard como formulário padrão
+            this._fa = new FormsActivator(pnlMain, lblFormTitle);
+            Form dashboard = (Form)new FrmDashboard();
+            this._fa.AtivarForm(dashboard);
 
         }
 
-        private void FrmPrincipal_Load(object sender, EventArgs e)
+        private void btnShowQuartos_Click(object sender, EventArgs e)
         {
-
+            FrmQuarto quarto = new FrmQuarto();
+            this._fa.AtivarForm(quarto);
         }
 
-        private void btnClose_MouseHover(object sender, EventArgs e)
+        private void btnDashboard_Click(object sender, EventArgs e)
         {
-
+            FrmDashboard dashboard = new FrmDashboard();
+            this._fa.AtivarForm(dashboard);
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
+        private void btnShowHospedes_Click(object sender, EventArgs e)
         {
-            this.Close();
+            FrmHospede hospede = new FrmHospede();
+            this._fa.AtivarForm(hospede);
         }
     }
 }
