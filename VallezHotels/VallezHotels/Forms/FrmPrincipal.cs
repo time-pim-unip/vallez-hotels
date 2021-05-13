@@ -56,7 +56,8 @@ namespace VallezHotels
 
         private void btnShowHospedes_Click(object sender, EventArgs e)
         {
-            FrmHospede hospede = new FrmHospede();
+            //FrmHospede hospede = new FrmHospede();
+            FrmListagemHospedes hospede = new FrmListagemHospedes();
             this._fa.AtivarForm(hospede);
         }
     }
