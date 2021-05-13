@@ -27,15 +27,17 @@ namespace VallezHotels
 
         private void btnSair_Click(object sender, EventArgs e)
         {
-            this.principal.Close();
+            Application.Exit();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            this.principal.Show();
             this.Close();
-            this.principal.TopLevel = true;
-            this.principal.Visible = true;
-            this.principal.Location = new Point(this.ClientSize.Width * 2, this.ClientSize.Height);
+            
+            //this.principal.TopLevel = true;
+            //this.principal.Visible = true;
+            //this.principal.Location = new Point(this.ClientSize.Width * 2, this.ClientSize.Height);
         }
     }
 }

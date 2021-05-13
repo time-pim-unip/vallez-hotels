@@ -45,7 +45,6 @@ namespace VallezHotels
         private void tmrClose_Tick(object sender, EventArgs e)
         {
 
-            this.principal.Show();
             this.Close();
 
         }

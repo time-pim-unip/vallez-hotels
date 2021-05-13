@@ -30,161 +30,110 @@ namespace VallezHotels
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblFormTitle = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnShowHospedes = new System.Windows.Forms.Button();
-            this.btnShowQuartos = new System.Windows.Forms.Button();
-            this.btnDashboard = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.pnlMain = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.inicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hospedeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hospedesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // statusStrip1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(59)))), ((int)(((byte)(82)))));
-            this.panel1.Controls.Add(this.lblFormTitle);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(919, 48);
-            this.panel1.TabIndex = 0;
+            this.statusStrip1.Location = new System.Drawing.Point(0, 608);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1061, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // lblFormTitle
+            // menuStrip1
             // 
-            this.lblFormTitle.AutoSize = true;
-            this.lblFormTitle.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFormTitle.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblFormTitle.Location = new System.Drawing.Point(189, 9);
-            this.lblFormTitle.Name = "lblFormTitle";
-            this.lblFormTitle.Size = new System.Drawing.Size(0, 30);
-            this.lblFormTitle.TabIndex = 0;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.inicioToolStripMenuItem,
+            this.cadastroToolStripMenuItem,
+            this.listagemToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1061, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // panel2
+            // inicioToolStripMenuItem
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(59)))), ((int)(((byte)(82)))));
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.btnShowQuartos);
-            this.panel2.Controls.Add(this.btnDashboard);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 48);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(194, 433);
-            this.panel2.TabIndex = 1;
+            this.inicioToolStripMenuItem.Name = "inicioToolStripMenuItem";
+            this.inicioToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.inicioToolStripMenuItem.Text = "Inicio";
+            this.inicioToolStripMenuItem.Click += new System.EventHandler(this.inicioToolStripMenuItem_Click);
             // 
-            // panel3
+            // cadastroToolStripMenuItem
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(59)))), ((int)(((byte)(82)))));
-            this.panel3.Controls.Add(this.btnShowHospedes);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 98);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(194, 335);
-            this.panel3.TabIndex = 4;
+            this.cadastroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hospedeToolStripMenuItem});
+            this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
+            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.cadastroToolStripMenuItem.Text = "Cadastro";
             // 
-            // btnShowHospedes
+            // hospedeToolStripMenuItem
             // 
-            this.btnShowHospedes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnShowHospedes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnShowHospedes.FlatAppearance.BorderSize = 0;
-            this.btnShowHospedes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(78)))), ((int)(((byte)(107)))));
-            this.btnShowHospedes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShowHospedes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowHospedes.ForeColor = System.Drawing.Color.White;
-            this.btnShowHospedes.Location = new System.Drawing.Point(0, 0);
-            this.btnShowHospedes.Name = "btnShowHospedes";
-            this.btnShowHospedes.Size = new System.Drawing.Size(194, 49);
-            this.btnShowHospedes.TabIndex = 2;
-            this.btnShowHospedes.Text = "Hospedes";
-            this.btnShowHospedes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnShowHospedes.UseVisualStyleBackColor = true;
-            this.btnShowHospedes.Click += new System.EventHandler(this.btnShowHospedes_Click);
+            this.hospedeToolStripMenuItem.Name = "hospedeToolStripMenuItem";
+            this.hospedeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hospedeToolStripMenuItem.Text = "Hospede";
+            this.hospedeToolStripMenuItem.Click += new System.EventHandler(this.hospedeToolStripMenuItem_Click);
             // 
-            // btnShowQuartos
+            // listagemToolStripMenuItem
             // 
-            this.btnShowQuartos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnShowQuartos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnShowQuartos.FlatAppearance.BorderSize = 0;
-            this.btnShowQuartos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(74)))), ((int)(((byte)(102)))));
-            this.btnShowQuartos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShowQuartos.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowQuartos.ForeColor = System.Drawing.Color.White;
-            this.btnShowQuartos.Location = new System.Drawing.Point(0, 49);
-            this.btnShowQuartos.Name = "btnShowQuartos";
-            this.btnShowQuartos.Size = new System.Drawing.Size(194, 49);
-            this.btnShowQuartos.TabIndex = 3;
-            this.btnShowQuartos.Text = "Quartos";
-            this.btnShowQuartos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnShowQuartos.UseVisualStyleBackColor = true;
-            this.btnShowQuartos.Click += new System.EventHandler(this.btnShowQuartos_Click);
+            this.listagemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hospedesToolStripMenuItem});
+            this.listagemToolStripMenuItem.Name = "listagemToolStripMenuItem";
+            this.listagemToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.listagemToolStripMenuItem.Text = "Listagem";
             // 
-            // btnDashboard
+            // hospedesToolStripMenuItem
             // 
-            this.btnDashboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDashboard.FlatAppearance.BorderSize = 0;
-            this.btnDashboard.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(74)))), ((int)(((byte)(102)))));
-            this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDashboard.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDashboard.ForeColor = System.Drawing.Color.White;
-            this.btnDashboard.Location = new System.Drawing.Point(0, 0);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(194, 49);
-            this.btnDashboard.TabIndex = 2;
-            this.btnDashboard.Text = "Dashboard";
-            this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnDashboard.UseVisualStyleBackColor = true;
-            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
-            // 
-            // pnlMain
-            // 
-            this.pnlMain.AutoSize = true;
-            this.pnlMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(74)))), ((int)(((byte)(102)))));
-            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(194, 48);
-            this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(725, 433);
-            this.pnlMain.TabIndex = 2;
+            this.hospedesToolStripMenuItem.Name = "hospedesToolStripMenuItem";
+            this.hospedesToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.hospedesToolStripMenuItem.Text = "Hospedes";
+            this.hospedesToolStripMenuItem.Click += new System.EventHandler(this.hospedesToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(74)))), ((int)(((byte)(102)))));
-            this.ClientSize = new System.Drawing.Size(919, 481);
-            this.Controls.Add(this.pnlMain);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.BackgroundImage = global::VallezHotels.Properties.Resources.backgroud;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1061, 630);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
+            this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(935, 520);
             this.Name = "FrmPrincipal";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Vallez Hotel\'s";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Resize += new System.EventHandler(this.FrmPrincipal_Resize);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Button btnDashboard;
-        private System.Windows.Forms.Panel pnlMain;
-        private System.Windows.Forms.Label lblFormTitle;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnShowQuartos;
-        private System.Windows.Forms.Button btnShowHospedes;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem inicioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cadastroToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hospedeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listagemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hospedesToolStripMenuItem;
     }
 }

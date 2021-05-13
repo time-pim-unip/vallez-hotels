@@ -31,6 +31,7 @@ namespace VallezHotels
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHospede));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnPesquisarHospede = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.txtRG = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -59,7 +60,6 @@ namespace VallezHotels
             this.label9 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -69,7 +69,7 @@ namespace VallezHotels
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnPesquisarHospede);
             this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.txtRG);
             this.groupBox1.Controls.Add(this.label5);
@@ -87,6 +87,15 @@ namespace VallezHotels
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Pessoais";
+            // 
+            // btnPesquisarHospede
+            // 
+            this.btnPesquisarHospede.Image = ((System.Drawing.Image)(resources.GetObject("btnPesquisarHospede.Image")));
+            this.btnPesquisarHospede.Location = new System.Drawing.Point(69, 37);
+            this.btnPesquisarHospede.Name = "btnPesquisarHospede";
+            this.btnPesquisarHospede.Size = new System.Drawing.Size(30, 22);
+            this.btnPesquisarHospede.TabIndex = 11;
+            this.btnPesquisarHospede.UseVisualStyleBackColor = true;
             // 
             // checkBox1
             // 
@@ -363,15 +372,6 @@ namespace VallezHotels
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = true;
             // 
-            // button1
-            // 
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(69, 37);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(30, 22);
-            this.button1.TabIndex = 11;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // FrmHospede
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -383,8 +383,8 @@ namespace VallezHotels
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmHospede";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manutenção de Hospedes";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -425,7 +425,7 @@ namespace VallezHotels
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cbTipoUsuario;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPesquisarHospede;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnCancelar;
     }
