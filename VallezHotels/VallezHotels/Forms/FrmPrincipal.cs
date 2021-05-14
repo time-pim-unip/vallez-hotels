@@ -51,16 +51,16 @@ namespace VallezHotels
 
 
             // Carregar a splash screen e o formulário de login antes do sistema iniciar.
-            this.Visible = false;
-            this.Hide();
+            //this.Visible = false;
+            //this.Hide();
 
-            SplashScreen splash = new SplashScreen();
-            splash.principal = this;
-            splash.ShowDialog();
+            //SplashScreen splash = new SplashScreen();
+            //splash.principal = this;
+            //splash.ShowDialog();
             
-            FrmLogin login = new FrmLogin();
-            login.principal = this;
-            login.ShowDialog();
+            //FrmLogin login = new FrmLogin();
+            //login.principal = this;
+            //login.ShowDialog();
 
             // Ativar a dashboard como formulário padrão
             //this._fa = new FormsActivator(pnlMain, lblFormTitle);
@@ -76,8 +76,7 @@ namespace VallezHotels
 
         private void hospedesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmListagemHospedes listagemHospedes = new FrmListagemHospedes();
-            Helper.StartForm(listagemHospedes, this);
+            
 
         }
 
@@ -94,8 +93,22 @@ namespace VallezHotels
 
         private void hospedeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmHospede hospede = new FrmHospede();
-            Helper.StartForm(hospede, this);
+            FrmListagemHospedes listagemHospedes = new FrmListagemHospedes();
+            Helper.StartForm(listagemHospedes, this);
+        }
+
+        private void funcionárioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmListagemFuncionarios listagemFuncionarios = new FrmListagemFuncionarios();
+            Helper.StartForm(listagemFuncionarios, this);
+
+
+        }
+
+        private void quartoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmQuarto quarto = new FrmQuarto();
+            Helper.StartForm(quarto, this);
         }
     }
 }

@@ -36,8 +36,8 @@ namespace VallezHotels
             this.inicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hospedeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hospedesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.funcionárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quartoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,8 +53,7 @@ namespace VallezHotels
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.inicioToolStripMenuItem,
-            this.cadastroToolStripMenuItem,
-            this.listagemToolStripMenuItem});
+            this.cadastroToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1061, 24);
@@ -71,7 +70,9 @@ namespace VallezHotels
             // cadastroToolStripMenuItem
             // 
             this.cadastroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hospedeToolStripMenuItem});
+            this.hospedeToolStripMenuItem,
+            this.funcionárioToolStripMenuItem,
+            this.quartoToolStripMenuItem});
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.cadastroToolStripMenuItem.Text = "Cadastro";
@@ -83,20 +84,19 @@ namespace VallezHotels
             this.hospedeToolStripMenuItem.Text = "Hospede";
             this.hospedeToolStripMenuItem.Click += new System.EventHandler(this.hospedeToolStripMenuItem_Click);
             // 
-            // listagemToolStripMenuItem
+            // funcionárioToolStripMenuItem
             // 
-            this.listagemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hospedesToolStripMenuItem});
-            this.listagemToolStripMenuItem.Name = "listagemToolStripMenuItem";
-            this.listagemToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.listagemToolStripMenuItem.Text = "Listagem";
+            this.funcionárioToolStripMenuItem.Name = "funcionárioToolStripMenuItem";
+            this.funcionárioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.funcionárioToolStripMenuItem.Text = "Funcionário";
+            this.funcionárioToolStripMenuItem.Click += new System.EventHandler(this.funcionárioToolStripMenuItem_Click);
             // 
-            // hospedesToolStripMenuItem
+            // quartoToolStripMenuItem
             // 
-            this.hospedesToolStripMenuItem.Name = "hospedesToolStripMenuItem";
-            this.hospedesToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.hospedesToolStripMenuItem.Text = "Hospedes";
-            this.hospedesToolStripMenuItem.Click += new System.EventHandler(this.hospedesToolStripMenuItem_Click);
+            this.quartoToolStripMenuItem.Name = "quartoToolStripMenuItem";
+            this.quartoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.quartoToolStripMenuItem.Text = "Quarto";
+            this.quartoToolStripMenuItem.Click += new System.EventHandler(this.quartoToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -133,7 +133,7 @@ namespace VallezHotels
         private System.Windows.Forms.ToolStripMenuItem inicioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hospedeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listagemToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hospedesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem funcionárioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quartoToolStripMenuItem;
     }
 }

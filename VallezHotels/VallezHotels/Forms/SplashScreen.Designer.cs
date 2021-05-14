@@ -50,6 +50,7 @@ namespace VallezHotels
             // tmrLoading
             // 
             this.tmrLoading.Enabled = true;
+            this.tmrLoading.Interval = 50;
             this.tmrLoading.Tick += new System.EventHandler(this.tmrLoading_Tick);
             // 
             // tmrClose

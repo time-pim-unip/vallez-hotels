@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace VallezHotels
 {
-    public partial class FrmQuarto : Form
+    public partial class FrmFuncionario : Form
     {
-        public FrmQuarto()
+        public FrmFuncionario()
         {
             InitializeComponent();
         }

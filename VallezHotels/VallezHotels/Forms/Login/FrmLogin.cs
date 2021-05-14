@@ -39,5 +39,10 @@ namespace VallezHotels
             //this.principal.Visible = true;
             //this.principal.Location = new Point(this.ClientSize.Width * 2, this.ClientSize.Height);
         }
+
+        private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

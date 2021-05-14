@@ -1,7 +1,7 @@
 ﻿
 namespace VallezHotels
 {
-    partial class FrmListagemHospedes
+    partial class FrmListagemFuncionarios
     {
         /// <summary>
         /// Required designer variable.
@@ -143,13 +143,13 @@ namespace VallezHotels
             this.btnNovoHospede.Name = "btnNovoHospede";
             this.btnNovoHospede.Size = new System.Drawing.Size(124, 44);
             this.btnNovoHospede.TabIndex = 2;
-            this.btnNovoHospede.Text = "Novo Hospede";
+            this.btnNovoHospede.Text = "Novo Funcionário";
             this.btnNovoHospede.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNovoHospede.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnNovoHospede.UseVisualStyleBackColor = true;
             this.btnNovoHospede.Click += new System.EventHandler(this.btnNovoHospede_Click);
             // 
-            // FrmListagemHospedes
+            // FrmListagemFuncionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -157,10 +157,10 @@ namespace VallezHotels
             this.Controls.Add(this.btnNovoHospede);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "FrmListagemHospedes";
+            this.Name = "FrmListagemFuncionarios";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "Listagem Hospedes";
+            this.Text = "Listagem Funcionarios";
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);

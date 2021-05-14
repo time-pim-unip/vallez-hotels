@@ -7,19 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VallezHotels.Source.Core;
 
 namespace VallezHotels
 {
-    public partial class FrmQuarto : Form
+    public partial class FrmListagemFuncionarios : Form
     {
-        public FrmQuarto()
+
+        public FrmListagemFuncionarios()
         {
             InitializeComponent();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnNovoHospede_Click(object sender, EventArgs e)
         {
-            this.Close();
+
+            FrmFuncionario funcionario = new FrmFuncionario();
+            Helper.StartForm(funcionario, null);
         }
     }
 }

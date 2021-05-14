@@ -15,20 +15,12 @@ namespace VallezHotels.Source.Core
     public class Helper
     {
 
-        
-
-        public Helper()
-        {
-            
-        }
-
         // Ativa o formulario enviado por parametro no MDI pai
         public static void StartForm(Form form, Form mdiParent)
         {
             // Verifica se o parente é null, se for null impede o usuário de usar outras telas sem antes finalizar a form.
             if (mdiParent == null)
             {
-                form.TopMost = true;
                 form.ShowDialog();
                 return;
 
@@ -51,7 +43,6 @@ namespace VallezHotels.Source.Core
             if (!formAlreadyOpen)
             {
 
-                form.TopMost = false;
                 form.MdiParent = mdiParent;
                 form.Top = 0;
                 form.Left = 0;
