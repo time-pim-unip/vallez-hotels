@@ -110,5 +110,23 @@ namespace VallezHotels
             FrmQuarto quarto = new FrmQuarto();
             Helper.StartForm(quarto, this);
         }
+
+        private void tipoQuartoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmTipoQuarto tipoQuarto = new FrmTipoQuarto();
+            Helper.StartForm(tipoQuarto, this);
+        }
+
+        private void serviçsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmServicos servicos = new FrmServicos();
+            Helper.StartForm(servicos, this);
+        }
+
+        private void locaçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmLocacao locacao = new FrmLocacao();
+            Helper.StartForm(locacao, this);
+        }
     }
 }

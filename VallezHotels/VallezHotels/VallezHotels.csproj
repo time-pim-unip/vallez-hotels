@@ -76,6 +76,12 @@
     <Compile Include="Forms\Hospedes\FrmListagemHospedes.Designer.cs">
       <DependentUpon>FrmListagemHospedes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Locações\FrmLocacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Locações\FrmLocacao.Designer.cs">
+      <DependentUpon>FrmLocacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Login\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,18 @@
     </Compile>
     <Compile Include="Forms\Quartos\FrmQuarto.Designer.cs">
       <DependentUpon>FrmQuarto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Quartos\FrmTipoQuarto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Quartos\FrmTipoQuarto.Designer.cs">
+      <DependentUpon>FrmTipoQuarto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Locações\FrmServicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Locações\FrmServicos.Designer.cs">
+      <DependentUpon>FrmServicos.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,6 +143,9 @@
     <EmbeddedResource Include="Forms\Hospedes\FrmListagemHospedes.resx">
       <DependentUpon>FrmListagemHospedes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Locações\FrmLocacao.resx">
+      <DependentUpon>FrmLocacao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -133,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Quartos\FrmQuarto.resx">
       <DependentUpon>FrmQuarto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Quartos\FrmTipoQuarto.resx">
+      <DependentUpon>FrmTipoQuarto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Locações\FrmServicos.resx">
+      <DependentUpon>FrmServicos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

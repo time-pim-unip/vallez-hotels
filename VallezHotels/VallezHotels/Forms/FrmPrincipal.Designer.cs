@@ -38,6 +38,10 @@ namespace VallezHotels
             this.hospedeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.funcionárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quartoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tipoQuartoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serviçsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.locaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,9 +74,13 @@ namespace VallezHotels
             // cadastroToolStripMenuItem
             // 
             this.cadastroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.locaçãoToolStripMenuItem,
+            this.toolStripSeparator1,
             this.hospedeToolStripMenuItem,
             this.funcionárioToolStripMenuItem,
-            this.quartoToolStripMenuItem});
+            this.quartoToolStripMenuItem,
+            this.tipoQuartoToolStripMenuItem,
+            this.serviçsToolStripMenuItem});
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.cadastroToolStripMenuItem.Text = "Cadastro";
@@ -97,6 +105,32 @@ namespace VallezHotels
             this.quartoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.quartoToolStripMenuItem.Text = "Quarto";
             this.quartoToolStripMenuItem.Click += new System.EventHandler(this.quartoToolStripMenuItem_Click);
+            // 
+            // tipoQuartoToolStripMenuItem
+            // 
+            this.tipoQuartoToolStripMenuItem.Name = "tipoQuartoToolStripMenuItem";
+            this.tipoQuartoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tipoQuartoToolStripMenuItem.Text = "Tipo Quarto";
+            this.tipoQuartoToolStripMenuItem.Click += new System.EventHandler(this.tipoQuartoToolStripMenuItem_Click);
+            // 
+            // serviçsToolStripMenuItem
+            // 
+            this.serviçsToolStripMenuItem.Name = "serviçsToolStripMenuItem";
+            this.serviçsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.serviçsToolStripMenuItem.Text = "Serviços";
+            this.serviçsToolStripMenuItem.Click += new System.EventHandler(this.serviçsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // locaçãoToolStripMenuItem
+            // 
+            this.locaçãoToolStripMenuItem.Name = "locaçãoToolStripMenuItem";
+            this.locaçãoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.locaçãoToolStripMenuItem.Text = "Locação";
+            this.locaçãoToolStripMenuItem.Click += new System.EventHandler(this.locaçãoToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -135,5 +169,9 @@ namespace VallezHotels
         private System.Windows.Forms.ToolStripMenuItem hospedeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem funcionárioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quartoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tipoQuartoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem serviçsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem locaçãoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
