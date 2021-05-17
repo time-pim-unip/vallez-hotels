@@ -46,23 +46,129 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\Dashboard\FrmDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\Dashboard\FrmDashboard.Designer.cs">
+      <DependentUpon>FrmDashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Funcionarios\FrmFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Funcionarios\FrmFuncionario.Designer.cs">
+      <DependentUpon>FrmFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Funcionarios\FrmListagemFuncionarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Funcionarios\FrmListagemFuncionarios.Designer.cs">
+      <DependentUpon>FrmListagemFuncionarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Hospedes\FrmHospede.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Hospedes\FrmHospede.Designer.cs">
+      <DependentUpon>FrmHospede.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Hospedes\FrmListagemHospedes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Hospedes\FrmListagemHospedes.Designer.cs">
+      <DependentUpon>FrmListagemHospedes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Locações\FrmLocacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Locações\FrmLocacao.Designer.cs">
+      <DependentUpon>FrmLocacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login\FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login\FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmPrincipal.Designer.cs">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Quartos\FrmQuarto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Quartos\FrmQuarto.Designer.cs">
+      <DependentUpon>FrmQuarto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Quartos\FrmTipoQuarto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Quartos\FrmTipoQuarto.Designer.cs">
+      <DependentUpon>FrmTipoQuarto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Locações\FrmServicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Locações\FrmServicos.Designer.cs">
+      <DependentUpon>FrmServicos.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Source\Core\Helper.cs" />
+    <Compile Include="Forms\SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\Dashboard\FrmDashboard.resx">
+      <DependentUpon>FrmDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Funcionarios\FrmFuncionario.resx">
+      <DependentUpon>FrmFuncionario.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Funcionarios\FrmListagemFuncionarios.resx">
+      <DependentUpon>FrmListagemFuncionarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Hospedes\FrmHospede.resx">
+      <DependentUpon>FrmHospede.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Hospedes\FrmListagemHospedes.resx">
+      <DependentUpon>FrmListagemHospedes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Locações\FrmLocacao.resx">
+      <DependentUpon>FrmLocacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login\FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Quartos\FrmQuarto.resx">
+      <DependentUpon>FrmQuarto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Quartos\FrmTipoQuarto.resx">
+      <DependentUpon>FrmTipoQuarto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Locações\FrmServicos.resx">
+      <DependentUpon>FrmServicos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -75,6 +181,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\splash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backgroud.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dashboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
