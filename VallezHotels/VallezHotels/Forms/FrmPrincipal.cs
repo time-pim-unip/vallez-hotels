@@ -57,15 +57,14 @@ namespace VallezHotels
             //SplashScreen splash = new SplashScreen();
             //splash.principal = this;
             //splash.ShowDialog();
-            
+
             //FrmLogin login = new FrmLogin();
             //login.principal = this;
             //login.ShowDialog();
 
             // Ativar a dashboard como formulário padrão
-            //this._fa = new FormsActivator(pnlMain, lblFormTitle);
-            //Form dashboard = (Form)new FrmDashboard();
-            //this._fa.AtivarForm(dashboard);
+            FrmDashboard dashboard = new FrmDashboard();
+            Helper.StartForm(dashboard, this, FormWindowState.Maximized);
 
 
            

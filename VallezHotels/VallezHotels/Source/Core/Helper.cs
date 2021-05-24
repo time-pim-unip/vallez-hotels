@@ -16,7 +16,7 @@ namespace VallezHotels.Source.Core
     {
 
         // Ativa o formulario enviado por parametro no MDI pai
-        public static void StartForm(Form form, Form mdiParent)
+        public static void StartForm(Form form, Form mdiParent, FormWindowState? state)
         {
             // Verifica se o parente é null, se for null impede o usuário de usar outras telas sem antes finalizar a form.
             if (mdiParent == null)
@@ -42,7 +42,13 @@ namespace VallezHotels.Source.Core
 
             if (!formAlreadyOpen)
             {
-
+                if (state != null)
+                {
+                    form.WindowState = state.Value;
+                } else
+                {
+                    form.WindowState = FormWindowState.Minimized;
+                }
                 form.MdiParent = mdiParent;
                 form.Top = 0;
                 form.Left = 0;
@@ -52,6 +58,20 @@ namespace VallezHotels.Source.Core
 
         }
 
+        public static void StartForm(Form form, Form mdiParent)
+        {
+            StartForm(form, mdiParent, 0);
+        }
+
+        public static void StartForm(Form form)
+        {
+            StartForm(form, null, 0);
+        }
+
+        public static void StartForm(Form form, FormWindowState state)
+        {
+            StartForm(form, null, state);
+        }
 
     }
 

@@ -14,15 +14,17 @@ namespace VallezHotels
     {
 
         public FrmPrincipal principal;
+        public Boolean UsuarioValido;
 
         public FrmLogin()
         {
             InitializeComponent();
+            this.UsuarioValido = false;
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-
+            this.UsuarioValido = true;
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -42,7 +44,13 @@ namespace VallezHotels
 
         private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            if (!this.UsuarioValido)
+            {
+                Application.Exit();
+            } else
+            {
+                this.Close();
+            }
         }
     }
 }
