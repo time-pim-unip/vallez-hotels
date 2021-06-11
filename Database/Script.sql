@@ -3,10 +3,7 @@
  */
 
 /* Criar usuario do sistema */
-create user vallez with encrypted password '#vallez123@';
-
-/* Criar schema do sistema */
-create schema vallez authorization vallez;
+create user  vallez with encrypted password '#vallez123@';
 
 /* Criando banco principal do sistema */
 create database db_vallez
@@ -14,6 +11,13 @@ with owner vallez
 connection limit -1
 encoding 'UTF8'
 template template0;
+
+/*
+ *  CONECTAR COM USU¡RIO VALLEZ NO BANCO DB_VALLEZ PARA CONTINUAR O SCRIPT.
+ */
+
+/* Criar schema do sistema */
+create schema vallez authorization vallez;
 
 /* Habilitar UUID */
 create extension if not exists "uuid-ossp";
@@ -161,7 +165,7 @@ create table hospedagens(
 	constraint fk_hospede_hospedagem foreign key (id_hospede) references hospedes(id_hospede)
 );
 
-/* Servi√ßos */
+/* Servicos */
 create table servicos(
 	id_servico		serial not null,
 	uuid_servico	uuid not null default uuid_generate_v4(),
@@ -172,6 +176,7 @@ create table servicos(
 	constraint pk_servico primary key (id_servico)
 );
 
+/* Servicos Solicitados */
 create table servicos_solicitados(
 	id_servico_solicitado		serial not null,
 	uuid_servico_solicitado		uuid not null default uuid_generate_v4(),
