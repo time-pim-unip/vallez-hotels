@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using VallezHotels.Source.DB.Interfaces;
+using Npgsql;
+using System.Data;
+
+namespace VallezHotels.Source.DB
+{
+    class PGConexao : IDBConexao
+    {
+
+        private string StringConexao;
+
+        public PGConexao()
+        {
+            StringConexao = "Host=127.0.0.1;Username=vallez;Password=#vallez123@;Database=db_vallez";
+        }
+
+        public IDbConnection Conexao()
+        {
+            try
+            {
+
+                return new NpgsqlConnection(StringConexao);
+
+            }
+            catch (NpgsqlException e)
+            {
+                throw new NpgsqlException(e.Message);
+            }
+        }
+    }
+}
