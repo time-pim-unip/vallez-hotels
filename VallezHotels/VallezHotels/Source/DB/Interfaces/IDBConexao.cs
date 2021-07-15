@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.Common;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,6 @@ namespace VallezHotels.Source.DB.Interfaces
 {
     public interface IDBConexao
     {
-
-        IDbConnection Conexao();
-
+        DbConnection Conexao();
     }
 }

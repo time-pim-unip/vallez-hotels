@@ -159,7 +159,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Source\Core\ConexaoBanco.cs" />
     <Compile Include="Source\Core\Helper.cs" />
     <Compile Include="Forms\SplashScreen.cs">
       <SubType>Form</SubType>
@@ -167,7 +166,13 @@
     <Compile Include="Forms\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\DB\Extensoes\DbParameterExtension.cs" />
+    <Compile Include="Source\DB\Interfaces\IDBComandosBasicosEntidade.cs" />
+    <Compile Include="Source\DB\Interfaces\IDBConexao.cs" />
+    <Compile Include="Source\DB\Conexao\PGConexao.cs" />
+    <Compile Include="Source\DB\UsuarioDB.cs" />
     <Compile Include="Source\Entidades\Usuario.cs" />
+    <Compile Include="Source\Servicos\UsuarioServico.cs" />
     <EmbeddedResource Include="Forms\Dashboard\FrmDashboard.resx">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
     </EmbeddedResource>

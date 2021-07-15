@@ -8,7 +8,7 @@ namespace VallezHotels.Source.DB.Interfaces
 {
     public interface IDBComandosBasicosEntidade<T>
     {
-        void Inserir();
+        T Inserir(T obj);
         T BuscarPeloID(int id);
         List<T> BuscarTodos();
         T Atualizar(T obj);
