@@ -37,7 +37,28 @@ namespace VallezHotels.Source.DB
 
         public void Deletar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var conn = _conn.Conexao())
+                {
+                    conn.Open();
+
+                    using (var delete = conn.CreateCommand())
+                    {
+                        delete.CommandText = "DELETE FROM vallez.usuarios WHERE id_usuario = @ID;";
+                        delete.AddParameter("@ID", usuario.Id);
+
+                        delete.ExecuteNonQuery();
+
+                    }
+
+
+                }
+            }
+            catch (Npgsql.NpgsqlException e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public Usuario Inserir(Usuario usuario)
@@ -55,7 +76,7 @@ namespace VallezHotels.Source.DB
 
                         insert.CommandText = "INSERT INTO vallez.usuarios (uuid_usuario, usuario, senha, tipo_usuario, status) VALUES(vallez.uuid_generate_v4(), @USUARIO, @SENHA, @TIPO_USUARIO, @STATUS) returning *; ";
                         insert.AddParameter("@USUARIO", usuario.NomeUsuario);
-                        insert.AddParameter(":SENHA", usuario.Senha, DbType.String );
+                        insert.AddParameter("@SENHA", usuario.Senha, DbType.String );
                         insert.AddParameter("@TIPO_USUARIO", usuario.TipoUsuario);
                         insert.AddParameter("@STATUS", usuario.Status);
                         

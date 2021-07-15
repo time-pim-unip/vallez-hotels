@@ -34,5 +34,29 @@ namespace VallezHotels.Source.Servicos
             }
         }
 
+        public void DeletarUsuario(Usuario u)
+        {
+            try
+            {
+                if (!(u is Usuario))
+                {
+                    throw new ArgumentException("Objeto não é do tipo Usuario, impossivel fazer a exclusão");
+                }
+
+                if (u == null)
+                {
+                    throw new ArgumentException("Objeto não pode ser nulo, impossivel fazer a exclusão");
+                }
+
+                _db.Deletar(u);
+
+                u = null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("SERVICE: " + e.Message);
+            }
+        }
+
     }
 }
