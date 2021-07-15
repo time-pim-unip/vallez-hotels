@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VallezHotels.Source.DB;
 using VallezHotels.Source.DB.Conexao;
+using VallezHotels.Source.DB.Exceptions;
 using VallezHotels.Source.Entidades;
 
 namespace VallezHotels.Source.Servicos
@@ -51,6 +53,32 @@ namespace VallezHotels.Source.Servicos
                 _db.Deletar(u);
 
                 u = null;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("SERVICE: " + e.Message);
+            }
+        }
+
+        public Usuario BuscarPeloId(int id)
+        {
+            try
+            {
+
+                if (!(id > 0))
+                {
+                    throw new ArgumentException("Id deve ser maior que zero para realizar uma busca");
+                }
+
+                Usuario u = _db.BuscarPeloID(id);
+                
+                if (u == null)
+                {
+                    throw new NullReturnException($"A consulta não retornou nenhum valor para os parametros informados. '{nameof(id)}:{id.ToString()}'");
+                }
+
+                return u;
+
             }
             catch (Exception e)
             {

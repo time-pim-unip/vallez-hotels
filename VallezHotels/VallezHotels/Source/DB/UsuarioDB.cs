@@ -20,6 +20,22 @@ namespace VallezHotels.Source.DB
             _conn = conn;
         }
 
+        public Usuario PreencherUsuario(DbDataReader reader)
+        {
+            Usuario u = new Usuario();
+            u.Id = int.Parse(reader["id_usuario"].ToString());
+            u.Uuid = reader["uuid_usuario"].ToString();
+            u.NomeUsuario = reader["usuario"].ToString();
+            u.Senha = reader["senha"].ToString();
+            u.TipoUsuario = reader["tipo_usuario"].ToString();
+            u.Status = bool.Parse(reader["status"].ToString());
+            u.CreatedAt = DateTime.Parse(reader["created_at"].ToString());
+            u.UpdatedAt = DateTime.Parse(reader["updated_at"].ToString());
+
+            return u;
+
+        }
+
         public Usuario Atualizar(Usuario usuario)
         {
             throw new NotImplementedException();
@@ -27,7 +43,38 @@ namespace VallezHotels.Source.DB
 
         public Usuario BuscarPeloID(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var conn = _conn.Conexao())
+                {
+                    conn.Open();
+
+                    using (var select = conn.CreateCommand())
+                    {
+
+                        select.CommandText = "SELECT * FROM vallez.usuarios WHERE id_usuario = @ID;";
+                        select.AddParameter("@ID", id, DbType.Int32);
+
+                        var reader = select.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            Usuario u = this.PreencherUsuario(reader);              
+                            return u;
+                        } else
+                        {
+                            return null;
+                        }
+
+                    }
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public List<Usuario> BuscarTodos()
@@ -82,22 +129,15 @@ namespace VallezHotels.Source.DB
                         
                         var reader = insert.ExecuteReader();
 
-                        Usuario u = null;
-                        while(reader.Read())
+                        if (reader.Read())
                         {
-                            u = new Usuario();
-                            u.Id = int.Parse(reader["id_usuario"].ToString());
-                            u.Uuid = reader["uuid_usuario"].ToString();
-                            u.NomeUsuario = reader["usuario"].ToString();
-                            u.Senha = reader["senha"].ToString();
-                            u.TipoUsuario = reader["tipo_usuario"].ToString();
-                            u.Status = bool.Parse(reader["status"].ToString());
-                            u.CreatedAt = DateTime.Parse(reader["created_at"].ToString());
-                            u.UpdatedAt = DateTime.Parse(reader["updated_at"].ToString());
-                            
+                            Usuario u = this.PreencherUsuario(reader);
+                            return u;
+                        }else
+                        {
+                            return null;
                         }
 
-                        return u;
                     }
 
                 }
