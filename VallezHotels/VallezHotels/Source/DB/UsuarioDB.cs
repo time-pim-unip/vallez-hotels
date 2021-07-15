@@ -38,7 +38,39 @@ namespace VallezHotels.Source.DB
 
         public Usuario Atualizar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var conn = _conn.Conexao())
+                {
+                    conn.Open();
+                    using (var update = conn.CreateCommand())
+                    {
+
+                        update.CommandText = "UPDATE vallez.usuarios SET usuario = @USUARIO, senha = @SENHA, tipo_usuario = @TIPO_USUARIO, status = @STATUS, updated_at = now() where id_usuario = @ID;";
+                        update.AddParameter("@ID", usuario.Id, DbType.Int32);
+                        update.AddParameter("@USUARIO", usuario.NomeUsuario);
+                        update.AddParameter("@SENHA", usuario.Senha, DbType.String);
+                        update.AddParameter("@TIPO_USUARIO", usuario.TipoUsuario);
+                        update.AddParameter("@STATUS", usuario.Status);
+
+                        var updatedRows = (int)update.ExecuteNonQuery();
+
+                        if (updatedRows > 0)
+                        {
+                            return usuario;
+                        } else
+                        {
+                            return null;
+                        }
+
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public Usuario BuscarPeloID(int id)
@@ -79,7 +111,35 @@ namespace VallezHotels.Source.DB
 
         public List<Usuario> BuscarTodos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var conn = _conn.Conexao())
+                {
+                    conn.Open();
+
+                    using (var select =  conn.CreateCommand())
+                    {
+                        select.CommandText = "SELECT * FROM vallez.usuarios;";
+                        var reader = select.ExecuteReader();
+
+                        List<Usuario> usuarios = new List<Usuario>();
+                        while (reader.Read())
+                        {
+                            Usuario u = this.PreencherUsuario(reader);
+                            usuarios.Add(u);
+
+                        }
+
+                        return usuarios;
+
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public void Deletar(Usuario usuario)

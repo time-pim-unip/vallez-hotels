@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VallezHotels.Source.DB.Exceptions
 {
-    class NullReturnException : ApplicationException
+    public class NullReturnException : ApplicationException
     {
         public NullReturnException(string message) : base(message) {  }
     }

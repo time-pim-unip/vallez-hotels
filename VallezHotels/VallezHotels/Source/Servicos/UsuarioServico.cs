@@ -80,9 +80,53 @@ namespace VallezHotels.Source.Servicos
                 return u;
 
             }
+            catch (NullReturnException e)
+            {
+                throw new NullReturnException(e.Message);
+            }
             catch (Exception e)
             {
                 throw new Exception("SERVICE: " + e.Message);
+            }
+        }
+
+
+        public Usuario EditarUsuario(Usuario usuario)
+        {
+            try
+            {
+
+                Usuario u = _db.Atualizar(usuario);
+
+                if (u == null)
+                {
+                    throw new NullReturnException("A atualização retornou um objeto nullo");
+                } else
+                {
+                    return u;
+                }
+
+            }
+            catch (NullReturnException e)
+            {
+                throw new NullReturnException(e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public List<Usuario> BuscarTodos()
+        {
+            try
+            {
+                List<Usuario> lista = _db.BuscarTodos();
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
