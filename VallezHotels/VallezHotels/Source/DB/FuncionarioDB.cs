@@ -26,16 +26,44 @@ namespace VallezHotels.Source.DB
             f.UuidFuncionario = reader["uuid_funcionario"].ToString();
             f.IdPessoa = int.Parse(reader["id_pessoa"].ToString());
             f.Usuario.Id = int.Parse(reader["id_usuario"].ToString());
-            f.CTPS = reader["ctps"].ToString();
+            f.CTPS = int.Parse(reader["ctps"].ToString());
             f.Admissao = DateTime.Parse(reader["data_admissao"].ToString());
             f.CreatedAtFuncionario = DateTime.Parse(reader["created_at"].ToString());
             f.UpdatedAtFuncionario = DateTime.Parse(reader["updated_at"].ToString());
             return f;
         }
 
-        public Funcionario Atualizar(Funcionario obj)
+        public Funcionario Atualizar(Funcionario funcionario)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var conn = _conn.Conexao())
+                {
+                    conn.Open();
+
+                    using (var update = conn.CreateCommand())
+                    {
+                        update.CommandText = "UPDATE vallez.funcionarios SET ctps=@CTPS, data_admissao=@ADMISSAO, updated_at=now() WHERE id_funcionario=@ID; ";
+                        update.AddParameter("@ID", funcionario.IdFuncionario, System.Data.DbType.Int32);
+                        update.AddParameter("@CTPS", funcionario.CTPS, System.Data.DbType.Int32);
+                        update.AddParameter("@ADMISSAO", funcionario.Admissao,System.Data.DbType.Date);
+
+                        var affectedRows = (int) update.ExecuteNonQuery();
+
+                        if (affectedRows == 1)
+                        {
+                            return funcionario;
+                        } else
+                        {
+                            return null;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public Funcionario BuscarPeloID(int id)
@@ -74,7 +102,33 @@ namespace VallezHotels.Source.DB
 
         public List<Funcionario> BuscarTodos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var conn = _conn.Conexao())
+                {
+                    conn.Open();
+                    using (var select = conn.CreateCommand())
+                    {
+                        select.CommandText = "SELECT * FROM vallez.funcionarios;";
+
+                        var reader = select.ExecuteReader();
+
+                        List<Funcionario> funcionarios = new List<Funcionario>();
+                        while (reader.Read())
+                        {
+                            Funcionario f = this.PreencherFuncionario(reader);
+                            funcionarios.Add(f);
+                        }
+
+                        return funcionarios;
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public bool Deletar(Funcionario funcionario)
@@ -117,7 +171,7 @@ namespace VallezHotels.Source.DB
                         insert.CommandText = "INSERT INTO vallez.funcionarios (uuid_funcionario, id_pessoa, id_usuario, ctps, data_admissao, created_at, updated_at) VALUES(vallez.uuid_generate_v4(), @PESSOA, @USUARIO, @CTPS, @ADMISSAO, now(), now()) returning *;";
                         insert.AddParameter("@PESSOA", funcionario.IdPessoa, System.Data.DbType.Int32);
                         insert.AddParameter("@USUARIO", funcionario.Usuario.Id, System.Data.DbType.Int32);
-                        insert.AddParameter("@CTPS", int.Parse(funcionario.CTPS), System.Data.DbType.Int32);
+                        insert.AddParameter("@CTPS", funcionario.CTPS, System.Data.DbType.Int32);
                         insert.AddParameter("@ADMISSAO", funcionario.Admissao, System.Data.DbType.Date);
 
                         var reader = insert.ExecuteReader();

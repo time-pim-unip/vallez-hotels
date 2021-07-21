@@ -120,5 +120,102 @@ namespace VallezHotels.Source.Servicos
             }
         }
 
+        public List<Funcionario> BuscarTodos()
+        {
+            try
+            {
+
+                List<Funcionario> funcionarios = new List<Funcionario>();
+                List<Funcionario> lista = _db.BuscarTodos();
+
+                foreach (Funcionario f in lista)
+                {
+                    Funcionario fun = new Funcionario();
+
+                    Pessoa p = _servicoPessoa.BuscarPeloId(f.IdPessoa);
+                    Usuario u = _servicoUsuario.BuscarPeloId(f.Usuario.Id);
+
+                    // Funcionário
+                    fun.IdFuncionario = f.IdFuncionario;
+                    fun.UuidFuncionario = f.UuidFuncionario;
+                    fun.CTPS = f.CTPS;
+                    fun.Admissao = f.Admissao;
+                    fun.CreatedAtFuncionario = f.CreatedAtFuncionario;
+                    fun.UpdatedAtFuncionario = f.UpdatedAtFuncionario;
+
+                    // Pessoa
+                    fun.IdPessoa = p.IdPessoa;
+                    fun.UuidPessoa = p.UuidPessoa;
+                    fun.Nome = p.Nome;
+                    fun.DataNascimento = p.DataNascimento;
+                    fun.Cpf = p.Cpf;
+                    fun.RG = p.RG;
+                    fun.Email = p.Email;
+                    fun.Telefone = p.Telefone;
+                    fun.Celular = p.Celular;
+                    fun.CreatedAtPessoa = p.CreatedAtPessoa;
+                    fun.UpdatedAtPessoa = p.UpdatedAtPessoa;
+
+                    fun.Usuario = u;
+
+                    funcionarios.Add(fun);
+
+                }
+
+                return funcionarios;
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public Funcionario EditarFuncionario(Funcionario funcionario)
+        {
+            try
+            {
+
+                Funcionario fun = new Funcionario();
+
+                Funcionario f = _db.Atualizar(funcionario);
+                Pessoa p = _servicoPessoa.AlterarPessoa(funcionario);
+                Usuario u = _servicoUsuario.EditarUsuario(funcionario.Usuario);
+
+                // Funcionário
+                fun.IdFuncionario = f.IdFuncionario;
+                fun.UuidFuncionario = f.UuidFuncionario;
+                fun.CTPS = f.CTPS;
+                fun.Admissao = f.Admissao;
+                fun.CreatedAtFuncionario = f.CreatedAtFuncionario;
+                fun.UpdatedAtFuncionario = f.UpdatedAtFuncionario;
+
+                // Pessoa
+                fun.IdPessoa = p.IdPessoa;
+                fun.UuidPessoa = p.UuidPessoa;
+                fun.Nome = p.Nome;
+                fun.DataNascimento = p.DataNascimento;
+                fun.Cpf = p.Cpf;
+                fun.RG = p.RG;
+                fun.Email = p.Email;
+                fun.Telefone = p.Telefone;
+                fun.Celular = p.Celular;
+                fun.CreatedAtPessoa = p.CreatedAtPessoa;
+                fun.UpdatedAtPessoa = p.UpdatedAtPessoa;
+
+                // Usuario
+                fun.Usuario = u;
+
+                return fun;
+
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+
     }
 }

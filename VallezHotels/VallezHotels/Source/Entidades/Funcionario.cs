@@ -13,7 +13,7 @@ namespace VallezHotels.Source.Entidades
         public string UuidFuncionario { get; set; }
         //public Pessoa Pessoa { get; set; }
         public Usuario Usuario { get; set; }
-        public string CTPS { get; set; }
+        public int CTPS { get; set; }
         public DateTime Admissao { get; set; }
         public DateTime CreatedAtFuncionario { get; set; }
         public DateTime UpdatedAtFuncionario { get; set; }
@@ -25,13 +25,13 @@ namespace VallezHotels.Source.Entidades
             UpdatedAtFuncionario = new DateTime();
         }
 
-        public Funcionario(int id, string uuid, Usuario usuario, string cTPS, DateTime admissao)
+        public Funcionario(int id, string uuid, Usuario usuario, int ctps, DateTime admissao)
         {
             IdFuncionario = id;
             UuidFuncionario = uuid;
             //Pessoa = pessoa;
             Usuario = usuario;
-            CTPS = cTPS;
+            CTPS = ctps;
             Admissao = admissao;
             CreatedAtFuncionario = new DateTime();
             UpdatedAtFuncionario = new DateTime();
