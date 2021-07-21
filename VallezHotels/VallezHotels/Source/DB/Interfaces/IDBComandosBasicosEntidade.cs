@@ -12,7 +12,7 @@ namespace VallezHotels.Source.DB.Interfaces
         T BuscarPeloID(int id);
         List<T> BuscarTodos();
         T Atualizar(T obj);
-        void Deletar(T obj);
+        bool Deletar(T obj);
 
     }
 }

@@ -20,6 +20,7 @@ namespace VallezHotels.Source.Entidades
 
         public Funcionario()
         {
+            Usuario = new Usuario();
             CreatedAtFuncionario = new DateTime();
             UpdatedAtFuncionario = new DateTime();
         }

@@ -166,7 +166,6 @@ namespace VallezHotels.Test.Servicos
 
 
             Assert.NotEmpty(usuarios);
-            Assert.Equal(3, usuarios.Count);
 
             servico.DeletarUsuario(usuarios[0]);
             servico.DeletarUsuario(usuarios[1]);

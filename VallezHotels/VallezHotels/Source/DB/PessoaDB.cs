@@ -143,7 +143,7 @@ namespace VallezHotels.Source.DB
             }
         }
 
-        public void Deletar(Pessoa pessoa)
+        public bool Deletar(Pessoa pessoa)
         {
             try
             {
@@ -156,7 +156,9 @@ namespace VallezHotels.Source.DB
                         delete.CommandText = "DELETE FROM vallez.pessoas WHERE id_pessoa = @ID;";
                         delete.AddParameter("@ID", pessoa.IdPessoa, System.Data.DbType.Int32);
 
-                        delete.ExecuteNonQuery();
+                        int affectedRows = (int) delete.ExecuteNonQuery();
+
+                        return (affectedRows >= 1) ? true : false;
                     }
                 }
             }
