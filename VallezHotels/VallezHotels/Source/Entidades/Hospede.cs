@@ -6,32 +6,33 @@ using System.Threading.Tasks;
 
 namespace VallezHotels.Source.Entidades
 {
-    class Hospede : Pessoa
+    public class Hospede : Pessoa
     {
 
-        public int Id { get; set; }
-        public string Uuid { get; set; }
+        public int IdHospede { get; set; }
+        public string UuidHospede { get; set; }
         public Pessoa Pessoa { get; set; }
         public Usuario Usuario { get; set; }
         public bool Consentimento { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime CreatedAtHospede { get; set; }
+        public DateTime UpdatedAtHospede { get; set; }
 
         public Hospede()
         {
-            CreatedAt = new DateTime();
-            UpdatedAt = new DateTime();
+            Usuario = new Usuario();
+            CreatedAtHospede = new DateTime();
+            UpdatedAtHospede = new DateTime();
         }
 
         public Hospede(int id, string uuid, Pessoa pessoa, Usuario usuario, bool consentimento, DateTime createdAt, DateTime updatedAt)
         {
-            Id = id;
-            Uuid = uuid;
+            IdHospede = id;
+            UuidHospede = uuid;
             Pessoa = pessoa;
             Usuario = usuario;
             Consentimento = consentimento;
-            CreatedAt = new DateTime();
-            UpdatedAt = new DateTime();
+            CreatedAtHospede = new DateTime();
+            UpdatedAtHospede = new DateTime();
         }
     }
 }
