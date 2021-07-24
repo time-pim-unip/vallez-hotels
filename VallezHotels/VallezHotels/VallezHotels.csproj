@@ -175,16 +175,19 @@
     <Compile Include="Source\DB\Conexao\PGConexao.cs" />
     <Compile Include="Source\DB\PessoaDB.cs" />
     <Compile Include="Source\DB\ServicoDB.cs" />
+    <Compile Include="Source\DB\TipoQuartoDB.cs" />
     <Compile Include="Source\DB\UsuarioDB.cs" />
     <Compile Include="Source\Entidades\Funcionario.cs" />
     <Compile Include="Source\Entidades\Hospede.cs" />
     <Compile Include="Source\Entidades\Pessoa.cs" />
     <Compile Include="Source\Entidades\Servico.cs" />
+    <Compile Include="Source\Entidades\TipoQuarto.cs" />
     <Compile Include="Source\Entidades\Usuario.cs" />
     <Compile Include="Source\Servicos\HospedeServico.cs" />
     <Compile Include="Source\Servicos\FuncionarioServico.cs" />
     <Compile Include="Source\Servicos\PessoaServico.cs" />
     <Compile Include="Source\Servicos\ServicoServico.cs" />
+    <Compile Include="Source\Servicos\TipoQuartoServico.cs" />
     <Compile Include="Source\Servicos\UsuarioServico.cs" />
     <EmbeddedResource Include="Forms\Dashboard\FrmDashboard.resx">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
