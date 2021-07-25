@@ -166,6 +166,7 @@
     <Compile Include="Forms\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\DB\DisponibilidadeDB.cs" />
     <Compile Include="Source\DB\Exceptions\NullReturnException.cs" />
     <Compile Include="Source\DB\Extensoes\DbParameterExtension.cs" />
     <Compile Include="Source\DB\HospedeDB.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Source\DB\ServicoDB.cs" />
     <Compile Include="Source\DB\TipoQuartoDB.cs" />
     <Compile Include="Source\DB\UsuarioDB.cs" />
+    <Compile Include="Source\Entidades\Disponibilidade.cs" />
     <Compile Include="Source\Entidades\Funcionario.cs" />
     <Compile Include="Source\Entidades\Hospede.cs" />
     <Compile Include="Source\Entidades\Pessoa.cs" />
@@ -185,6 +187,7 @@
     <Compile Include="Source\Entidades\Servico.cs" />
     <Compile Include="Source\Entidades\TipoQuarto.cs" />
     <Compile Include="Source\Entidades\Usuario.cs" />
+    <Compile Include="Source\Servicos\DisponibilidadeServico.cs" />
     <Compile Include="Source\Servicos\HospedeServico.cs" />
     <Compile Include="Source\Servicos\FuncionarioServico.cs" />
     <Compile Include="Source\Servicos\PessoaServico.cs" />
