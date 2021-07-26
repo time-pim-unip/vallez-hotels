@@ -139,7 +139,7 @@ create table locacoes(
 );
 
 /* Faturamentos */
-create table faturamento(
+create table faturamentos(
 	id_faturamento		serial not null,
 	uuid_faturamento	uuid not null default uuid_generate_v4(),
 	id_locacao			int not null,
