@@ -23,8 +23,4 @@
     <ProjectReference Include="..\VallezHotels\VallezHotels.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entidades\" />
-  </ItemGroup>
-
 </Project>
