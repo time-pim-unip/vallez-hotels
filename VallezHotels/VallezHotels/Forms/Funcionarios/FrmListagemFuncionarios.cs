@@ -27,30 +27,40 @@ namespace VallezHotels
             InitializeComponent();
         }
 
-        private void FrmListagemFuncionarios_Load(object sender, EventArgs e)
+        private void AtualizarListaFuncionarios()
         {
-
             List<Funcionario> funcionarios = _funcionarioServico.BuscarTodos();
 
             var funcionariosView = from f in funcionarios
-                                   select new { 
-                                        Id = f.IdFuncionario,
-                                        Nome = f.Nome,
-                                        Cpf = f.Cpf,
-                                        Rg = f.RG,
-                                        Email = f.Email
+                                   select new
+                                   {
+                                       Id = f.IdFuncionario,
+                                       Nome = f.Nome,
+                                       Cpf = f.Cpf,
+                                       Rg = f.RG,
+                                       Email = f.Email
                                    };
 
-            
-            dgFuncionarios.DataSource = funcionariosView.ToList();
 
+            dgFuncionarios.DataSource = funcionariosView.ToList();
+        }
+
+        private void FrmListagemFuncionarios_Load(object sender, EventArgs e)
+        {
+            AtualizarListaFuncionarios();
         }
 
         private void btnNovoHospede_Click(object sender, EventArgs e)
         {
 
             FrmFuncionario funcionario = new FrmFuncionario();
-            Helper.StartForm(funcionario, null);
+            funcionario.ShowDialog();
+
+            if (funcionario.AtualizarFuncionarios)
+            {
+                this.AtualizarListaFuncionarios();
+            }
+
         }
 
         private void dgFuncionarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -61,6 +71,11 @@ namespace VallezHotels
         private void dgFuncionarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             MessageBox.Show(dgFuncionarios.Rows[0].Cells["Nome"].Value.ToString());
+        }
+
+        private void txtPesquisaNome_TextChanged(object sender, EventArgs e)
+        {
+            dgFuncionarios.DataSource;
         }
     }
 }

@@ -103,6 +103,7 @@ namespace VallezHotels
             this.txtPesquisaNome.Name = "txtPesquisaNome";
             this.txtPesquisaNome.Size = new System.Drawing.Size(618, 20);
             this.txtPesquisaNome.TabIndex = 1;
+            this.txtPesquisaNome.TextChanged += new System.EventHandler(this.txtPesquisaNome_TextChanged);
             // 
             // label1
             // 
