@@ -195,6 +195,7 @@
     <Compile Include="Source\Entidades\ServicoSolicitado.cs" />
     <Compile Include="Source\Entidades\TipoQuarto.cs" />
     <Compile Include="Source\Entidades\Usuario.cs" />
+    <Compile Include="Source\Enums\TipoUsuario.cs" />
     <Compile Include="Source\Servicos\DisponibilidadeServico.cs" />
     <Compile Include="Source\Servicos\FaturamentoServico.cs" />
     <Compile Include="Source\Servicos\HospedagemServico.cs" />

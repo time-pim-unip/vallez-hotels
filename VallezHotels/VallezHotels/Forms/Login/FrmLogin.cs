@@ -8,48 +8,62 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using VallezHotels.Source.Servicos;
+using VallezHotels.Source.Entidades;
+using VallezHotels.Source.Enums;
+
 namespace VallezHotels
 {
     public partial class FrmLogin : Form
     {
-
-        public FrmPrincipal principal;
         public Boolean UsuarioValido;
+
+        private readonly UsuarioServico _usuarioServico;
 
         public FrmLogin()
         {
+            this._usuarioServico = new UsuarioServico();
+
             InitializeComponent();
-            this.UsuarioValido = false;
+
+            //this.UsuarioValido = false;
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-            this.UsuarioValido = true;
+        
         }
 
         private void btnSair_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+
+            this.UsuarioValido = false;
+            this.Close();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            this.principal.Show();
-            this.Close();
-            
-            //this.principal.TopLevel = true;
-            //this.principal.Visible = true;
-            //this.principal.Location = new Point(this.ClientSize.Width * 2, this.ClientSize.Height);
+
+            string usuario = txtUsuario.Text.ToString().Trim();
+            string senha = txtSenha.Text.ToString().Trim();
+
+            Usuario u = _usuarioServico.BuscarUsuarioESenha(usuario, senha);
+
+            if (u == null)
+            {
+                MessageBox.Show("Usuário ou senha não encontrados !");
+            } else
+            {
+                this.UsuarioValido = true;
+                this.Close();
+            }
         }
 
         private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (!this.UsuarioValido)
             {
-                Application.Exit();
-            } else
-            {
-                this.Close();
+                this.UsuarioValido = false;
             }
         }
     }
