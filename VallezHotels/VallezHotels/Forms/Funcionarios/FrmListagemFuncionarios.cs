@@ -54,7 +54,7 @@ namespace VallezHotels
             AtualizarListaFuncionarios();
         }
 
-        private void btnNovoHospede_Click(object sender, EventArgs e)
+        private void btnNovoFuncionario_Click(object sender, EventArgs e)
         {
 
             FrmFuncionario funcionario = new FrmFuncionario();

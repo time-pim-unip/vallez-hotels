@@ -35,7 +35,7 @@ namespace VallezHotels
             this.chkSomenteAtivos = new System.Windows.Forms.CheckBox();
             this.txtPesquisaNome = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnNovoHospede = new System.Windows.Forms.Button();
+            this.btnNovoFuncionario = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgFuncionarios)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -115,26 +115,26 @@ namespace VallezHotels
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome";
             // 
-            // btnNovoHospede
+            // btnNovoFuncionario
             // 
-            this.btnNovoHospede.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNovoHospede.Image = global::VallezHotels.Properties.Resources.add;
-            this.btnNovoHospede.Location = new System.Drawing.Point(661, 20);
-            this.btnNovoHospede.Name = "btnNovoHospede";
-            this.btnNovoHospede.Size = new System.Drawing.Size(124, 44);
-            this.btnNovoHospede.TabIndex = 2;
-            this.btnNovoHospede.Text = "Novo Funcionário";
-            this.btnNovoHospede.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNovoHospede.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnNovoHospede.UseVisualStyleBackColor = true;
-            this.btnNovoHospede.Click += new System.EventHandler(this.btnNovoHospede_Click);
+            this.btnNovoFuncionario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNovoFuncionario.Image = global::VallezHotels.Properties.Resources.add;
+            this.btnNovoFuncionario.Location = new System.Drawing.Point(661, 20);
+            this.btnNovoFuncionario.Name = "btnNovoFuncionario";
+            this.btnNovoFuncionario.Size = new System.Drawing.Size(124, 44);
+            this.btnNovoFuncionario.TabIndex = 2;
+            this.btnNovoFuncionario.Text = "Novo Funcionário";
+            this.btnNovoFuncionario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNovoFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNovoFuncionario.UseVisualStyleBackColor = true;
+            this.btnNovoFuncionario.Click += new System.EventHandler(this.btnNovoFuncionario_Click);
             // 
             // FrmListagemFuncionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnNovoHospede);
+            this.Controls.Add(this.btnNovoFuncionario);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmListagemFuncionarios";
@@ -157,7 +157,7 @@ namespace VallezHotels
         private System.Windows.Forms.CheckBox chkSomenteAtivos;
         private System.Windows.Forms.TextBox txtPesquisaNome;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnNovoHospede;
+        private System.Windows.Forms.Button btnNovoFuncionario;
         private System.Windows.Forms.DataGridView dgFuncionarios;
     }
 }
