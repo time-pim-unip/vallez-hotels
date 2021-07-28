@@ -134,10 +134,16 @@
     <Compile Include="Forms\Quartos\FrmQuarto.Designer.cs">
       <DependentUpon>FrmQuarto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Quartos\FrmTipoQuarto.cs">
+    <Compile Include="Forms\Tipo de Quarto\FrmListagemTipoQuarto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Quartos\FrmTipoQuarto.Designer.cs">
+    <Compile Include="Forms\Tipo de Quarto\FrmListagemTipoQuarto.Designer.cs">
+      <DependentUpon>FrmListagemTipoQuarto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tipo de Quarto\FrmTipoQuarto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tipo de Quarto\FrmTipoQuarto.Designer.cs">
       <DependentUpon>FrmTipoQuarto.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Servicos\FrmListagemServicos.cs">
@@ -246,7 +252,10 @@
     <EmbeddedResource Include="Forms\Quartos\FrmQuarto.resx">
       <DependentUpon>FrmQuarto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Quartos\FrmTipoQuarto.resx">
+    <EmbeddedResource Include="Forms\Tipo de Quarto\FrmListagemTipoQuarto.resx">
+      <DependentUpon>FrmListagemTipoQuarto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tipo de Quarto\FrmTipoQuarto.resx">
       <DependentUpon>FrmTipoQuarto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Servicos\FrmListagemServicos.resx">
