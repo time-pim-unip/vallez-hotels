@@ -32,6 +32,9 @@ namespace VallezHotels
             List<Funcionario> funcionarios = _funcionarioServico.BuscarTodos();
 
             var funcionariosView = from f in funcionarios
+                                   orderby f.Nome
+                                   where (f.Usuario.Status == chkSomenteAtivos.Checked || false == chkSomenteAtivos.Checked) 
+                                   && f.Nome.ToUpper().Contains(txtPesquisaNome.Text.ToUpper().Trim().ToString())
                                    select new
                                    {
                                        Id = f.IdFuncionario,
@@ -41,6 +44,7 @@ namespace VallezHotels
                                        Email = f.Email
                                    };
 
+            
 
             dgFuncionarios.DataSource = funcionariosView.ToList();
         }
@@ -70,12 +74,27 @@ namespace VallezHotels
 
         private void dgFuncionarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show(dgFuncionarios.Rows[0].Cells["Nome"].Value.ToString());
+
+            FrmFuncionario funcionario = new FrmFuncionario();
+            funcionario.IdFuncionario = int.Parse(dgFuncionarios.Rows[e.RowIndex].Cells["Id"].Value.ToString());
+            funcionario.ShowDialog();
+
+            if (funcionario.AtualizarFuncionarios)
+            {
+                this.AtualizarListaFuncionarios();
+            }
+
+            
         }
 
         private void txtPesquisaNome_TextChanged(object sender, EventArgs e)
         {
-            dgFuncionarios.DataSource;
+            this.AtualizarListaFuncionarios();
+        }
+
+        private void chkSomenteAtivos_CheckedChanged(object sender, EventArgs e)
+        {
+            AtualizarListaFuncionarios();
         }
     }
 }

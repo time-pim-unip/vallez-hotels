@@ -94,6 +94,7 @@ namespace VallezHotels
             this.chkSomenteAtivos.TabIndex = 2;
             this.chkSomenteAtivos.Text = "Somente Ativos";
             this.chkSomenteAtivos.UseVisualStyleBackColor = true;
+            this.chkSomenteAtivos.CheckedChanged += new System.EventHandler(this.chkSomenteAtivos_CheckedChanged);
             // 
             // txtPesquisaNome
             // 

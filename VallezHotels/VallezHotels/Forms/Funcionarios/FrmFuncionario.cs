@@ -17,15 +17,52 @@ namespace VallezHotels
     public partial class FrmFuncionario : Form
     {
 
-        public bool AtualizarFuncionarios;
         private readonly FuncionarioServico _funcionarioServico;
+        public bool AtualizarFuncionarios;
+        public int IdFuncionario;
+        private Funcionario Funcionario;
 
         public FrmFuncionario()
         {
             _funcionarioServico = new FuncionarioServico();
             AtualizarFuncionarios = false;
-
+            Funcionario = new Funcionario();
+            
             InitializeComponent();
+        }
+
+        private void PreencherFormularios(Funcionario f)
+        {
+            txtCodigo.Text = f.IdFuncionario.ToString();
+            txtNome.Text = f.Nome.ToString();
+            txtCPF.Text = f.Cpf.ToString();
+            txtRG.Text = f.RG.ToString();
+            dtNascimento.Value = f.DataNascimento;
+            dtAdmissao.Value = f.Admissao;
+            txtCtps.Text = f.CTPS.ToString();
+            txtTelefone.Text = f.Telefone.ToString();
+            txtCelular.Text = f.Celular.ToString();
+            txtEmail.Text = f.Email.ToString();
+            txtUsuario.Text = f.Usuario.NomeUsuario.ToString();
+            txtSenha.Text = f.Usuario.Senha.ToString();
+            chkAtivo.Checked = bool.Parse(f.Usuario.Status.ToString());
+
+            char c = char.Parse(f.Usuario.TipoUsuario.ToString());
+            TipoUsuario tipoUsuario = (TipoUsuario)c;
+
+            cbTipoUsuario.SelectedItem = tipoUsuario.ToString();
+        }
+
+
+        private void FrmFuncionario_Load(object sender, EventArgs e)
+        {
+
+            if (IdFuncionario > 0)
+            {
+                Funcionario = _funcionarioServico.BuscarPeloId(IdFuncionario);
+                PreencherFormularios(Funcionario);
+            }
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -93,7 +130,9 @@ namespace VallezHotels
             }
 
 
-            Funcionario funcionario = new Funcionario()
+
+            /*
+            Funcionario = new Funcionario()
             {
                 Nome = txtNome.Text.Trim().ToString(),
                 DataNascimento = DateTime.Parse(dtNascimento.Text.ToString()),
@@ -109,23 +148,51 @@ namespace VallezHotels
             TipoUsuario tipoUsuario = (TipoUsuario)Enum.Parse(typeof(TipoUsuario), cbTipoUsuario.SelectedItem.ToString());
             char c = (char)tipoUsuario;
 
-            funcionario.Usuario = new Usuario()
+            Funcionario.Usuario = new Usuario()
             {
                 NomeUsuario = txtUsuario.Text.Trim().ToString(),
                 Senha = txtSenha.Text.Trim().ToString(),
                 TipoUsuario = c.ToString(),
                 Status = chkAtivo.Checked
             };
+            */
+
+            Funcionario.Nome = txtNome.Text.Trim().ToString();
+            Funcionario.DataNascimento = DateTime.Parse(dtNascimento.Text.ToString());
+            Funcionario.Cpf = txtCPF.Text.Trim().ToString();
+            Funcionario.RG = txtRG.Text.Trim().ToString();
+            Funcionario.Email = txtEmail.Text.Trim().ToString();
+            Funcionario.Telefone = txtTelefone.Text.Trim().ToString();
+            Funcionario.Celular = txtCelular.Text.Trim().ToString();
+            Funcionario.CTPS = txtCtps.Text.Trim().ToString();
+            Funcionario.Admissao = DateTime.Parse(dtAdmissao.Text.ToString());
+
+            TipoUsuario tipoUsuario = (TipoUsuario)Enum.Parse(typeof(TipoUsuario), cbTipoUsuario.SelectedItem.ToString());
+            char c = (char)tipoUsuario;
+
+            Funcionario.Usuario.NomeUsuario = txtUsuario.Text.Trim().ToString();
+            Funcionario.Usuario.Senha = txtSenha.Text.Trim().ToString();
+            Funcionario.Usuario.TipoUsuario = c.ToString();
+            Funcionario.Usuario.Status = chkAtivo.Checked;
 
             try
             {
 
-                Funcionario f = _funcionarioServico.InserirFuncionario(funcionario);
+                Funcionario f = null;
+
+                if (IdFuncionario > 0)
+                {
+                    f = _funcionarioServico.EditarFuncionario(Funcionario);
+                } else
+                {
+                    f = _funcionarioServico.InserirFuncionario(Funcionario);
+                }
 
                 if (f != null)
                 {
-                    MessageBox.Show($"Usuário cadastrado com o Id {f.IdFuncionario.ToString()} !", "Sucesso !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Usuário com Id {f.IdFuncionario.ToString()} gerenciadoc com sucesso ! !", "Sucesso !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     AtualizarFuncionarios = true;
+                    PreencherFormularios(f);
                 } else
                 {
                     MessageBox.Show($"Um erro ocorreu ao tentar cadastrar o Funcionario !", "Atenção !", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -141,5 +208,6 @@ namespace VallezHotels
             
 
         }
+
     }
 }
