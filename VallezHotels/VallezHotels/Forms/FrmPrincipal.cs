@@ -52,20 +52,20 @@ namespace VallezHotels
             }
 
             // Carregar a splash screen e o formulário de login antes do sistema iniciar.
-            this.Opacity = 0;
+            this.Opacity = 1;
 
             //SplashScreen splash = new SplashScreen();
             //splash.principal = this;
             //splash.ShowDialog();
 
-            FrmLogin login = new FrmLogin();
-            login.ShowDialog();
-            this.UsuarioValido = login.UsuarioValido;
+            //FrmLogin login = new FrmLogin();
+            //login.ShowDialog();
+            //this.UsuarioValido = login.UsuarioValido;
 
-            if (this.UsuarioValido)
-            {
-                this.Opacity = 1;
-            }
+            //if (this.UsuarioValido)
+            //{
+            //    this.Opacity = 1;
+            //}
 
             // Ativar a dashboard como formulário padrão
             //FrmDashboard dashboard = new FrmDashboard();
@@ -118,7 +118,8 @@ namespace VallezHotels
 
         private void serviçsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmServicos servicos = new FrmServicos();
+            //FrmServicos servicos = new FrmServicos();
+            FrmListagemServicos servicos = new FrmListagemServicos();
             Helper.StartForm(servicos, this);
         }
 
@@ -130,10 +131,12 @@ namespace VallezHotels
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
+            /*
             if (!this.UsuarioValido)
             {
                 Application.Exit();
             }
+            */
         }
     }
 }
