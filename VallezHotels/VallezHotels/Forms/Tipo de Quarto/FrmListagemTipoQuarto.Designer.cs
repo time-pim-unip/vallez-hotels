@@ -1,5 +1,5 @@
 ﻿
-namespace VallezHotels.Forms.Tipo_de_Quarto
+namespace VallezHotels
 {
     partial class FrmListagemTipoQuarto
     {
@@ -30,14 +30,14 @@ namespace VallezHotels.Forms.Tipo_de_Quarto
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtPesquisa = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnNovoTipo = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgTiposQuarto = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTiposQuarto)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -54,18 +54,15 @@ namespace VallezHotels.Forms.Tipo_de_Quarto
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pesquisa";
             // 
-            // button1
+            // txtPesquisa
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Image = global::VallezHotels.Properties.Resources.add;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(356, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 52);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Novo Tipo Quarto";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
+            this.txtPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPesquisa.Location = new System.Drawing.Point(6, 32);
+            this.txtPesquisa.Name = "txtPesquisa";
+            this.txtPesquisa.Size = new System.Drawing.Size(326, 22);
+            this.txtPesquisa.TabIndex = 3;
+            this.txtPesquisa.TextChanged += new System.EventHandler(this.txtPesquisa_TextChanged);
             // 
             // label1
             // 
@@ -76,21 +73,26 @@ namespace VallezHotels.Forms.Tipo_de_Quarto
             this.label1.TabIndex = 2;
             this.label1.Text = "Nome";
             // 
-            // txtPesquisa
+            // btnNovoTipo
             // 
-            this.txtPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPesquisa.Location = new System.Drawing.Point(6, 32);
-            this.txtPesquisa.Name = "txtPesquisa";
-            this.txtPesquisa.Size = new System.Drawing.Size(326, 22);
-            this.txtPesquisa.TabIndex = 3;
+            this.btnNovoTipo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNovoTipo.Image = global::VallezHotels.Properties.Resources.add;
+            this.btnNovoTipo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNovoTipo.Location = new System.Drawing.Point(356, 22);
+            this.btnNovoTipo.Name = "btnNovoTipo";
+            this.btnNovoTipo.Size = new System.Drawing.Size(136, 52);
+            this.btnNovoTipo.TabIndex = 1;
+            this.btnNovoTipo.Text = "Novo Tipo Quarto";
+            this.btnNovoTipo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNovoTipo.UseVisualStyleBackColor = true;
+            this.btnNovoTipo.Click += new System.EventHandler(this.btnNovoTipo_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.dataGridView1);
+            this.groupBox2.Controls.Add(this.dgTiposQuarto);
             this.groupBox2.Location = new System.Drawing.Point(12, 84);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(475, 232);
@@ -98,19 +100,22 @@ namespace VallezHotels.Forms.Tipo_de_Quarto
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tipos de Quarto";
             // 
-            // dataGridView1
+            // dgTiposQuarto
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(469, 213);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgTiposQuarto.AllowUserToAddRows = false;
+            this.dgTiposQuarto.AllowUserToDeleteRows = false;
+            this.dgTiposQuarto.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgTiposQuarto.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgTiposQuarto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgTiposQuarto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgTiposQuarto.Location = new System.Drawing.Point(3, 16);
+            this.dgTiposQuarto.Name = "dgTiposQuarto";
+            this.dgTiposQuarto.ReadOnly = true;
+            this.dgTiposQuarto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgTiposQuarto.Size = new System.Drawing.Size(469, 213);
+            this.dgTiposQuarto.TabIndex = 0;
+            this.dgTiposQuarto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgTiposQuarto.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTiposQuarto_CellDoubleClick);
             // 
             // FrmListagemTipoQuarto
             // 
@@ -118,16 +123,17 @@ namespace VallezHotels.Forms.Tipo_de_Quarto
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(499, 328);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnNovoTipo);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmListagemTipoQuarto";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Listagem Tipo de Quarto";
+            this.Load += new System.EventHandler(this.FrmListagemTipoQuarto_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTiposQuarto)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -135,10 +141,10 @@ namespace VallezHotels.Forms.Tipo_de_Quarto
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnNovoTipo;
         private System.Windows.Forms.TextBox txtPesquisa;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgTiposQuarto;
     }
 }

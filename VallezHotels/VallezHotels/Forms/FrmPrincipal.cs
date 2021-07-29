@@ -112,7 +112,7 @@ namespace VallezHotels
 
         private void tipoQuartoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmTipoQuarto tipoQuarto = new FrmTipoQuarto();
+            FrmListagemTipoQuarto tipoQuarto = new FrmListagemTipoQuarto();
             Helper.StartForm(tipoQuarto, this);
         }
 
