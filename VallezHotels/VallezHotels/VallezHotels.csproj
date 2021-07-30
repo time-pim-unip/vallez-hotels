@@ -128,6 +128,12 @@
     <Compile Include="Forms\FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Quartos\FrmListagemQuartos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Quartos\FrmListagemQuartos.Designer.cs">
+      <DependentUpon>FrmListagemQuartos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Quartos\FrmQuarto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Quartos\FrmListagemQuartos.resx">
+      <DependentUpon>FrmListagemQuartos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Quartos\FrmQuarto.resx">
       <DependentUpon>FrmQuarto.cs</DependentUpon>

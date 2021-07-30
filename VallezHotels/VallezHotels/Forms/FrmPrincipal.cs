@@ -106,8 +106,8 @@ namespace VallezHotels
 
         private void quartoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmQuarto quarto = new FrmQuarto();
-            Helper.StartForm(quarto, this);
+            FrmListagemQuartos quartos = new FrmListagemQuartos();
+            Helper.StartForm(quartos, this);
         }
 
         private void tipoQuartoToolStripMenuItem_Click(object sender, EventArgs e)

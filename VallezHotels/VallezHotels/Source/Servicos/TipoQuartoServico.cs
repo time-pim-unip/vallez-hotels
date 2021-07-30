@@ -86,5 +86,19 @@ namespace VallezHotels.Source.Servicos
             }
         }
 
+        public TipoQuarto BuscarPeloNome(string nome)
+        {
+            try
+            {
+                TipoQuarto tq = _db.BuscarPeloNome(nome);
+
+                return tq;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
     }
 }
