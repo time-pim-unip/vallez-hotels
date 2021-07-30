@@ -14,11 +14,13 @@ namespace VallezHotels.Source.Servicos
 
         private readonly QuartoDB _db;
         private readonly TipoQuartoServico _tipoQuartoServico;
+        private readonly DisponibilidadeServico _disponibilidadeServico;
 
         public QuartoServico()
         {
             _db = new QuartoDB(new PGConexao());
             _tipoQuartoServico = new TipoQuartoServico();
+            _disponibilidadeServico = new DisponibilidadeServico(this);
         }
 
 
@@ -28,7 +30,7 @@ namespace VallezHotels.Source.Servicos
             {
                 Quarto q =_db.Inserir(quarto);
                 q.TipoQuarto = _tipoQuartoServico.BuscarPeloId(q.TipoQuarto.Id);
-
+                
                 return q;
 
             }
@@ -58,6 +60,7 @@ namespace VallezHotels.Source.Servicos
 
                 Quarto q = _db.BuscarPeloID(id);
                 q.TipoQuarto = _tipoQuartoServico.BuscarPeloId(q.TipoQuarto.Id);
+                q.Disponibilidades = _disponibilidadeServico.BuscarPeloQuarto(q);
 
                 return q;
             }
