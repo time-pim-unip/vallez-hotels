@@ -137,6 +137,10 @@ namespace VallezHotels
                 Application.Exit();
             }
             */
+
+            // Ativar a dashboard como formulário padrão
+            FrmDashboard dashboard = new FrmDashboard();
+            Helper.StartForm(dashboard, this);
         }
     }
 }

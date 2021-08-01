@@ -28,6 +28,7 @@ namespace VallezHotels.Source.Servicos
             {
                 Locacao l = _db.Inserir(locacao);
                 l.Quarto = _quartoServico.BuscarPeloId(l.Quarto.Id);
+                _quartoServico.RemoverDisponibilidades(l.Quarto, locacao);
 
                 return l;
 
@@ -105,6 +106,26 @@ namespace VallezHotels.Source.Servicos
             {
                 throw new Exception(e.Message);
             }
+        }
+
+        public Locacao BuscarPelaDataEQuarto(Quarto q, DateTime data)
+        {
+            try
+            {
+
+                Locacao l = _db.BuscarPelaDataEQuarto(q, data);
+                return l;
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public Locacao BuscarPelaDataEQuarto(Quarto q)
+        {
+            return this.BuscarPelaDataEQuarto(q, DateTime.Now);
         }
 
 

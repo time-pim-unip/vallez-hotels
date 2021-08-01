@@ -284,7 +284,7 @@ namespace VallezHotels
             this.txtDataFinal.Name = "txtDataFinal";
             this.txtDataFinal.Size = new System.Drawing.Size(101, 20);
             this.txtDataFinal.TabIndex = 3;
-            this.txtDataFinal.Value = new System.DateTime(2021, 7, 29, 0, 0, 0, 0);
+            this.txtDataFinal.Value = new System.DateTime(2021, 7, 31, 0, 0, 0, 0);
             // 
             // label10
             // 
@@ -302,7 +302,7 @@ namespace VallezHotels
             this.txtDataInicial.Name = "txtDataInicial";
             this.txtDataInicial.Size = new System.Drawing.Size(101, 20);
             this.txtDataInicial.TabIndex = 1;
-            this.txtDataInicial.Value = new System.DateTime(2021, 7, 29, 0, 0, 0, 0);
+            this.txtDataInicial.Value = new System.DateTime(2021, 7, 31, 0, 0, 0, 0);
             // 
             // label9
             // 

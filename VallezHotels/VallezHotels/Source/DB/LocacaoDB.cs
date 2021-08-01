@@ -204,5 +204,44 @@ namespace VallezHotels.Source.DB
                 throw new Exception(e.Message);
             }
         }
+
+        public Locacao BuscarPelaDataEQuarto(Quarto q, DateTime data)
+        {
+            try
+            {
+                using (var conn = _conn.Conexao())
+                {
+                    conn.Open();
+
+                    using (var select = conn.CreateCommand())
+                    {
+
+                        select.CommandText = "SELECT * FROM vallez.locacoes l WHERE id_quarto = @QUARTO AND (@DATA::date - l.dt_entrada ::date) >= 0 AND ((@DATA::date - l.dt_entrada::date) <= (l.dt_saida::date - l.dt_entrada::date));";
+                        select.AddParameter("@QUARTO", q.Id, System.Data.DbType.Int32);
+                        select.AddParameter("@DATA", data.Date, System.Data.DbType.Date);
+
+                        var reader = select.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            Locacao l = this.PreencherLocacao(reader);
+
+                            return l;
+                        }
+
+                        return null;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public Locacao BuscarPelaDataEQuarto(Quarto q)
+        {
+            return this.BuscarPelaDataEQuarto(q, DateTime.Now);
+        }
     }
 }

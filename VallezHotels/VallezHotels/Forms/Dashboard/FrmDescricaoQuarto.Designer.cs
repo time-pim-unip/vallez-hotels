@@ -30,14 +30,14 @@ namespace VallezHotels
         private void InitializeComponent()
         {
             this.lblNumQuarto = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblHospedes = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblBloco = new System.Windows.Forms.Label();
+            this.lblTipoQuarto = new System.Windows.Forms.Label();
+            this.lblSituacao = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblNumQuarto
@@ -46,19 +46,19 @@ namespace VallezHotels
             this.lblNumQuarto.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNumQuarto.Location = new System.Drawing.Point(116, 26);
             this.lblNumQuarto.Name = "lblNumQuarto";
-            this.lblNumQuarto.Size = new System.Drawing.Size(83, 30);
+            this.lblNumQuarto.Size = new System.Drawing.Size(106, 30);
             this.lblNumQuarto.TabIndex = 0;
-            this.lblNumQuarto.Text = "Quarto";
+            this.lblNumQuarto.Text = "Numero: ";
             // 
-            // label1
+            // lblHospedes
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 102);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(198, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Hospede: Daniel Costa Munhoz";
+            this.lblHospedes.AutoSize = true;
+            this.lblHospedes.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHospedes.Location = new System.Drawing.Point(12, 102);
+            this.lblHospedes.Name = "lblHospedes";
+            this.lblHospedes.Size = new System.Drawing.Size(155, 17);
+            this.lblHospedes.TabIndex = 1;
+            this.lblHospedes.Text = "Quantidade hospedes: 0";
             // 
             // label2
             // 
@@ -96,35 +96,35 @@ namespace VallezHotels
             this.label5.TabIndex = 4;
             this.label5.Text = "Check-in: 02/01/2021";
             // 
-            // label6
+            // lblBloco
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(12, 26);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 30);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Andar: 1";
+            this.lblBloco.AutoSize = true;
+            this.lblBloco.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBloco.Location = new System.Drawing.Point(12, 26);
+            this.lblBloco.Name = "lblBloco";
+            this.lblBloco.Size = new System.Drawing.Size(74, 30);
+            this.lblBloco.TabIndex = 6;
+            this.lblBloco.Text = "Bloco:";
             // 
-            // label7
+            // lblTipoQuarto
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(14, 56);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(39, 17);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Suite";
+            this.lblTipoQuarto.AutoSize = true;
+            this.lblTipoQuarto.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipoQuarto.Location = new System.Drawing.Point(14, 56);
+            this.lblTipoQuarto.Name = "lblTipoQuarto";
+            this.lblTipoQuarto.Size = new System.Drawing.Size(39, 17);
+            this.lblTipoQuarto.TabIndex = 7;
+            this.lblTipoQuarto.Text = "Suite";
             // 
-            // label8
+            // lblSituacao
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(14, 73);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(129, 17);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Situação: Disponivel";
+            this.lblSituacao.AutoSize = true;
+            this.lblSituacao.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSituacao.Location = new System.Drawing.Point(14, 73);
+            this.lblSituacao.Name = "lblSituacao";
+            this.lblSituacao.Size = new System.Drawing.Size(129, 17);
+            this.lblSituacao.TabIndex = 8;
+            this.lblSituacao.Text = "Situação: Disponivel";
             // 
             // FrmDescricaoQuarto
             // 
@@ -132,14 +132,14 @@ namespace VallezHotels
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(296, 188);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblSituacao);
+            this.Controls.Add(this.lblTipoQuarto);
+            this.Controls.Add(this.lblBloco);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblHospedes);
             this.Controls.Add(this.lblNumQuarto);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -156,13 +156,13 @@ namespace VallezHotels
         #endregion
 
         private System.Windows.Forms.Label lblNumQuarto;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblHospedes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblBloco;
+        private System.Windows.Forms.Label lblTipoQuarto;
+        private System.Windows.Forms.Label lblSituacao;
     }
 }

@@ -86,6 +86,12 @@
     <Compile Include="Forms\Dashboard\FrmDashboard.Designer.cs">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmListagemGenerica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmListagemGenerica.Designer.cs">
+      <DependentUpon>FrmListagemGenerica.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Funcionarios\FrmFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Source\Core\DateTimeExtensao.cs" />
     <Compile Include="Source\Core\Helper.cs" />
     <Compile Include="Forms\SplashScreen.cs">
       <SubType>Form</SubType>
@@ -231,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dashboard\FrmDescricaoQuarto.resx">
       <DependentUpon>FrmDescricaoQuarto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmListagemGenerica.resx">
+      <DependentUpon>FrmListagemGenerica.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Funcionarios\FrmFuncionario.resx">
       <DependentUpon>FrmFuncionario.cs</DependentUpon>
