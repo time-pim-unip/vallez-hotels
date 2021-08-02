@@ -116,13 +116,7 @@ namespace VallezHotels.Source.Servicos
             try
             {
                 List<Disponibilidade> disponibilidadesQuarto = _disponibilidadeServico.BuscarPeloQuarto(q);
-                List<DateTime> datasLocacao = new List<DateTime>();
-
-                int totalDiasLocacao = int.Parse(Math.Ceiling(locacao.DataSaida.Subtract(locacao.DataEntrada).TotalDays).ToString());
-                for (int i = 0; i <= totalDiasLocacao; i++)
-                {
-                    datasLocacao.Add(locacao.DataEntrada.AddDays(i));
-                }
+                List<DateTime> datasLocacao = locacao.DataEntrada.RetornarPeriodo(locacao.DataSaida);
 
                 foreach (DateTime dt in datasLocacao)
                 {
@@ -133,6 +127,33 @@ namespace VallezHotels.Source.Servicos
 
                         Disponibilidade d = disponibilidade.FirstOrDefault();
                         d.Disponivel = false;
+                        _disponibilidadeServico.EditarDisponibilidade(d);
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public void HabilitarDisponibilidades(Quarto q, Locacao locacao)
+        {
+            try
+            {
+                List<Disponibilidade> disponibilidadesQuarto = _disponibilidadeServico.BuscarPeloQuarto(q);
+                List<DateTime> datasLocacao = locacao.DataEntrada.RetornarPeriodo(locacao.DataSaida);
+
+                foreach (DateTime dt in datasLocacao)
+                {
+                    var disponibilidade = disponibilidadesQuarto.Where(x => x.Data.Date == dt.Date);
+
+                    if (disponibilidade.Count() != 0)
+                    {
+
+                        Disponibilidade d = disponibilidade.FirstOrDefault();
+                        d.Disponivel = true;
                         _disponibilidadeServico.EditarDisponibilidade(d);
                     }
                 }

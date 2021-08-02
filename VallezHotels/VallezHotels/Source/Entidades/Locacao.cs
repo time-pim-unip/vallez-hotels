@@ -11,6 +11,8 @@ namespace VallezHotels.Source.Entidades
         public int Id { get; set; }
         public string Uuid { get; set; }
         public Quarto Quarto { get; set; }
+        public List<Hospedagem> Hospedagems { get; set; }
+        public List<ServicoSolicitado> ServicosSolicitados { get; set; } 
         public DateTime DataEntrada { get; set; }
         public DateTime DataSaida { get; set; }
         public DateTime CheckIn { get; set; }
@@ -20,6 +22,8 @@ namespace VallezHotels.Source.Entidades
 
         public Locacao()
         {
+            Hospedagems = new List<Hospedagem>();
+            ServicosSolicitados = new List<ServicoSolicitado>();
             Quarto = new Quarto();
         }
 

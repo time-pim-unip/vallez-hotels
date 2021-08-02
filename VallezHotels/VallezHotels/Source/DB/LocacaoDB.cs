@@ -222,14 +222,13 @@ namespace VallezHotels.Source.DB
 
                         var reader = select.ExecuteReader();
 
+                        Locacao l = new Locacao();
                         if (reader.Read())
                         {
-                            Locacao l = this.PreencherLocacao(reader);
-
-                            return l;
+                            l = this.PreencherLocacao(reader);
                         }
 
-                        return null;
+                        return l;
                     }
                 }
             }

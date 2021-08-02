@@ -31,6 +31,10 @@ namespace VallezHotels
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLocacao));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNumero = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtBloco = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.dtCheckout = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.dtCheckin = new System.Windows.Forms.DateTimePicker();
@@ -46,16 +50,12 @@ namespace VallezHotels
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.detentor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.dgHospedes = new System.Windows.Forms.DataGridView();
+            this.chkDetentor = new System.Windows.Forms.CheckBox();
+            this.btnAddHospede = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCodigoHospede = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -63,7 +63,7 @@ namespace VallezHotels
             this.descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidadeSolic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnAddServico = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -75,13 +75,10 @@ namespace VallezHotels
             this.btnSalvar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtBloco = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtNumero = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.txtNomeHospede = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgHospedes)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel1.SuspendLayout();
@@ -115,6 +112,40 @@ namespace VallezHotels
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Descrição Locação";
+            // 
+            // txtNumero
+            // 
+            this.txtNumero.Enabled = false;
+            this.txtNumero.Location = new System.Drawing.Point(167, 76);
+            this.txtNumero.Name = "txtNumero";
+            this.txtNumero.Size = new System.Drawing.Size(55, 22);
+            this.txtNumero.TabIndex = 32;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(164, 60);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(48, 13);
+            this.label14.TabIndex = 31;
+            this.label14.Text = "Numero";
+            // 
+            // txtBloco
+            // 
+            this.txtBloco.Enabled = false;
+            this.txtBloco.Location = new System.Drawing.Point(106, 76);
+            this.txtBloco.Name = "txtBloco";
+            this.txtBloco.Size = new System.Drawing.Size(55, 22);
+            this.txtBloco.TabIndex = 30;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(103, 60);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 13);
+            this.label13.TabIndex = 29;
+            this.label13.Text = "Bloco";
             // 
             // dtCheckout
             // 
@@ -240,13 +271,13 @@ namespace VallezHotels
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.dataGridView1);
-            this.groupBox2.Controls.Add(this.checkBox1);
-            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.txtNomeHospede);
+            this.groupBox2.Controls.Add(this.dgHospedes);
+            this.groupBox2.Controls.Add(this.chkDetentor);
+            this.groupBox2.Controls.Add(this.btnAddHospede);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.txtCodigoHospede);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(12, 126);
             this.groupBox2.Name = "groupBox2";
@@ -255,60 +286,43 @@ namespace VallezHotels
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Hospedes";
             // 
-            // dataGridView1
+            // dgHospedes
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgHospedes.AllowUserToAddRows = false;
+            this.dgHospedes.AllowUserToDeleteRows = false;
+            this.dgHospedes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.codigo,
-            this.nome,
-            this.detentor});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 61);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(730, 102);
-            this.dataGridView1.TabIndex = 2;
+            this.dgHospedes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgHospedes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgHospedes.Location = new System.Drawing.Point(6, 61);
+            this.dgHospedes.Name = "dgHospedes";
+            this.dgHospedes.ReadOnly = true;
+            this.dgHospedes.Size = new System.Drawing.Size(730, 102);
+            this.dgHospedes.TabIndex = 2;
             // 
-            // codigo
+            // chkDetentor
             // 
-            this.codigo.HeaderText = "Código";
-            this.codigo.Name = "codigo";
+            this.chkDetentor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkDetentor.AutoSize = true;
+            this.chkDetentor.Location = new System.Drawing.Point(573, 14);
+            this.chkDetentor.Name = "chkDetentor";
+            this.chkDetentor.Size = new System.Drawing.Size(72, 17);
+            this.chkDetentor.TabIndex = 35;
+            this.chkDetentor.Text = "Detentor";
+            this.chkDetentor.UseVisualStyleBackColor = true;
             // 
-            // nome
+            // btnAddHospede
             // 
-            this.nome.HeaderText = "Nome";
-            this.nome.Name = "nome";
-            // 
-            // detentor
-            // 
-            this.detentor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.detentor.HeaderText = "Detentor";
-            this.detentor.Name = "detentor";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(573, 14);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(72, 17);
-            this.checkBox1.TabIndex = 35;
-            this.checkBox1.Text = "Detentor";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Image = global::VallezHotels.Properties.Resources.add;
-            this.button3.Location = new System.Drawing.Point(656, 31);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(80, 25);
-            this.button3.TabIndex = 34;
-            this.button3.Text = "Adicionar";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnAddHospede.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddHospede.Image = global::VallezHotels.Properties.Resources.add;
+            this.btnAddHospede.Location = new System.Drawing.Point(656, 31);
+            this.btnAddHospede.Name = "btnAddHospede";
+            this.btnAddHospede.Size = new System.Drawing.Size(80, 25);
+            this.btnAddHospede.TabIndex = 34;
+            this.btnAddHospede.Text = "Adicionar";
+            this.btnAddHospede.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAddHospede.UseVisualStyleBackColor = true;
+            this.btnAddHospede.Click += new System.EventHandler(this.btnAddHospede_Click);
             // 
             // label8
             // 
@@ -319,16 +333,6 @@ namespace VallezHotels
             this.label8.TabIndex = 33;
             this.label8.Text = "Hospede";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(103, 34);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(547, 21);
-            this.comboBox1.TabIndex = 32;
-            // 
             // button2
             // 
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
@@ -337,13 +341,15 @@ namespace VallezHotels
             this.button2.Size = new System.Drawing.Size(30, 22);
             this.button2.TabIndex = 31;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // textBox2
+            // txtCodigoHospede
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 34);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(55, 22);
-            this.textBox2.TabIndex = 30;
+            this.txtCodigoHospede.Enabled = false;
+            this.txtCodigoHospede.Location = new System.Drawing.Point(6, 34);
+            this.txtCodigoHospede.Name = "txtCodigoHospede";
+            this.txtCodigoHospede.Size = new System.Drawing.Size(55, 22);
+            this.txtCodigoHospede.TabIndex = 30;
             // 
             // label7
             // 
@@ -359,7 +365,7 @@ namespace VallezHotels
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.dataGridView2);
-            this.groupBox3.Controls.Add(this.button5);
+            this.groupBox3.Controls.Add(this.btnAddServico);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.textBox5);
             this.groupBox3.Controls.Add(this.label10);
@@ -410,17 +416,17 @@ namespace VallezHotels
             this.valorTotal.HeaderText = "ValorTotal";
             this.valorTotal.Name = "valorTotal";
             // 
-            // button5
+            // btnAddServico
             // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Image = global::VallezHotels.Properties.Resources.add;
-            this.button5.Location = new System.Drawing.Point(656, 33);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(80, 25);
-            this.button5.TabIndex = 36;
-            this.button5.Text = "Adicionar";
-            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnAddServico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddServico.Image = global::VallezHotels.Properties.Resources.add;
+            this.btnAddServico.Location = new System.Drawing.Point(656, 33);
+            this.btnAddServico.Name = "btnAddServico";
+            this.btnAddServico.Size = new System.Drawing.Size(80, 25);
+            this.btnAddServico.TabIndex = 36;
+            this.btnAddServico.Text = "Adicionar";
+            this.btnAddServico.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAddServico.UseVisualStyleBackColor = true;
             // 
             // label11
             // 
@@ -533,39 +539,13 @@ namespace VallezHotels
             this.label12.TabIndex = 0;
             this.label12.Text = "R$ 0.000,00";
             // 
-            // txtBloco
+            // txtNomeHospede
             // 
-            this.txtBloco.Enabled = false;
-            this.txtBloco.Location = new System.Drawing.Point(106, 76);
-            this.txtBloco.Name = "txtBloco";
-            this.txtBloco.Size = new System.Drawing.Size(55, 22);
-            this.txtBloco.TabIndex = 30;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(103, 60);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 13);
-            this.label13.TabIndex = 29;
-            this.label13.Text = "Bloco";
-            // 
-            // txtNumero
-            // 
-            this.txtNumero.Enabled = false;
-            this.txtNumero.Location = new System.Drawing.Point(167, 76);
-            this.txtNumero.Name = "txtNumero";
-            this.txtNumero.Size = new System.Drawing.Size(55, 22);
-            this.txtNumero.TabIndex = 32;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(164, 60);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(48, 13);
-            this.label14.TabIndex = 31;
-            this.label14.Text = "Numero";
+            this.txtNomeHospede.Enabled = false;
+            this.txtNomeHospede.Location = new System.Drawing.Point(106, 34);
+            this.txtNomeHospede.Name = "txtNomeHospede";
+            this.txtNomeHospede.Size = new System.Drawing.Size(539, 22);
+            this.txtNomeHospede.TabIndex = 36;
             // 
             // FrmLocacao
             // 
@@ -589,7 +569,7 @@ namespace VallezHotels
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgHospedes)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -617,19 +597,15 @@ namespace VallezHotels
         private System.Windows.Forms.TextBox txtQuarto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn detentor;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridView dgHospedes;
+        private System.Windows.Forms.CheckBox chkDetentor;
+        private System.Windows.Forms.Button btnAddHospede;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtCodigoHospede;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnAddServico;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label10;
@@ -650,5 +626,6 @@ namespace VallezHotels
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtBloco;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtNomeHospede;
     }
 }

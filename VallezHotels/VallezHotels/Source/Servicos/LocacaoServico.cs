@@ -97,7 +97,7 @@ namespace VallezHotels.Source.Servicos
             {
 
                 Locacao l = _db.Atualizar(locacao);
-                l.Quarto = _quartoServico.BuscarPeloId(l.Quarto.Id);
+                l.Quarto = _quartoServico.BuscarPeloId(locacao.Quarto.Id);
 
                 return l;
 
@@ -113,7 +113,8 @@ namespace VallezHotels.Source.Servicos
             try
             {
 
-                Locacao l = _db.BuscarPelaDataEQuarto(q, data);
+                Locacao l = new Locacao(); 
+                l = _db.BuscarPelaDataEQuarto(q, data);
                 return l;
 
             }
@@ -127,7 +128,6 @@ namespace VallezHotels.Source.Servicos
         {
             return this.BuscarPelaDataEQuarto(q, DateTime.Now);
         }
-
 
     }
 }

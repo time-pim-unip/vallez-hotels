@@ -208,6 +208,7 @@
     <Compile Include="Source\DB\ServicoSolicitadoDB.cs" />
     <Compile Include="Source\DB\TipoQuartoDB.cs" />
     <Compile Include="Source\DB\UsuarioDB.cs" />
+    <Compile Include="Source\DTO\ListagemGenericaDTO.cs" />
     <Compile Include="Source\Entidades\Disponibilidade.cs" />
     <Compile Include="Source\Entidades\Faturamento.cs" />
     <Compile Include="Source\Entidades\Funcionario.cs" />
@@ -258,6 +259,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Locações\FrmLocacao.resx">
       <DependentUpon>FrmLocacao.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
