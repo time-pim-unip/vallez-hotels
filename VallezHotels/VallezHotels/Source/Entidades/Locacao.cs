@@ -27,5 +27,12 @@ namespace VallezHotels.Source.Entidades
             Quarto = new Quarto();
         }
 
+        public double ValorDaLocacao()
+        {
+            var TotalDiasLocado = Math.Ceiling(DataSaida.Subtract(DataEntrada).TotalDays) + 1;
+
+            return Quarto.ValorDiaria * TotalDiasLocado;
+        }
+
     }
 }

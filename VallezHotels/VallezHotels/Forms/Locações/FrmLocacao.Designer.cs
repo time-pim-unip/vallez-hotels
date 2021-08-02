@@ -50,6 +50,7 @@ namespace VallezHotels
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtNomeHospede = new System.Windows.Forms.TextBox();
             this.dgHospedes = new System.Windows.Forms.DataGridView();
             this.chkDetentor = new System.Windows.Forms.CheckBox();
             this.btnAddHospede = new System.Windows.Forms.Button();
@@ -74,8 +75,7 @@ namespace VallezHotels
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtNomeHospede = new System.Windows.Forms.TextBox();
+            this.lblValorLocacao = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgHospedes)).BeginInit();
@@ -188,6 +188,7 @@ namespace VallezHotels
             this.dtSaida.Name = "dtSaida";
             this.dtSaida.Size = new System.Drawing.Size(101, 22);
             this.dtSaida.TabIndex = 24;
+            this.dtSaida.ValueChanged += new System.EventHandler(this.dtSaida_ValueChanged);
             // 
             // label4
             // 
@@ -205,6 +206,7 @@ namespace VallezHotels
             this.dtEntrada.Name = "dtEntrada";
             this.dtEntrada.Size = new System.Drawing.Size(101, 22);
             this.dtEntrada.TabIndex = 22;
+            this.dtEntrada.ValueChanged += new System.EventHandler(this.dtEntrada_ValueChanged);
             // 
             // label3
             // 
@@ -285,6 +287,14 @@ namespace VallezHotels
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Hospedes";
+            // 
+            // txtNomeHospede
+            // 
+            this.txtNomeHospede.Enabled = false;
+            this.txtNomeHospede.Location = new System.Drawing.Point(106, 34);
+            this.txtNomeHospede.Name = "txtNomeHospede";
+            this.txtNomeHospede.Size = new System.Drawing.Size(539, 22);
+            this.txtNomeHospede.TabIndex = 36;
             // 
             // dgHospedes
             // 
@@ -522,30 +532,21 @@ namespace VallezHotels
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.lblValorLocacao);
             this.panel1.Location = new System.Drawing.Point(572, 445);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(184, 67);
             this.panel1.TabIndex = 22;
             // 
-            // label12
+            // lblValorLocacao
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 15.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+            this.lblValorLocacao.AutoSize = true;
+            this.lblValorLocacao.Font = new System.Drawing.Font("Segoe UI", 15.75F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(7, 18);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(128, 30);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "R$ 0.000,00";
-            // 
-            // txtNomeHospede
-            // 
-            this.txtNomeHospede.Enabled = false;
-            this.txtNomeHospede.Location = new System.Drawing.Point(106, 34);
-            this.txtNomeHospede.Name = "txtNomeHospede";
-            this.txtNomeHospede.Size = new System.Drawing.Size(539, 22);
-            this.txtNomeHospede.TabIndex = 36;
+            this.lblValorLocacao.Location = new System.Drawing.Point(7, 18);
+            this.lblValorLocacao.Name = "lblValorLocacao";
+            this.lblValorLocacao.Size = new System.Drawing.Size(0, 30);
+            this.lblValorLocacao.TabIndex = 0;
             // 
             // FrmLocacao
             // 
@@ -621,7 +622,7 @@ namespace VallezHotels
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblValorLocacao;
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtBloco;

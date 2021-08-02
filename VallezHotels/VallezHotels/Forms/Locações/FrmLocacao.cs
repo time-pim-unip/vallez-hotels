@@ -75,6 +75,11 @@ namespace VallezHotels
                 }
 
                 dgHospedes.DataSource = ListaHospedagem;
+
+
+                // Exibir valor da locação
+                lblValorLocacao.Text = $"R$ {Locacao.ValorDaLocacao().ToString("F2")}";
+                
             }
 
             txtQuarto.Text = Quarto.Id.ToString();
@@ -227,6 +232,34 @@ namespace VallezHotels
 
             ListaHospedagem.Add(row);
             dgHospedes.DataSource = ListaHospedagem;
+        }
+
+        private void dtSaida_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtSaida.Value < dtEntrada.Value)
+            {
+                dtSaida.Value = dtEntrada.Value;
+                MessageBox.Show("Data de saida não pode ser menor que a data de entrada !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            Locacao.DataSaida = dtSaida.Value;
+            lblValorLocacao.Text = $"R$ {Locacao.ValorDaLocacao().ToString("F2")}";
+        }
+
+        private void dtEntrada_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtEntrada.Value > dtSaida.Value)
+            {
+
+                dtEntrada.Value = dtSaida.Value;
+                MessageBox.Show("Data de entrada não pode ser maior que a data da saida !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Locacao.DataEntrada = dtEntrada.Value;
+            lblValorLocacao.Text = $"R$ {Locacao.ValorDaLocacao().ToString("F2")}";
         }
     }
 }
