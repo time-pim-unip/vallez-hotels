@@ -27,7 +27,8 @@ namespace VallezHotels
         List<Object> ListaHospedagem;
 
         public Quarto Quarto;
-        public Locacao Locacao;
+        private Locacao Locacao;
+        private Locacao LocacaoAntiga;
 
         public FrmLocacao()
         {
@@ -47,6 +48,9 @@ namespace VallezHotels
 
         private void FrmLocacao_Load(object sender, EventArgs e)
         {
+
+            dtEntrada.Value = DateTime.Now.Date;
+            dtSaida.Value = DateTime.Now.Date;
 
             Locacao = _locacaoServico.BuscarPelaDataEQuarto(Quarto, DateTime.Now);
             Locacao.Quarto = Quarto;
@@ -76,15 +80,24 @@ namespace VallezHotels
 
                 dgHospedes.DataSource = ListaHospedagem;
 
-
-                // Exibir valor da locação
-                lblValorLocacao.Text = $"R$ {Locacao.ValorDaLocacao().ToString("F2")}";
-                
+            } else
+            {
+                Locacao.DataEntrada = DateTime.Now.Date;
+                Locacao.DataSaida = DateTime.Now.Date;
             }
+
+            // Exibir valor da locação
+            lblValorLocacao.Text = $"R$ {Locacao.ValorDaLocacao().ToString("F2")}";
 
             txtQuarto.Text = Quarto.Id.ToString();
             txtBloco.Text = Quarto.Bloco;
             txtNumero.Text = Quarto.Numero.ToString();
+
+            LocacaoAntiga = new Locacao()
+            {
+                DataEntrada = Locacao.DataEntrada,
+                DataSaida = Locacao.DataSaida
+            };
 
         }
 
@@ -98,7 +111,6 @@ namespace VallezHotels
         {
 
             // Verificar disponibilidade das datas selecionadas para locação.
-            /*
             List<Disponibilidade> disponibilidades = _disponibilidadeServico.BuscarPeloQuarto(Quarto);
             List<DateTime> datasPeriodo = dtEntrada.Value.RetornarPeriodo(dtSaida.Value);
 
@@ -111,7 +123,6 @@ namespace VallezHotels
                 }
 
             }
-            */
 
             // Verificar se existe um hospede ao inserir nova locação
             if (string.IsNullOrEmpty(txtCodigo.Text))
@@ -138,6 +149,7 @@ namespace VallezHotels
                 
                 if (!string.IsNullOrEmpty(txtCodigo.Text))
                 {
+                    _quartoServico.HabilitarDisponibilidades(Locacao.Quarto, LocacaoAntiga);
                     l = _locacaoServico.EditarLocacao(Locacao);
                 } else
                 {
@@ -242,6 +254,12 @@ namespace VallezHotels
                 MessageBox.Show("Data de saida não pode ser menor que a data de entrada !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            else if (dtSaida.Value < DateTime.Now.Date)
+            {
+                dtEntrada.Value = DateTime.Now.Date;
+                MessageBox.Show("Data de saida não pode ser menor que a data atual !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
 
             Locacao.DataSaida = dtSaida.Value;
@@ -252,9 +270,13 @@ namespace VallezHotels
         {
             if (dtEntrada.Value > dtSaida.Value)
             {
-
                 dtEntrada.Value = dtSaida.Value;
                 MessageBox.Show("Data de entrada não pode ser maior que a data da saida !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            } else if (dtEntrada.Value < DateTime.Now.Date)
+            {
+                dtEntrada.Value = DateTime.Now.Date;
+                MessageBox.Show("Data de entrada não pode ser menor que a data atual !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

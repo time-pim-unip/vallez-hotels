@@ -209,6 +209,7 @@
     <Compile Include="Source\DB\TipoQuartoDB.cs" />
     <Compile Include="Source\DB\UsuarioDB.cs" />
     <Compile Include="Source\DTO\ListagemGenericaDTO.cs" />
+    <Compile Include="Source\DTO\LocacaoPorDisponibilidadeDTO.cs" />
     <Compile Include="Source\Entidades\Disponibilidade.cs" />
     <Compile Include="Source\Entidades\Faturamento.cs" />
     <Compile Include="Source\Entidades\Funcionario.cs" />

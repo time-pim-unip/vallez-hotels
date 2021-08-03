@@ -98,6 +98,7 @@ namespace VallezHotels.Source.Servicos
 
                 Locacao l = _db.Atualizar(locacao);
                 l.Quarto = _quartoServico.BuscarPeloId(locacao.Quarto.Id);
+                _quartoServico.RemoverDisponibilidades(l.Quarto, locacao);
 
                 return l;
 

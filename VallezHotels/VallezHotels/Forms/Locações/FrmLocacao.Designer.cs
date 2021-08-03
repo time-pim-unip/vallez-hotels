@@ -188,6 +188,7 @@ namespace VallezHotels
             this.dtSaida.Name = "dtSaida";
             this.dtSaida.Size = new System.Drawing.Size(101, 22);
             this.dtSaida.TabIndex = 24;
+            this.dtSaida.Value = new System.DateTime(2021, 8, 2, 0, 0, 0, 0);
             this.dtSaida.ValueChanged += new System.EventHandler(this.dtSaida_ValueChanged);
             // 
             // label4
@@ -206,6 +207,7 @@ namespace VallezHotels
             this.dtEntrada.Name = "dtEntrada";
             this.dtEntrada.Size = new System.Drawing.Size(101, 22);
             this.dtEntrada.TabIndex = 22;
+            this.dtEntrada.Value = new System.DateTime(2021, 8, 2, 0, 0, 0, 0);
             this.dtEntrada.ValueChanged += new System.EventHandler(this.dtEntrada_ValueChanged);
             // 
             // label3
@@ -545,8 +547,9 @@ namespace VallezHotels
                 | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblValorLocacao.Location = new System.Drawing.Point(7, 18);
             this.lblValorLocacao.Name = "lblValorLocacao";
-            this.lblValorLocacao.Size = new System.Drawing.Size(0, 30);
+            this.lblValorLocacao.Size = new System.Drawing.Size(55, 30);
             this.lblValorLocacao.TabIndex = 0;
+            this.lblValorLocacao.Text = "RS 0";
             // 
             // FrmLocacao
             // 
