@@ -22,6 +22,7 @@ namespace VallezHotels
         private readonly HospedeServico _hospedeServico;
         private readonly HospedagemServico _hospedagemServico;
         private readonly QuartoServico _quartoServico;
+        private readonly ServicoServico _servicoAdServico;
 
         private bool AdicionarHospedes;
         List<Object> ListaHospedagem;
@@ -37,6 +38,7 @@ namespace VallezHotels
             _hospedeServico = new HospedeServico();
             _hospedagemServico = new HospedagemServico();
             _quartoServico = new QuartoServico();
+            _servicoAdServico = new ServicoServico();
             AdicionarHospedes = false;
 
             Quarto = new Quarto();
@@ -282,6 +284,58 @@ namespace VallezHotels
 
             Locacao.DataEntrada = dtEntrada.Value;
             lblValorLocacao.Text = $"R$ {Locacao.ValorDaLocacao().ToString("F2")}";
+        }
+
+        private void btnPesquisaGenericaServicosAdicionais_Click(object sender, EventArgs e)
+        {
+
+            FrmListagemGenerica listagem = new FrmListagemGenerica();
+            List<Servico> servicos = _servicoAdServico.BuscarTodos();
+
+            IEnumerable<ListagemGenericaDTO> dados = from s in servicos
+                                                     orderby s.Descricao
+                                                     select new ListagemGenericaDTO()
+                                                     {
+                                                         Codigo = s.Id,
+                                                         Descricao = s.Descricao
+                                                     };
+
+            listagem.Lista = dados.ToList();
+            listagem.ShowDialog();
+
+            if (listagem.CodigoSelecionado > 0)
+            {
+                Servico s = _servicoAdServico.BuscarPeloId(listagem.CodigoSelecionado);
+
+                txtCodigoServico.Text = s.Id.ToString();
+                txtDescricaoServico.Text = s.Descricao.ToString();
+                txtValorServico.Text = $"R$ {s.Valor.ToString("F2")}";
+
+            }
+
+        }
+
+        private void btnAddServico_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtCodigoServico.Text.Trim()))
+            {
+                MessageBox.Show("Escolha um serviço antes de adicionar", "Atenção !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtQtServico.Text.Trim()))
+            {
+                MessageBox.Show("Coloque a quantidade do serviço a ser adicionada", "Atenção !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            } else if (!int.TryParse(txtQtServico.Text.Trim(), out int quantidadeServico))
+            {
+                MessageBox.Show("Você precisa informar um numero[0-100...] para a quantidade do serviço !!", "Atenção !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+
+
         }
     }
 }
