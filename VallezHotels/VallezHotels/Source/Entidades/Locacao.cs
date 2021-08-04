@@ -26,15 +26,14 @@ namespace VallezHotels.Source.Entidades
             ServicosSolicitados = new List<ServicoSolicitado>();
             Quarto = new Quarto();
         }
-
-        public double ValorTotalDiasLocacao()
+        private double ValorTotalDiasLocacao()
         {
             var TotalDiasLocado = Math.Ceiling(DataSaida.Subtract(DataEntrada).TotalDays) + 1;
 
             return Quarto.ValorDiaria * TotalDiasLocado;
         }
 
-        public double ValorTotalServicos()
+        private double ValorTotalServicos()
         {
 
             double soma = 0;

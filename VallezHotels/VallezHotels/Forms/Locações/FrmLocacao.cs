@@ -30,9 +30,11 @@ namespace VallezHotels
         private List<Object> ListaHospedagem;
         private List<Object> ListaServicos;
 
-        public Quarto Quarto;
         private Locacao Locacao;
         private Locacao LocacaoAntiga;
+        
+        public Quarto Quarto;
+        public Boolean AtualizarDetalhes;
 
         public FrmLocacao()
         {
@@ -45,11 +47,11 @@ namespace VallezHotels
             _servicoSolicitadoServico = new ServicoSolicitadoServico();
             AdicionarHospedes = false;
             AdicionarServicos = false;
-
             Quarto = new Quarto();
             Locacao = new Locacao();
             ListaHospedagem = new List<Object>();
             ListaServicos = new List<Object>();
+            AtualizarDetalhes = false;
 
             InitializeComponent();
         }
@@ -220,7 +222,7 @@ namespace VallezHotels
                         {
                             ServicoSolicitado ss = new ServicoSolicitado()
                             {
-                                Locacao = Locacao,
+                                Locacao = l,
                                 Servico = _servicoServico.BuscarPeloId(int.Parse(row.Cells["Id"].Value.ToString())),
                                 Solicitacao = DateTime.Now,
                                 Quantidade = int.Parse(row.Cells["Quantidade"].Value.ToString())
@@ -235,6 +237,7 @@ namespace VallezHotels
                 if (l != null)
                 {
                     MessageBox.Show("Locação gerênciada com sucesso", "Sucesso !", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    AtualizarDetalhes = true;
                 }
 
             }

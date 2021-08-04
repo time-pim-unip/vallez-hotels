@@ -25,12 +25,16 @@ namespace VallezHotels
             InitializeComponent();
         }
 
-        private void FrmDashboard_Load(object sender, EventArgs e)
+        private void AtualizarDashboard()
         {
-
             List<Quarto> quartos = _quartoServico.BuscarTodos();
+            pnlExibicaoQuartos.Controls.Clear();
 
-            foreach (Quarto quarto in quartos)
+            var listQuartos = from q in quartos
+                              orderby q.Bloco, q.Numero
+                              select q;
+
+            foreach (Quarto quarto in listQuartos)
             {
                 FrmDescricaoQuarto q = new FrmDescricaoQuarto();
                 q.Quarto = quarto;
@@ -39,12 +43,26 @@ namespace VallezHotels
                 q.Visible = true;
                 pnlExibicaoQuartos.Controls.Add(q);
             }
+        }
+
+        private void FrmDashboard_Load(object sender, EventArgs e)
+        {
+
+            AtualizarDashboard();
 
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void tmrBuscarQuartos_Tick(object sender, EventArgs e)
+        {
+            if (this.ContainsFocus)
+            {
+                AtualizarDashboard();
+            }
         }
     }
 }

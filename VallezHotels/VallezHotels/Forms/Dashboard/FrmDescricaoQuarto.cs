@@ -15,30 +15,73 @@ namespace VallezHotels
 {
     public partial class FrmDescricaoQuarto : Form
     {
+        private readonly QuartoServico _quartoServico;
+        private readonly LocacaoServico _locacaoServico;
+        private readonly HospedagemServico _hospedagemServico;
+        private readonly ServicoSolicitadoServico _servicoSolicitadoServico;
+        
+
         public Quarto Quarto;
         public bool Disponivel;
 
-
+        private Locacao Locacao;
 
         public FrmDescricaoQuarto()
         {
-            this.Quarto = new Quarto();
+
+            _quartoServico = new QuartoServico();
+            _locacaoServico = new LocacaoServico();
+            _hospedagemServico = new HospedagemServico();
+            _servicoSolicitadoServico = new ServicoSolicitadoServico();
+
+            Quarto = new Quarto();
+            Locacao = new Locacao();
+
             Disponivel = false;
             InitializeComponent();
         }
 
-        private void FrmDescricaoQuarto_Load(object sender, EventArgs e)
+        public void AtualizarDetalhes()
         {
+            Locacao = _locacaoServico.BuscarPelaDataEQuarto(Quarto, DateTime.Now.Date);
+            Quarto = _quartoServico.BuscarPeloId(Quarto.Id);
+
+            if (Locacao.Uuid != null)
+            {
+                Locacao.Quarto = Quarto;
+                Locacao.Hospedagems = _hospedagemServico.BuscarPelaLocacao(Locacao);
+                Locacao.ServicosSolicitados = _servicoSolicitadoServico.BuscarPelaLocacao(Locacao);
+
+                lblHospedes.Visible = true;
+                lblEntrada.Visible = true;
+                lblSaida.Visible = true;
+                lblCheckin.Visible = true;
+                lblCheckout.Visible = true;
+                lblValor.Visible = true;
+
+                lblHospedes.Text = $"Quantidade de hospedes: {Locacao.Hospedagems.Count}";
+                lblEntrada.Text = $"Data entrada: {Locacao.DataEntrada.ToString("dd/MM/yyyy")}";
+                lblSaida.Text = $"Data entrada: {Locacao.DataSaida.ToString("dd/MM/yyyy")}";
+
+                lblCheckin.Text = $"Data entrada: {Locacao.CheckIn.ToString("dd/MM/yyyy")}";
+                lblCheckout.Text = $"Data entrada: {Locacao.CheckOut.ToString("dd/MM/yyyy")}";
+
+                lblValor.Text = $"Valor: R${Locacao.ValorDaLocacao()}";
+
+            }
+
+
             lblBloco.Text = $"Bloco: {this.Quarto.Bloco}";
             lblNumQuarto.Text = $"Quarto: {this.Quarto.Numero}";
             lblTipoQuarto.Text = this.Quarto.TipoQuarto.Descricao;
+
             var disponibilidade = this.Quarto.Disponibilidades.Where(x => x.Data.Date.ToString() == DateTime.Now.Date.ToString());
             Disponibilidade d = null;
-
             if (disponibilidade.Count() == 0)
             {
                 d = new Disponibilidade();
-            } else
+            }
+            else
             {
                 d = disponibilidade.FirstOrDefault();
             }
@@ -46,50 +89,41 @@ namespace VallezHotels
             Disponivel = d.Disponivel;
 
             lblSituacao.Text = (d.Disponivel) ? "Disponivel" : "Não disponivel";
-            this.Cursor = Cursors.Hand ;
+            this.Cursor = Cursors.Hand;
 
-
-            
-            switch (d.Disponivel)
+            if (d.Disponivel)
             {
-                case true:
-                    this.BackColor = Color.FromArgb(0, 173, 181);
-                    break;
-                case false:
-                    this.BackColor = Color.FromArgb(251, 54, 64);
-                    break;
-                /*
-                case 3:
-                    this.BackColor = Color.FromArgb(255, 131, 3);
-                    break;
-                case 4:
-                    this.BackColor = Color.FromArgb(235, 188, 61);
-                    break;
-                */
+                this.BackColor = Color.FromArgb(0, 173, 181);
             }
-
+            else if (Locacao.Hospedagems.Count > 0)
+            {
+                this.BackColor = Color.FromArgb(255, 131, 3);
+            }
+            else if (!d.Disponivel)
+            {
+                this.BackColor = Color.FromArgb(251, 54, 64);
+            }
 
         }
 
-        private void FrmDescricaoQuarto_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void FrmDescricaoQuarto_Load(object sender, EventArgs e)
         {
-            
+
+            AtualizarDetalhes();
+
         }
 
         private void FrmDescricaoQuarto_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!Disponivel)
-            {
-                //MessageBox.Show("O quarto não esta disponivel para locação !", "Atenção !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //return;
-            } else
-            {
-                
-            }
-
             FrmLocacao locacao = new FrmLocacao();
             locacao.Quarto = Quarto;
-            Helper.StartForm(locacao, null);
+            locacao.ShowDialog();
+
+            if (locacao.AtualizarDetalhes)
+            {
+                AtualizarDetalhes();
+            }
+
         }
     }
 }

@@ -119,6 +119,11 @@ namespace VallezHotels.Source.Servicos
             {
                 List<ServicoSolicitado> ss = _db.BuscarPelaLocacao(locacao);
 
+                foreach (ServicoSolicitado s in ss)
+                {
+                    s.Servico = _servicoServico.BuscarPeloId(s.Servico.Id);
+                }
+
                 return ss;
             }
             catch (Exception e)
