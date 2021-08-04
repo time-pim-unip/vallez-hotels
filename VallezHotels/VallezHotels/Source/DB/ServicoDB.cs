@@ -46,7 +46,8 @@ namespace VallezHotels.Source.DB
                     using (var update = conn.CreateCommand())
                     {
 
-                        update.CommandText = "UPDATE vallez.servicos SET descricao=@DESCRICAO, valor=@VALOR, updated_at=now();";
+                        update.CommandText = "UPDATE vallez.servicos SET descricao=@DESCRICAO, valor=@VALOR, updated_at=now() WHERE id_servico=@ID;";
+                        update.AddParameter("@ID", servico.Id);
                         update.AddParameter("@DESCRICAO", servico.Descricao);
                         update.AddParameter("@VALOR", servico.Valor, System.Data.DbType.Double);
 

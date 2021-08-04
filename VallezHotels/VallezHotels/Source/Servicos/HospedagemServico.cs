@@ -113,6 +113,28 @@ namespace VallezHotels.Source.Servicos
             }
         }
 
+        public List<Hospedagem> BuscarPelaLocacao(Locacao l)
+        {
+            try
+            {
+                List<Hospedagem> hospedagens = new List<Hospedagem>();
+                hospedagens = _db.BuscarPelaLocacao(l);
+
+                foreach (Hospedagem h in hospedagens)
+                {
+                    h.Locacao = _locacaoServico.BuscarPeloId(h.Locacao.Id);
+                    h.Hospede = _hospedeServico.BuscarPeloId(h.Hospede.IdHospede);
+                }
+
+                return hospedagens;
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
 
     }
 }

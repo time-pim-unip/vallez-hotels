@@ -130,5 +130,20 @@ namespace VallezHotels.Source.Servicos
             }
         }
 
+        public Usuario BuscarUsuarioESenha(string usuario, string senha)
+        {
+            try
+            {
+                Usuario u = _db.BuscarUsuarioESenha(usuario, senha);
+
+                return u;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+
     }
 }

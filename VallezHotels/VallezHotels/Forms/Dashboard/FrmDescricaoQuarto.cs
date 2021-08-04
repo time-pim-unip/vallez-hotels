@@ -8,53 +8,122 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VallezHotels.Source.Core;
+using VallezHotels.Source.Entidades;
+using VallezHotels.Source.Servicos;
 
 namespace VallezHotels
 {
     public partial class FrmDescricaoQuarto : Form
     {
+        private readonly QuartoServico _quartoServico;
+        private readonly LocacaoServico _locacaoServico;
+        private readonly HospedagemServico _hospedagemServico;
+        private readonly ServicoSolicitadoServico _servicoSolicitadoServico;
+        
 
-        public int NumeroQuarto;
-        public int StatusQuarto;
+        public Quarto Quarto;
+        public bool Disponivel;
+
+        private Locacao Locacao;
 
         public FrmDescricaoQuarto()
         {
+
+            _quartoServico = new QuartoServico();
+            _locacaoServico = new LocacaoServico();
+            _hospedagemServico = new HospedagemServico();
+            _servicoSolicitadoServico = new ServicoSolicitadoServico();
+
+            Quarto = new Quarto();
+            Locacao = new Locacao();
+
+            Disponivel = false;
             InitializeComponent();
+        }
+
+        public void AtualizarDetalhes()
+        {
+            Locacao = _locacaoServico.BuscarPelaDataEQuarto(Quarto, DateTime.Now.Date);
+            Quarto = _quartoServico.BuscarPeloId(Quarto.Id);
+
+            if (Locacao.Uuid != null)
+            {
+                Locacao.Quarto = Quarto;
+                Locacao.Hospedagems = _hospedagemServico.BuscarPelaLocacao(Locacao);
+                Locacao.ServicosSolicitados = _servicoSolicitadoServico.BuscarPelaLocacao(Locacao);
+
+                lblHospedes.Visible = true;
+                lblEntrada.Visible = true;
+                lblSaida.Visible = true;
+                lblCheckin.Visible = true;
+                lblCheckout.Visible = true;
+                lblValor.Visible = true;
+
+                lblHospedes.Text = $"Quantidade de hospedes: {Locacao.Hospedagems.Count}";
+                lblEntrada.Text  = $"Data entrada   : {Locacao.DataEntrada.ToString("dd/MM/yyyy")}";
+                lblSaida.Text    = $"Data saida     : {Locacao.DataSaida.ToString("dd/MM/yyyy")}";
+
+                lblCheckin.Text  = $"Data check-in  : {Locacao.CheckIn.ToString("dd/MM/yyyy")}";
+                lblCheckout.Text = $"Data check-out : {Locacao.CheckOut.ToString("dd/MM/yyyy")}";
+
+                lblValor.Text = $"Valor: R${Locacao.ValorDaLocacao()}";
+
+            }
+
+
+            lblBloco.Text = $"Bloco: {this.Quarto.Bloco}";
+            lblNumQuarto.Text = $"Quarto: {this.Quarto.Numero}";
+            lblTipoQuarto.Text = this.Quarto.TipoQuarto.Descricao;
+
+            var disponibilidade = this.Quarto.Disponibilidades.Where(x => x.Data.Date.ToString() == DateTime.Now.Date.ToString());
+            Disponibilidade d = null;
+            if (disponibilidade.Count() == 0)
+            {
+                d = new Disponibilidade();
+            }
+            else
+            {
+                d = disponibilidade.FirstOrDefault();
+            }
+
+            Disponivel = d.Disponivel;
+
+            lblSituacao.Text = (d.Disponivel) ? "Disponivel" : "Não disponivel";
+            this.Cursor = Cursors.Hand;
+
+            if (d.Disponivel)
+            {
+                this.BackColor = Color.FromArgb(0, 173, 181);
+            }
+            else if (Locacao.Hospedagems.Count > 0)
+            {
+                this.BackColor = Color.FromArgb(255, 131, 3);
+            }
+            else if (!d.Disponivel)
+            {
+                this.BackColor = Color.FromArgb(251, 54, 64);
+            }
+
         }
 
         private void FrmDescricaoQuarto_Load(object sender, EventArgs e)
         {
-            lblNumQuarto.Text = $"Quarto: {this.NumeroQuarto}";
-            this.Cursor = Cursors.Hand ;
 
-            switch (StatusQuarto)
-            {
-                case 1:
-                    this.BackColor = Color.FromArgb(0, 173, 181);
-                    break;
-                case 2:
-                    this.BackColor = Color.FromArgb(235, 188, 61);
-                    break;
-                case 3:
-                    this.BackColor = Color.FromArgb(255, 131, 3);
-                    break;
-                case 4:
-                    this.BackColor = Color.FromArgb(251, 54, 64);
-                    break;
-            }
+            AtualizarDetalhes();
 
-
-        }
-
-        private void FrmDescricaoQuarto_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            
         }
 
         private void FrmDescricaoQuarto_MouseClick(object sender, MouseEventArgs e)
         {
             FrmLocacao locacao = new FrmLocacao();
-            Helper.StartForm(locacao, null);
+            locacao.Quarto = Quarto;
+            locacao.ShowDialog();
+
+            if (locacao.AtualizarDetalhes)
+            {
+                AtualizarDetalhes();
+            }
+
         }
     }
 }

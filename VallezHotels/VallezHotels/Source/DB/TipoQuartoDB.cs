@@ -44,7 +44,8 @@ namespace VallezHotels.Source.DB
                     using (var update = conn.CreateCommand())
                     {
 
-                        update.CommandText = "UPDATE vallez.tipo_quarto SET descricao=@DESCRICAO, updated_at=now();";
+                        update.CommandText = "UPDATE vallez.tipo_quarto SET descricao=@DESCRICAO, updated_at=now() WHERE id_tipo=@ID;";
+                        update.AddParameter("@ID", tipoQuarto.Id);
                         update.AddParameter("@DESCRICAO", tipoQuarto.Descricao);
 
                         int affectedRows = update.ExecuteNonQuery();
@@ -196,5 +197,43 @@ namespace VallezHotels.Source.DB
                 throw new Exception(e.Message);
             }
         }
+
+        public TipoQuarto BuscarPeloNome(string nome)
+        {
+            try
+            {
+                using (var conn = _conn.Conexao())
+                {
+                    conn.Open();
+
+                    using (var select = conn.CreateCommand())
+                    {
+
+                        select.CommandText = "SELECT * FROM vallez.tipo_quarto WHERE descricao LIKE @DESCRICAO";
+                        select.AddParameter("@DESCRICAO", nome);
+
+
+                        var reader = select.ExecuteReader();
+
+                        if (reader.Read())
+                        {
+                            TipoQuarto t = this.PreencherTipoQuarto(reader);
+                            return t;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+
     }
 }

@@ -202,5 +202,40 @@ namespace VallezHotels.Source.DB
                 throw new Exception(e.Message);
             }
         }
+
+        public List<ServicoSolicitado> BuscarPelaLocacao(Locacao l)
+        {
+            try
+            {
+                using (var conn = _conn.Conexao())
+                {
+                    conn.Open();
+
+                    using (var select = conn.CreateCommand())
+                    {
+
+                        select.CommandText = "SELECT * FROM vallez.servicos_solicitados WHERE id_locacao=@LOCACAO";
+                        select.AddParameter("@LOCACAO", l.Id, System.Data.DbType.Int32);
+
+                        var reader = select.ExecuteReader();
+                        List<ServicoSolicitado> ss = new List<ServicoSolicitado>();
+
+                        while (reader.Read())
+                        {
+                            ServicoSolicitado s = this.PreencherServicoSolicitado(reader);
+
+                            ss.Add(s);
+                        }
+
+                        return ss;
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

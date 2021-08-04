@@ -11,6 +11,7 @@ namespace VallezHotels.Source.Entidades
         public int Id { get; set; }
         public string Uuid { get; set; }
         public TipoQuarto TipoQuarto { get; set; }
+        public List<Disponibilidade> Disponibilidades { get; set; }
         public string Bloco { get; set; }
         public int Numero { get; set; }
         public int QuantidadeBanheiros { get; set; }
@@ -22,6 +23,7 @@ namespace VallezHotels.Source.Entidades
         public Quarto()
         {
             TipoQuarto = new TipoQuarto();
+            Disponibilidades = new List<Disponibilidade>();
             CreatedAt = new DateTime();
             UpdatedAt = new DateTime();
         }

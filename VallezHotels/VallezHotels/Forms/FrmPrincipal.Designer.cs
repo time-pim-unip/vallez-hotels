@@ -35,13 +35,13 @@ namespace VallezHotels
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.inicioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.locaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.hospedeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.funcionárioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quartoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoQuartoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviçsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.locaçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,52 +85,52 @@ namespace VallezHotels
             this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.cadastroToolStripMenuItem.Text = "Cadastro";
             // 
+            // locaçãoToolStripMenuItem
+            // 
+            this.locaçãoToolStripMenuItem.Name = "locaçãoToolStripMenuItem";
+            this.locaçãoToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.locaçãoToolStripMenuItem.Text = "Locação";
+            this.locaçãoToolStripMenuItem.Click += new System.EventHandler(this.locaçãoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(134, 6);
+            // 
             // hospedeToolStripMenuItem
             // 
             this.hospedeToolStripMenuItem.Name = "hospedeToolStripMenuItem";
-            this.hospedeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.hospedeToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.hospedeToolStripMenuItem.Text = "Hospede";
             this.hospedeToolStripMenuItem.Click += new System.EventHandler(this.hospedeToolStripMenuItem_Click);
             // 
             // funcionárioToolStripMenuItem
             // 
             this.funcionárioToolStripMenuItem.Name = "funcionárioToolStripMenuItem";
-            this.funcionárioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.funcionárioToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.funcionárioToolStripMenuItem.Text = "Funcionário";
             this.funcionárioToolStripMenuItem.Click += new System.EventHandler(this.funcionárioToolStripMenuItem_Click);
             // 
             // quartoToolStripMenuItem
             // 
             this.quartoToolStripMenuItem.Name = "quartoToolStripMenuItem";
-            this.quartoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.quartoToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.quartoToolStripMenuItem.Text = "Quarto";
             this.quartoToolStripMenuItem.Click += new System.EventHandler(this.quartoToolStripMenuItem_Click);
             // 
             // tipoQuartoToolStripMenuItem
             // 
             this.tipoQuartoToolStripMenuItem.Name = "tipoQuartoToolStripMenuItem";
-            this.tipoQuartoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tipoQuartoToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.tipoQuartoToolStripMenuItem.Text = "Tipo Quarto";
             this.tipoQuartoToolStripMenuItem.Click += new System.EventHandler(this.tipoQuartoToolStripMenuItem_Click);
             // 
             // serviçsToolStripMenuItem
             // 
             this.serviçsToolStripMenuItem.Name = "serviçsToolStripMenuItem";
-            this.serviçsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.serviçsToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.serviçsToolStripMenuItem.Text = "Serviços";
             this.serviçsToolStripMenuItem.Click += new System.EventHandler(this.serviçsToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // locaçãoToolStripMenuItem
-            // 
-            this.locaçãoToolStripMenuItem.Name = "locaçãoToolStripMenuItem";
-            this.locaçãoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.locaçãoToolStripMenuItem.Text = "Locação";
-            this.locaçãoToolStripMenuItem.Click += new System.EventHandler(this.locaçãoToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -152,6 +152,7 @@ namespace VallezHotels
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Vallez Hotel\'s";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.Resize += new System.EventHandler(this.FrmPrincipal_Resize);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

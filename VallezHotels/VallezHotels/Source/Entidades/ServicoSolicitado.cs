@@ -23,5 +23,10 @@ namespace VallezHotels.Source.Entidades
             Locacao = new Locacao();
         }
 
+        public double ValorTotalServico()
+        {
+            return Servico.Valor * Quantidade;
+        }
+
     }
 }

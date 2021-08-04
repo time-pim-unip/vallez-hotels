@@ -173,5 +173,52 @@ namespace VallezHotels.Test.Servicos
 
         }
 
+        [Fact]
+        public void Deve_Retornar_Usuario_Ao_Passar_Usuario_E_Senha_Validos()
+        {
+            Usuario u = new Usuario
+            {
+                NomeUsuario = "teste_atualizacao",
+                Senha = "123456",
+                TipoUsuario = "U",
+                Status = true
+            };
+
+            UsuarioServico usuarioServico = new UsuarioServico();
+
+            usuarioServico.InserirUsuario(u);
+
+            Usuario busca = usuarioServico.BuscarUsuarioESenha("teste_atualizacao", "123456");
+
+            Assert.NotNull(busca);
+            Assert.NotNull(busca.Uuid);
+
+            usuarioServico.DeletarUsuario(busca);
+
+        }
+
+        [Fact]
+        public void Deve_Retornar_Null_Ao_Passar_Usuario_E_Senha_Invalidos()
+        {
+            Usuario u = new Usuario
+            {
+                NomeUsuario = "teste_atualizacao",
+                Senha = "123456",
+                TipoUsuario = "U",
+                Status = true
+            };
+
+            UsuarioServico usuarioServico = new UsuarioServico();
+
+            Usuario valido = usuarioServico.InserirUsuario(u);
+
+            Usuario busca = usuarioServico.BuscarUsuarioESenha("teste", "111111");
+
+            Assert.Null(busca);
+
+            usuarioServico.DeletarUsuario(valido);
+
+        }
+
     }
 }

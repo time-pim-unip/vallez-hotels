@@ -211,5 +211,44 @@ namespace VallezHotels.Source.DB
             }
         }
 
+        public Usuario BuscarUsuarioESenha(string usuario, string senha)
+        {
+            try
+            {
+
+                using (var conn = _conn.Conexao())
+                {
+                    conn.Open();
+
+                    using (var select = conn.CreateCommand())
+                    {
+
+                        select.CommandText = "SELECT * FROM vallez.usuarios WHERE usuario=@USUARIO AND senha=@SENHA;";
+                        select.AddParameter("@USUARIO", usuario);
+                        select.AddParameter("@SENHA", senha);
+
+                        var reader = select.ExecuteReader();
+                        
+                        if (reader.Read())
+                        {
+                            Usuario u = this.PreencherUsuario(reader);
+                            return u;
+                        } else
+                        {
+                            return null;
+                        }
+
+                    }
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+
     }
 }

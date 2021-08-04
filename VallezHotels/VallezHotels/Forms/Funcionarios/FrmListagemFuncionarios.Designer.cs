@@ -30,17 +30,14 @@ namespace VallezHotels
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cpf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgFuncionarios = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.chkSomenteAtivos = new System.Windows.Forms.CheckBox();
             this.txtPesquisaNome = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnNovoHospede = new System.Windows.Forms.Button();
+            this.btnNovoFuncionario = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgFuncionarios)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +46,7 @@ namespace VallezHotels
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.dgFuncionarios);
             this.groupBox1.Location = new System.Drawing.Point(12, 87);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(776, 351);
@@ -57,38 +54,19 @@ namespace VallezHotels
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hospedes";
             // 
-            // dataGridView1
+            // dgFuncionarios
             // 
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.codigo,
-            this.nome,
-            this.cpf});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(770, 332);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // codigo
-            // 
-            this.codigo.HeaderText = "Código";
-            this.codigo.Name = "codigo";
-            this.codigo.ReadOnly = true;
-            // 
-            // nome
-            // 
-            this.nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nome.HeaderText = "Nome";
-            this.nome.Name = "nome";
-            this.nome.ReadOnly = true;
-            // 
-            // cpf
-            // 
-            this.cpf.HeaderText = "CPF";
-            this.cpf.Name = "cpf";
-            this.cpf.ReadOnly = true;
+            this.dgFuncionarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgFuncionarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgFuncionarios.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgFuncionarios.Location = new System.Drawing.Point(3, 16);
+            this.dgFuncionarios.Name = "dgFuncionarios";
+            this.dgFuncionarios.ReadOnly = true;
+            this.dgFuncionarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgFuncionarios.Size = new System.Drawing.Size(770, 332);
+            this.dgFuncionarios.TabIndex = 0;
+            this.dgFuncionarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgFuncionarios_CellContentClick);
+            this.dgFuncionarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgFuncionarios_CellDoubleClick);
             // 
             // groupBox2
             // 
@@ -116,6 +94,7 @@ namespace VallezHotels
             this.chkSomenteAtivos.TabIndex = 2;
             this.chkSomenteAtivos.Text = "Somente Ativos";
             this.chkSomenteAtivos.UseVisualStyleBackColor = true;
+            this.chkSomenteAtivos.CheckedChanged += new System.EventHandler(this.chkSomenteAtivos_CheckedChanged);
             // 
             // txtPesquisaNome
             // 
@@ -125,6 +104,7 @@ namespace VallezHotels
             this.txtPesquisaNome.Name = "txtPesquisaNome";
             this.txtPesquisaNome.Size = new System.Drawing.Size(618, 20);
             this.txtPesquisaNome.TabIndex = 1;
+            this.txtPesquisaNome.TextChanged += new System.EventHandler(this.txtPesquisaNome_TextChanged);
             // 
             // label1
             // 
@@ -135,34 +115,35 @@ namespace VallezHotels
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome";
             // 
-            // btnNovoHospede
+            // btnNovoFuncionario
             // 
-            this.btnNovoHospede.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNovoHospede.Image = global::VallezHotels.Properties.Resources.add;
-            this.btnNovoHospede.Location = new System.Drawing.Point(661, 20);
-            this.btnNovoHospede.Name = "btnNovoHospede";
-            this.btnNovoHospede.Size = new System.Drawing.Size(124, 44);
-            this.btnNovoHospede.TabIndex = 2;
-            this.btnNovoHospede.Text = "Novo Funcionário";
-            this.btnNovoHospede.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNovoHospede.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnNovoHospede.UseVisualStyleBackColor = true;
-            this.btnNovoHospede.Click += new System.EventHandler(this.btnNovoHospede_Click);
+            this.btnNovoFuncionario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNovoFuncionario.Image = global::VallezHotels.Properties.Resources.add;
+            this.btnNovoFuncionario.Location = new System.Drawing.Point(661, 20);
+            this.btnNovoFuncionario.Name = "btnNovoFuncionario";
+            this.btnNovoFuncionario.Size = new System.Drawing.Size(124, 44);
+            this.btnNovoFuncionario.TabIndex = 2;
+            this.btnNovoFuncionario.Text = "Novo Funcionário";
+            this.btnNovoFuncionario.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNovoFuncionario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNovoFuncionario.UseVisualStyleBackColor = true;
+            this.btnNovoFuncionario.Click += new System.EventHandler(this.btnNovoFuncionario_Click);
             // 
             // FrmListagemFuncionarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnNovoHospede);
+            this.Controls.Add(this.btnNovoFuncionario);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmListagemFuncionarios";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "Listagem Funcionarios";
+            this.Load += new System.EventHandler(this.FrmListagemFuncionarios_Load);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgFuncionarios)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -176,10 +157,7 @@ namespace VallezHotels
         private System.Windows.Forms.CheckBox chkSomenteAtivos;
         private System.Windows.Forms.TextBox txtPesquisaNome;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnNovoHospede;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cpf;
+        private System.Windows.Forms.Button btnNovoFuncionario;
+        private System.Windows.Forms.DataGridView dgFuncionarios;
     }
 }
