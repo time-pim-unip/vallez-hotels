@@ -14,10 +14,13 @@ namespace VallezHotels
     public partial class FrmPrincipal : Form
     {
 
+        public bool UsuarioValido;
+
         public FrmPrincipal()
         {
-
             InitializeComponent();
+
+            this.UsuarioValido = false;
 
             /*
                Código obtido no Stack Overlow para impedir que a imagem de fundo fique tremida(flicker)
@@ -48,28 +51,25 @@ namespace VallezHotels
                 ).SetValue(client, true, null);
             }
 
-
-
             // Carregar a splash screen e o formulário de login antes do sistema iniciar.
-            //this.Visible = false;
-            //this.Hide();
+            this.Opacity = 1;
 
             //SplashScreen splash = new SplashScreen();
             //splash.principal = this;
             //splash.ShowDialog();
 
             //FrmLogin login = new FrmLogin();
-            //login.principal = this;
             //login.ShowDialog();
+            //this.UsuarioValido = login.UsuarioValido;
+
+            //if (this.UsuarioValido)
+            //{
+            //    this.Opacity = 1;
+            //}
 
             // Ativar a dashboard como formulário padrão
-            FrmDashboard dashboard = new FrmDashboard();
-            Helper.StartForm(dashboard, this, FormWindowState.Maximized);
-
-
-           
-
-            
+            //FrmDashboard dashboard = new FrmDashboard();
+            //Helper.StartForm(dashboard, this, FormWindowState.Maximized);
 
         }
 
@@ -106,19 +106,20 @@ namespace VallezHotels
 
         private void quartoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmQuarto quarto = new FrmQuarto();
-            Helper.StartForm(quarto, this);
+            FrmListagemQuartos quartos = new FrmListagemQuartos();
+            Helper.StartForm(quartos, this);
         }
 
         private void tipoQuartoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmTipoQuarto tipoQuarto = new FrmTipoQuarto();
+            FrmListagemTipoQuarto tipoQuarto = new FrmListagemTipoQuarto();
             Helper.StartForm(tipoQuarto, this);
         }
 
         private void serviçsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmServicos servicos = new FrmServicos();
+            //FrmServicos servicos = new FrmServicos();
+            FrmListagemServicos servicos = new FrmListagemServicos();
             Helper.StartForm(servicos, this);
         }
 
@@ -126,6 +127,20 @@ namespace VallezHotels
         {
             FrmLocacao locacao = new FrmLocacao();
             Helper.StartForm(locacao, this);
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+            /*
+            if (!this.UsuarioValido)
+            {
+                Application.Exit();
+            }
+            */
+
+            // Ativar a dashboard como formulário padrão
+            FrmDashboard dashboard = new FrmDashboard();
+            Helper.StartForm(dashboard, this);
         }
     }
 }

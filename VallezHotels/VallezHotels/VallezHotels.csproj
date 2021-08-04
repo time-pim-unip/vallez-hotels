@@ -86,6 +86,12 @@
     <Compile Include="Forms\Dashboard\FrmDashboard.Designer.cs">
       <DependentUpon>FrmDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmListagemGenerica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmListagemGenerica.Designer.cs">
+      <DependentUpon>FrmListagemGenerica.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Funcionarios\FrmFuncionario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,22 +134,40 @@
     <Compile Include="Forms\FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Quartos\FrmListagemQuartos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Quartos\FrmListagemQuartos.Designer.cs">
+      <DependentUpon>FrmListagemQuartos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Quartos\FrmQuarto.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Quartos\FrmQuarto.Designer.cs">
       <DependentUpon>FrmQuarto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Quartos\FrmTipoQuarto.cs">
+    <Compile Include="Forms\Tipo de Quarto\FrmListagemTipoQuarto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Quartos\FrmTipoQuarto.Designer.cs">
+    <Compile Include="Forms\Tipo de Quarto\FrmListagemTipoQuarto.Designer.cs">
+      <DependentUpon>FrmListagemTipoQuarto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tipo de Quarto\FrmTipoQuarto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tipo de Quarto\FrmTipoQuarto.Designer.cs">
       <DependentUpon>FrmTipoQuarto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Locações\FrmServicos.cs">
+    <Compile Include="Forms\Servicos\FrmListagemServicos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Locações\FrmServicos.Designer.cs">
+    <Compile Include="Forms\Servicos\FrmListagemServicos.Designer.cs">
+      <DependentUpon>FrmListagemServicos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Servicos\FrmServicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Servicos\FrmServicos.Designer.cs">
       <DependentUpon>FrmServicos.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Dashboard\FrmDescricaoQuarto.cs">
@@ -159,6 +183,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Source\Core\DateTimeExtensao.cs" />
     <Compile Include="Source\Core\Helper.cs" />
     <Compile Include="Forms\SplashScreen.cs">
       <SubType>Form</SubType>
@@ -183,6 +208,8 @@
     <Compile Include="Source\DB\ServicoSolicitadoDB.cs" />
     <Compile Include="Source\DB\TipoQuartoDB.cs" />
     <Compile Include="Source\DB\UsuarioDB.cs" />
+    <Compile Include="Source\DTO\ListagemGenericaDTO.cs" />
+    <Compile Include="Source\DTO\LocacaoPorDisponibilidadeDTO.cs" />
     <Compile Include="Source\Entidades\Disponibilidade.cs" />
     <Compile Include="Source\Entidades\Faturamento.cs" />
     <Compile Include="Source\Entidades\Funcionario.cs" />
@@ -195,6 +222,7 @@
     <Compile Include="Source\Entidades\ServicoSolicitado.cs" />
     <Compile Include="Source\Entidades\TipoQuarto.cs" />
     <Compile Include="Source\Entidades\Usuario.cs" />
+    <Compile Include="Source\Enums\TipoUsuario.cs" />
     <Compile Include="Source\Servicos\DisponibilidadeServico.cs" />
     <Compile Include="Source\Servicos\FaturamentoServico.cs" />
     <Compile Include="Source\Servicos\HospedagemServico.cs" />
@@ -213,6 +241,9 @@
     <EmbeddedResource Include="Forms\Dashboard\FrmDescricaoQuarto.resx">
       <DependentUpon>FrmDescricaoQuarto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmListagemGenerica.resx">
+      <DependentUpon>FrmListagemGenerica.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Funcionarios\FrmFuncionario.resx">
       <DependentUpon>FrmFuncionario.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -229,6 +260,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Locações\FrmLocacao.resx">
       <DependentUpon>FrmLocacao.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
@@ -236,13 +268,22 @@
     <EmbeddedResource Include="Forms\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Quartos\FrmListagemQuartos.resx">
+      <DependentUpon>FrmListagemQuartos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Quartos\FrmQuarto.resx">
       <DependentUpon>FrmQuarto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Quartos\FrmTipoQuarto.resx">
+    <EmbeddedResource Include="Forms\Tipo de Quarto\FrmListagemTipoQuarto.resx">
+      <DependentUpon>FrmListagemTipoQuarto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tipo de Quarto\FrmTipoQuarto.resx">
       <DependentUpon>FrmTipoQuarto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Locações\FrmServicos.resx">
+    <EmbeddedResource Include="Forms\Servicos\FrmListagemServicos.resx">
+      <DependentUpon>FrmListagemServicos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Servicos\FrmServicos.resx">
       <DependentUpon>FrmServicos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -31,9 +31,9 @@ namespace VallezHotels
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFuncionario));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtAdmissao = new System.Windows.Forms.DateTimePicker();
             this.label13 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.txtCtps = new System.Windows.Forms.MaskedTextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.txtRG = new System.Windows.Forms.MaskedTextBox();
@@ -57,7 +57,7 @@ namespace VallezHotels
             this.label11 = new System.Windows.Forms.Label();
             this.cbTipoUsuario = new System.Windows.Forms.ComboBox();
             this.chkAtivo = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSenha = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -72,9 +72,9 @@ namespace VallezHotels
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.dtAdmissao);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.maskedTextBox1);
+            this.groupBox1.Controls.Add(this.txtCtps);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.btnPesquisar);
             this.groupBox1.Controls.Add(this.txtRG);
@@ -94,14 +94,14 @@ namespace VallezHotels
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Pessoais";
             // 
-            // dateTimePicker1
+            // dtAdmissao
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(559, 78);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(85, 22);
-            this.dateTimePicker1.TabIndex = 15;
-            this.dateTimePicker1.Value = new System.DateTime(2021, 5, 13, 16, 50, 55, 0);
+            this.dtAdmissao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtAdmissao.Location = new System.Drawing.Point(559, 78);
+            this.dtAdmissao.Name = "dtAdmissao";
+            this.dtAdmissao.Size = new System.Drawing.Size(85, 22);
+            this.dtAdmissao.TabIndex = 15;
+            this.dtAdmissao.Value = new System.DateTime(2021, 5, 13, 16, 50, 55, 0);
             // 
             // label13
             // 
@@ -112,14 +112,14 @@ namespace VallezHotels
             this.label13.TabIndex = 14;
             this.label13.Text = "Data Admissão";
             // 
-            // maskedTextBox1
+            // txtCtps
             // 
-            this.maskedTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.maskedTextBox1.Location = new System.Drawing.Point(653, 78);
-            this.maskedTextBox1.Mask = "000,00000,00-00";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(187, 22);
-            this.maskedTextBox1.TabIndex = 13;
+            this.txtCtps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCtps.Location = new System.Drawing.Point(653, 78);
+            this.txtCtps.Mask = "000,00000,00/0";
+            this.txtCtps.Name = "txtCtps";
+            this.txtCtps.Size = new System.Drawing.Size(187, 22);
+            this.txtCtps.TabIndex = 13;
             // 
             // label12
             // 
@@ -144,7 +144,7 @@ namespace VallezHotels
             // 
             this.txtRG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRG.Location = new System.Drawing.Point(752, 37);
-            this.txtRG.Mask = "00,000,000-L";
+            this.txtRG.Mask = "00,000,000-0";
             this.txtRG.Name = "txtRG";
             this.txtRG.Size = new System.Drawing.Size(88, 22);
             this.txtRG.TabIndex = 9;
@@ -216,6 +216,7 @@ namespace VallezHotels
             // 
             // txtCodigo
             // 
+            this.txtCodigo.Enabled = false;
             this.txtCodigo.Location = new System.Drawing.Point(8, 37);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(55, 22);
@@ -308,7 +309,7 @@ namespace VallezHotels
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.cbTipoUsuario);
             this.groupBox3.Controls.Add(this.chkAtivo);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.txtSenha);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.txtUsuario);
             this.groupBox3.Controls.Add(this.label9);
@@ -331,6 +332,9 @@ namespace VallezHotels
             // cbTipoUsuario
             // 
             this.cbTipoUsuario.FormattingEnabled = true;
+            this.cbTipoUsuario.Items.AddRange(new object[] {
+            "Administrador",
+            "Funcionario"});
             this.cbTipoUsuario.Location = new System.Drawing.Point(248, 34);
             this.cbTipoUsuario.Name = "cbTipoUsuario";
             this.cbTipoUsuario.Size = new System.Drawing.Size(121, 21);
@@ -339,6 +343,8 @@ namespace VallezHotels
             // chkAtivo
             // 
             this.chkAtivo.AutoSize = true;
+            this.chkAtivo.Checked = true;
+            this.chkAtivo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkAtivo.Location = new System.Drawing.Point(11, 62);
             this.chkAtivo.Name = "chkAtivo";
             this.chkAtivo.Size = new System.Drawing.Size(52, 17);
@@ -346,12 +352,12 @@ namespace VallezHotels
             this.chkAtivo.Text = "Ativo";
             this.chkAtivo.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txtSenha
             // 
-            this.textBox1.Location = new System.Drawing.Point(129, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(113, 22);
-            this.textBox1.TabIndex = 5;
+            this.txtSenha.Location = new System.Drawing.Point(129, 34);
+            this.txtSenha.Name = "txtSenha";
+            this.txtSenha.Size = new System.Drawing.Size(113, 22);
+            this.txtSenha.TabIndex = 5;
             // 
             // label10
             // 
@@ -404,6 +410,7 @@ namespace VallezHotels
             this.btnSalvar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // FrmFuncionario
             // 
@@ -421,6 +428,7 @@ namespace VallezHotels
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manutenção de Funcionário";
+            this.Load += new System.EventHandler(this.FrmFuncionario_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -455,16 +463,16 @@ namespace VallezHotels
         private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox chkAtivo;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cbTipoUsuario;
         private System.Windows.Forms.Button btnPesquisar;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtAdmissao;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox txtCtps;
         private System.Windows.Forms.Label label12;
     }
 }

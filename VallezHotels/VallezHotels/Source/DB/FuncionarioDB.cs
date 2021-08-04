@@ -26,7 +26,7 @@ namespace VallezHotels.Source.DB
             f.UuidFuncionario = reader["uuid_funcionario"].ToString();
             f.IdPessoa = int.Parse(reader["id_pessoa"].ToString());
             f.Usuario.Id = int.Parse(reader["id_usuario"].ToString());
-            f.CTPS = int.Parse(reader["ctps"].ToString());
+            f.CTPS = reader["ctps"].ToString();
             f.Admissao = DateTime.Parse(reader["data_admissao"].ToString());
             f.CreatedAtFuncionario = DateTime.Parse(reader["created_at"].ToString());
             f.UpdatedAtFuncionario = DateTime.Parse(reader["updated_at"].ToString());
@@ -45,7 +45,7 @@ namespace VallezHotels.Source.DB
                     {
                         update.CommandText = "UPDATE vallez.funcionarios SET ctps=@CTPS, data_admissao=@ADMISSAO, updated_at=now() WHERE id_funcionario=@ID; ";
                         update.AddParameter("@ID", funcionario.IdFuncionario, System.Data.DbType.Int32);
-                        update.AddParameter("@CTPS", funcionario.CTPS, System.Data.DbType.Int32);
+                        update.AddParameter("@CTPS", funcionario.CTPS);
                         update.AddParameter("@ADMISSAO", funcionario.Admissao,System.Data.DbType.Date);
 
                         var affectedRows = (int) update.ExecuteNonQuery();
@@ -171,7 +171,7 @@ namespace VallezHotels.Source.DB
                         insert.CommandText = "INSERT INTO vallez.funcionarios (uuid_funcionario, id_pessoa, id_usuario, ctps, data_admissao, created_at, updated_at) VALUES(vallez.uuid_generate_v4(), @PESSOA, @USUARIO, @CTPS, @ADMISSAO, now(), now()) returning *;";
                         insert.AddParameter("@PESSOA", funcionario.IdPessoa, System.Data.DbType.Int32);
                         insert.AddParameter("@USUARIO", funcionario.Usuario.Id, System.Data.DbType.Int32);
-                        insert.AddParameter("@CTPS", funcionario.CTPS, System.Data.DbType.Int32);
+                        insert.AddParameter("@CTPS", funcionario.CTPS);
                         insert.AddParameter("@ADMISSAO", funcionario.Admissao, System.Data.DbType.Date);
 
                         var reader = insert.ExecuteReader();
