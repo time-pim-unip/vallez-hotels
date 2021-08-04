@@ -22,10 +22,13 @@ namespace VallezHotels
         private readonly HospedeServico _hospedeServico;
         private readonly HospedagemServico _hospedagemServico;
         private readonly QuartoServico _quartoServico;
-        private readonly ServicoServico _servicoAdServico;
+        private readonly ServicoServico _servicoServico;
+        private readonly ServicoSolicitadoServico _servicoSolicitadoServico;
 
         private bool AdicionarHospedes;
-        List<Object> ListaHospedagem;
+        private bool AdicionarServicos;
+        private List<Object> ListaHospedagem;
+        private List<Object> ListaServicos;
 
         public Quarto Quarto;
         private Locacao Locacao;
@@ -38,12 +41,15 @@ namespace VallezHotels
             _hospedeServico = new HospedeServico();
             _hospedagemServico = new HospedagemServico();
             _quartoServico = new QuartoServico();
-            _servicoAdServico = new ServicoServico();
+            _servicoServico = new ServicoServico();
+            _servicoSolicitadoServico = new ServicoSolicitadoServico();
             AdicionarHospedes = false;
+            AdicionarServicos = false;
 
             Quarto = new Quarto();
             Locacao = new Locacao();
             ListaHospedagem = new List<Object>();
+            ListaServicos = new List<Object>();
 
             InitializeComponent();
         }
@@ -59,7 +65,6 @@ namespace VallezHotels
 
             if (Locacao.Uuid != null)
             {
-                Locacao.Hospedagems = _hospedagemServico.BuscarPelaLocacao(Locacao);
                     
                 txtCodigo.Text = Locacao.Id.ToString();
                 dtEntrada.Value = Locacao.DataEntrada;
@@ -67,6 +72,7 @@ namespace VallezHotels
                 dtCheckin.Value = Locacao.CheckIn;
                 dtCheckout.Value = Locacao.CheckOut;
                     
+                Locacao.Hospedagems = _hospedagemServico.BuscarPelaLocacao(Locacao);
                 //dgHospedes.DataSource = null;
                 foreach (Hospedagem h in Locacao.Hospedagems)
                 {
@@ -79,8 +85,28 @@ namespace VallezHotels
 
                     ListaHospedagem.Add(row);
                 }
-
                 dgHospedes.DataSource = ListaHospedagem;
+
+
+                Locacao.ServicosSolicitados = _servicoSolicitadoServico.BuscarPelaLocacao(Locacao);
+                foreach (ServicoSolicitado ss in Locacao.ServicosSolicitados)
+                {
+
+                    ss.Servico = _servicoServico.BuscarPeloId(ss.Servico.Id);
+
+                    Object rowServico = new
+                    {
+                        Id = ss.Servico.Id,
+                        Descricao = ss.Servico.Descricao,
+                        ValorUnitario = ss.Servico.Valor,
+                        Quantidade = ss.Quantidade,
+                        ValorTotal = ss.ValorTotalServico()
+                    };
+
+                    ListaServicos.Add(rowServico);
+
+                }
+                dgServicosSolicitados.DataSource = ListaServicos;
 
             } else
             {
@@ -89,7 +115,7 @@ namespace VallezHotels
             }
 
             // Exibir valor da locação
-            lblValorLocacao.Text = $"R$ {Locacao.ValorDaLocacao().ToString("F2")}";
+            AtualizarValorDaLocacao();
 
             txtQuarto.Text = Quarto.Id.ToString();
             txtBloco.Text = Quarto.Bloco;
@@ -103,6 +129,10 @@ namespace VallezHotels
 
         }
 
+        private void AtualizarValorDaLocacao()
+        {
+            lblValorLocacao.Text = $"R$ {Locacao.ValorDaLocacao().ToString("F2")}";
+        }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -113,6 +143,7 @@ namespace VallezHotels
         {
 
             // Verificar disponibilidade das datas selecionadas para locação.
+            /*
             List<Disponibilidade> disponibilidades = _disponibilidadeServico.BuscarPeloQuarto(Quarto);
             List<DateTime> datasPeriodo = dtEntrada.Value.RetornarPeriodo(dtSaida.Value);
 
@@ -125,6 +156,7 @@ namespace VallezHotels
                 }
 
             }
+            */
 
             // Verificar se existe um hospede ao inserir nova locação
             if (string.IsNullOrEmpty(txtCodigo.Text))
@@ -178,6 +210,28 @@ namespace VallezHotels
                     }
                 }
 
+                if (AdicionarServicos)
+                {
+                    foreach (DataGridViewRow row in dgServicosSolicitados.Rows)
+                    {
+                        var existe = Locacao.ServicosSolicitados.Where(s => s.Servico.Id == int.Parse(row.Cells["Id"].Value.ToString()));
+
+                        if (existe.Count() == 0)
+                        {
+                            ServicoSolicitado ss = new ServicoSolicitado()
+                            {
+                                Locacao = Locacao,
+                                Servico = _servicoServico.BuscarPeloId(int.Parse(row.Cells["Id"].Value.ToString())),
+                                Solicitacao = DateTime.Now,
+                                Quantidade = int.Parse(row.Cells["Quantidade"].Value.ToString())
+
+                            };
+
+                            _servicoSolicitadoServico.InserirServicoSolicitado(ss);
+                        }
+                    }
+                }
+
                 if (l != null)
                 {
                     MessageBox.Show("Locação gerênciada com sucesso", "Sucesso !", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -187,6 +241,11 @@ namespace VallezHotels
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ocorreu uma exceção", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                AdicionarHospedes = false;
+                AdicionarServicos = true;
             }
         }
 
@@ -250,6 +309,7 @@ namespace VallezHotels
 
         private void dtSaida_ValueChanged(object sender, EventArgs e)
         {
+            /*
             if (dtSaida.Value < dtEntrada.Value)
             {
                 dtSaida.Value = dtEntrada.Value;
@@ -262,14 +322,16 @@ namespace VallezHotels
                 MessageBox.Show("Data de saida não pode ser menor que a data atual !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            */
 
 
             Locacao.DataSaida = dtSaida.Value;
-            lblValorLocacao.Text = $"R$ {Locacao.ValorDaLocacao().ToString("F2")}";
+            AtualizarValorDaLocacao();
         }
 
         private void dtEntrada_ValueChanged(object sender, EventArgs e)
         {
+            /*
             if (dtEntrada.Value > dtSaida.Value)
             {
                 dtEntrada.Value = dtSaida.Value;
@@ -281,16 +343,16 @@ namespace VallezHotels
                 MessageBox.Show("Data de entrada não pode ser menor que a data atual !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
+            */
             Locacao.DataEntrada = dtEntrada.Value;
-            lblValorLocacao.Text = $"R$ {Locacao.ValorDaLocacao().ToString("F2")}";
+            AtualizarValorDaLocacao();
         }
 
         private void btnPesquisaGenericaServicosAdicionais_Click(object sender, EventArgs e)
         {
 
             FrmListagemGenerica listagem = new FrmListagemGenerica();
-            List<Servico> servicos = _servicoAdServico.BuscarTodos();
+            List<Servico> servicos = _servicoServico.BuscarTodos();
 
             IEnumerable<ListagemGenericaDTO> dados = from s in servicos
                                                      orderby s.Descricao
@@ -305,7 +367,7 @@ namespace VallezHotels
 
             if (listagem.CodigoSelecionado > 0)
             {
-                Servico s = _servicoAdServico.BuscarPeloId(listagem.CodigoSelecionado);
+                Servico s = _servicoServico.BuscarPeloId(listagem.CodigoSelecionado);
 
                 txtCodigoServico.Text = s.Id.ToString();
                 txtDescricaoServico.Text = s.Descricao.ToString();
@@ -333,8 +395,31 @@ namespace VallezHotels
                 return;
             }
 
+            var existe = Locacao.ServicosSolicitados.Where(s => s.Servico.Id == int.Parse(txtCodigoServico.Text.ToString()));
 
+            if (existe.Count() > 0)
+            {
+                MessageBox.Show("Serviço já foi adicionado a esta locação", "Atenção !", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            Servico servico = _servicoServico.BuscarPeloId(int.Parse(txtCodigoServico.Text.ToString()));
+
+            Object row = new
+            {
+                Id = servico.Id,
+                Descricao = servico.Descricao,
+                ValorUnitario = servico.Valor,
+                Quantidade = int.Parse(txtQtServico.Text),
+                ValorTotal = servico.Valor * int.Parse(txtQtServico.Text)
+            };
+
+            ListaServicos.Add(row);
+            dgServicosSolicitados.DataSource = null;
+            dgServicosSolicitados.DataSource = ListaServicos;
+
+            AdicionarServicos = true;
+            AtualizarValorDaLocacao();
 
         }
     }

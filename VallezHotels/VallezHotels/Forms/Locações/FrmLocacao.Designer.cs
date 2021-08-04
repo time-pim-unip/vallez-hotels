@@ -59,7 +59,9 @@ namespace VallezHotels
             this.txtCodigoHospede = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtValorServico = new System.Windows.Forms.TextBox();
+            this.dgServicosSolicitados = new System.Windows.Forms.DataGridView();
             this.btnAddServico = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.txtQtServico = new System.Windows.Forms.TextBox();
@@ -72,13 +74,11 @@ namespace VallezHotels
             this.btnSalvar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblValorLocacao = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtValorServico = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgHospedes)).BeginInit();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgServicosSolicitados)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -376,7 +376,7 @@ namespace VallezHotels
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.txtValorServico);
-            this.groupBox3.Controls.Add(this.dataGridView2);
+            this.groupBox3.Controls.Add(this.dgServicosSolicitados);
             this.groupBox3.Controls.Add(this.btnAddServico);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.txtQtServico);
@@ -392,18 +392,38 @@ namespace VallezHotels
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Serviços Adicionais";
             // 
-            // dataGridView2
+            // label12
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(520, 18);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(33, 13);
+            this.label12.TabIndex = 44;
+            this.label12.Text = "Valor";
+            // 
+            // txtValorServico
+            // 
+            this.txtValorServico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtValorServico.Enabled = false;
+            this.txtValorServico.Location = new System.Drawing.Point(520, 36);
+            this.txtValorServico.Name = "txtValorServico";
+            this.txtValorServico.Size = new System.Drawing.Size(62, 22);
+            this.txtValorServico.TabIndex = 43;
+            // 
+            // dgServicosSolicitados
+            // 
+            this.dgServicosSolicitados.AllowUserToAddRows = false;
+            this.dgServicosSolicitados.AllowUserToDeleteRows = false;
+            this.dgServicosSolicitados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 62);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(730, 72);
-            this.dataGridView2.TabIndex = 3;
+            this.dgServicosSolicitados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgServicosSolicitados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgServicosSolicitados.Location = new System.Drawing.Point(6, 62);
+            this.dgServicosSolicitados.Name = "dgServicosSolicitados";
+            this.dgServicosSolicitados.ReadOnly = true;
+            this.dgServicosSolicitados.Size = new System.Drawing.Size(730, 72);
+            this.dgServicosSolicitados.TabIndex = 3;
             // 
             // btnAddServico
             // 
@@ -532,25 +552,6 @@ namespace VallezHotels
             this.lblValorLocacao.TabIndex = 0;
             this.lblValorLocacao.Text = "RS 0";
             // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(520, 18);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(33, 13);
-            this.label12.TabIndex = 44;
-            this.label12.Text = "Valor";
-            // 
-            // txtValorServico
-            // 
-            this.txtValorServico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtValorServico.Enabled = false;
-            this.txtValorServico.Location = new System.Drawing.Point(520, 36);
-            this.txtValorServico.Name = "txtValorServico";
-            this.txtValorServico.Size = new System.Drawing.Size(62, 22);
-            this.txtValorServico.TabIndex = 43;
-            // 
             // FrmLocacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -576,7 +577,7 @@ namespace VallezHotels
             ((System.ComponentModel.ISupportInitialize)(this.dgHospedes)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgServicosSolicitados)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -617,7 +618,7 @@ namespace VallezHotels
         private System.Windows.Forms.Button btnPesquisaGenericaServicosAdicionais;
         private System.Windows.Forms.TextBox txtCodigoServico;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgServicosSolicitados;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Panel panel1;
