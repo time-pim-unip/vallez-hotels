@@ -93,7 +93,7 @@ namespace VallezHotels
             // 
             this.lblQuartosNãoDisponiveis.AutoSize = true;
             this.lblQuartosNãoDisponiveis.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuartosNãoDisponiveis.Location = new System.Drawing.Point(166, 3);
+            this.lblQuartosNãoDisponiveis.Location = new System.Drawing.Point(176, 3);
             this.lblQuartosNãoDisponiveis.Name = "lblQuartosNãoDisponiveis";
             this.lblQuartosNãoDisponiveis.Size = new System.Drawing.Size(199, 21);
             this.lblQuartosNãoDisponiveis.TabIndex = 4;
@@ -104,7 +104,7 @@ namespace VallezHotels
             this.lblCheckouts.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCheckouts.Image = global::VallezHotels.Properties.Resources.log_out;
             this.lblCheckouts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblCheckouts.Location = new System.Drawing.Point(693, 3);
+            this.lblCheckouts.Location = new System.Drawing.Point(718, 3);
             this.lblCheckouts.Name = "lblCheckouts";
             this.lblCheckouts.Size = new System.Drawing.Size(182, 21);
             this.lblCheckouts.TabIndex = 3;
@@ -116,7 +116,7 @@ namespace VallezHotels
             this.lblCheckins.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCheckins.Image = global::VallezHotels.Properties.Resources.log_in;
             this.lblCheckins.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblCheckins.Location = new System.Drawing.Point(522, 3);
+            this.lblCheckins.Location = new System.Drawing.Point(546, 3);
             this.lblCheckins.Name = "lblCheckins";
             this.lblCheckins.Size = new System.Drawing.Size(174, 21);
             this.lblCheckins.TabIndex = 2;
@@ -127,7 +127,7 @@ namespace VallezHotels
             // 
             this.lblQuartosOcupados.AutoSize = true;
             this.lblQuartosOcupados.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuartosOcupados.Location = new System.Drawing.Point(369, 3);
+            this.lblQuartosOcupados.Location = new System.Drawing.Point(393, 3);
             this.lblQuartosOcupados.Name = "lblQuartosOcupados";
             this.lblQuartosOcupados.Size = new System.Drawing.Size(156, 21);
             this.lblQuartosOcupados.TabIndex = 1;
@@ -253,7 +253,7 @@ namespace VallezHotels
             // tmrBuscarQuartos
             // 
             this.tmrBuscarQuartos.Enabled = true;
-            this.tmrBuscarQuartos.Interval = 5000;
+            this.tmrBuscarQuartos.Interval = 15000;
             this.tmrBuscarQuartos.Tick += new System.EventHandler(this.tmrBuscarQuartos_Tick);
             // 
             // FrmDashboard

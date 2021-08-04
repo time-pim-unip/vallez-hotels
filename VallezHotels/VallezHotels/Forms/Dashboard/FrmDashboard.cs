@@ -17,10 +17,14 @@ namespace VallezHotels
     {
 
         private readonly QuartoServico _quartoServico;
+        private readonly LocacaoServico _locacaoServico;
+        private readonly HospedagemServico _hospedagemServico;
 
         public FrmDashboard()
         {
             _quartoServico = new QuartoServico();
+            _locacaoServico = new LocacaoServico();
+            _hospedagemServico = new HospedagemServico();
 
             InitializeComponent();
         }
@@ -28,7 +32,27 @@ namespace VallezHotels
         private void AtualizarDashboard()
         {
             List<Quarto> quartos = _quartoServico.BuscarTodos();
+            List<Locacao> locacoes = new List<Locacao>();
+
+            foreach (Quarto q in quartos)
+            {
+                Locacao l = _locacaoServico.BuscarPelaDataEQuarto(q);
+                l.Hospedagems = _hospedagemServico.BuscarPelaLocacao(l);
+
+                locacoes.Add(l);
+            }
+
+
             pnlExibicaoQuartos.Controls.Clear();
+
+            int quantidadeQuartosDisponiveis = quartos.Where(q => q.Disponibilidades.Where(d => d.Data.Date == DateTime.Now.Date && d.Disponivel == true).Count() != 0).Count();
+            lblQuartosDisponiveis.Text = $"Quartos disponiveis: {quantidadeQuartosDisponiveis}";
+
+            int quantidadeQuartosNaoDisponiveis = quartos.Where(q => q.Disponibilidades.Where(d => d.Data.Date == DateTime.Now.Date && d.Disponivel == false).Count() != 0).Count();
+            lblQuartosNãoDisponiveis.Text = $"Quartos não disponiveis: {quantidadeQuartosNaoDisponiveis}";
+
+            int quantidadeQuartosOcupados = locacoes.Where(l => l.Hospedagems.Count > 0).Count();
+            lblQuartosOcupados.Text = $"Quartos ocupados: {quantidadeQuartosOcupados}";
 
             var listQuartos = from q in quartos
                               orderby q.Bloco, q.Numero

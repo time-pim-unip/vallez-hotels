@@ -60,11 +60,11 @@ namespace VallezHotels
                 lblValor.Visible = true;
 
                 lblHospedes.Text = $"Quantidade de hospedes: {Locacao.Hospedagems.Count}";
-                lblEntrada.Text = $"Data entrada: {Locacao.DataEntrada.ToString("dd/MM/yyyy")}";
-                lblSaida.Text = $"Data entrada: {Locacao.DataSaida.ToString("dd/MM/yyyy")}";
+                lblEntrada.Text  = $"Data entrada   : {Locacao.DataEntrada.ToString("dd/MM/yyyy")}";
+                lblSaida.Text    = $"Data saida     : {Locacao.DataSaida.ToString("dd/MM/yyyy")}";
 
-                lblCheckin.Text = $"Data entrada: {Locacao.CheckIn.ToString("dd/MM/yyyy")}";
-                lblCheckout.Text = $"Data entrada: {Locacao.CheckOut.ToString("dd/MM/yyyy")}";
+                lblCheckin.Text  = $"Data check-in  : {Locacao.CheckIn.ToString("dd/MM/yyyy")}";
+                lblCheckout.Text = $"Data check-out : {Locacao.CheckOut.ToString("dd/MM/yyyy")}";
 
                 lblValor.Text = $"Valor: R${Locacao.ValorDaLocacao()}";
 
