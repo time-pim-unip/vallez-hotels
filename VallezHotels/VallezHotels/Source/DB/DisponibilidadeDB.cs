@@ -24,6 +24,8 @@ namespace VallezHotels.Source.DB
             d.Id = int.Parse(reader["id_disponibilidade"].ToString());
             d.Uuid = reader["uuid_disponibilidade"].ToString();
             d.Quarto.Id = int.Parse(reader["id_quarto"].ToString());
+            d.Data = DateTime.Parse(reader["data"].ToString());
+            d.Disponivel = bool.Parse(reader["dia_disponivel"].ToString());
             d.CreatedAt = DateTime.Parse(reader["created_at"].ToString());
             d.UpdatedAt = DateTime.Parse(reader["updated_at"].ToString());
             return d;
@@ -190,6 +192,41 @@ namespace VallezHotels.Source.DB
                     }
                 }
 
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public List<Disponibilidade> BuscarPeloQuarto(Quarto quarto)
+        {
+            try
+            {
+                using (var conn = _conn.Conexao())
+                {
+                    conn.Open();
+
+                    using (var select = conn.CreateCommand())
+                    {
+                        select.CommandText = "SELECT * FROM vallez.disponibilidades WHERE id_quarto = @QUARTO";
+                        select.AddParameter("@QUARTO", quarto.Id, System.Data.DbType.Int32);
+
+                        var reader = select.ExecuteReader();
+
+
+                        List<Disponibilidade> disponibilidades = new List<Disponibilidade>();
+                        while (reader.Read())
+                        {
+                            Disponibilidade d = this.PreencherDisponibilidade(reader);
+                            disponibilidades.Add(d);
+
+                        }
+
+                        return disponibilidades;
+                    }
+
+                }
             }
             catch (Exception e)
             {

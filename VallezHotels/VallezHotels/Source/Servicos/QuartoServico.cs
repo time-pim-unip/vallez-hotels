@@ -14,11 +14,13 @@ namespace VallezHotels.Source.Servicos
 
         private readonly QuartoDB _db;
         private readonly TipoQuartoServico _tipoQuartoServico;
+        private readonly DisponibilidadeServico _disponibilidadeServico;
 
         public QuartoServico()
         {
             _db = new QuartoDB(new PGConexao());
             _tipoQuartoServico = new TipoQuartoServico();
+            _disponibilidadeServico = new DisponibilidadeServico(this);
         }
 
 
@@ -28,7 +30,7 @@ namespace VallezHotels.Source.Servicos
             {
                 Quarto q =_db.Inserir(quarto);
                 q.TipoQuarto = _tipoQuartoServico.BuscarPeloId(q.TipoQuarto.Id);
-
+                
                 return q;
 
             }
@@ -58,6 +60,7 @@ namespace VallezHotels.Source.Servicos
 
                 Quarto q = _db.BuscarPeloID(id);
                 q.TipoQuarto = _tipoQuartoServico.BuscarPeloId(q.TipoQuarto.Id);
+                q.Disponibilidades = _disponibilidadeServico.BuscarPeloQuarto(q);
 
                 return q;
             }
@@ -79,6 +82,7 @@ namespace VallezHotels.Source.Servicos
                 foreach (Quarto q in quartos)
                 {
                     q.TipoQuarto = _tipoQuartoServico.BuscarPeloId(q.TipoQuarto.Id);
+                    q.Disponibilidades = _disponibilidadeServico.BuscarPeloQuarto(q);
                 }
 
                 return quartos;
@@ -107,5 +111,58 @@ namespace VallezHotels.Source.Servicos
         }
 
 
+        public void RemoverDisponibilidades(Quarto q, Locacao locacao)
+        {
+            try
+            {
+                List<Disponibilidade> disponibilidadesQuarto = _disponibilidadeServico.BuscarPeloQuarto(q);
+                List<DateTime> datasLocacao = locacao.DataEntrada.RetornarPeriodo(locacao.DataSaida);
+
+                foreach (DateTime dt in datasLocacao)
+                {
+                    var disponibilidade = disponibilidadesQuarto.Where(x => x.Data.Date == dt.Date);
+
+                    if (disponibilidade.Count() != 0)
+                    {
+
+                        Disponibilidade d = disponibilidade.FirstOrDefault();
+                        d.Disponivel = false;
+                        _disponibilidadeServico.EditarDisponibilidade(d);
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public void HabilitarDisponibilidades(Quarto q, Locacao locacao)
+        {
+            try
+            {
+                List<Disponibilidade> disponibilidadesQuarto = _disponibilidadeServico.BuscarPeloQuarto(q);
+                List<DateTime> datasLocacao = locacao.DataEntrada.RetornarPeriodo(locacao.DataSaida);
+
+                foreach (DateTime dt in datasLocacao)
+                {
+                    var disponibilidade = disponibilidadesQuarto.Where(x => x.Data.Date == dt.Date);
+
+                    if (disponibilidade.Count() != 0)
+                    {
+
+                        Disponibilidade d = disponibilidade.FirstOrDefault();
+                        d.Disponivel = true;
+                        _disponibilidadeServico.EditarDisponibilidade(d);
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

@@ -8,84 +8,85 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using VallezHotels.Source.Entidades;
+using VallezHotels.Source.Servicos;
+
 namespace VallezHotels
 {
     public partial class FrmDashboard : Form
     {
+
+        private readonly QuartoServico _quartoServico;
+        private readonly LocacaoServico _locacaoServico;
+        private readonly HospedagemServico _hospedagemServico;
+
         public FrmDashboard()
         {
+            _quartoServico = new QuartoServico();
+            _locacaoServico = new LocacaoServico();
+            _hospedagemServico = new HospedagemServico();
+
             InitializeComponent();
+        }
+
+        private void AtualizarDashboard()
+        {
+            List<Quarto> quartos = _quartoServico.BuscarTodos();
+            List<Locacao> locacoes = new List<Locacao>();
+
+            foreach (Quarto q in quartos)
+            {
+                Locacao l = _locacaoServico.BuscarPelaDataEQuarto(q);
+                l.Hospedagems = _hospedagemServico.BuscarPelaLocacao(l);
+
+                locacoes.Add(l);
+            }
+
+
+            pnlExibicaoQuartos.Controls.Clear();
+
+            int quantidadeQuartosDisponiveis = quartos.Where(q => q.Disponibilidades.Where(d => d.Data.Date == DateTime.Now.Date && d.Disponivel == true).Count() != 0).Count();
+            lblQuartosDisponiveis.Text = $"Quartos disponiveis: {quantidadeQuartosDisponiveis}";
+
+            int quantidadeQuartosNaoDisponiveis = quartos.Where(q => q.Disponibilidades.Where(d => d.Data.Date == DateTime.Now.Date && d.Disponivel == false).Count() != 0).Count();
+            lblQuartosNãoDisponiveis.Text = $"Quartos não disponiveis: {quantidadeQuartosNaoDisponiveis}";
+
+            int quantidadeQuartosOcupados = locacoes.Where(l => l.Hospedagems.Count > 0).Count();
+            lblQuartosOcupados.Text = $"Quartos ocupados: {quantidadeQuartosOcupados}";
+
+            var listQuartos = from q in quartos
+                              orderby q.Bloco, q.Numero
+                              select q;
+
+            foreach (Quarto quarto in listQuartos)
+            {
+                FrmDescricaoQuarto q = new FrmDescricaoQuarto();
+                q.Quarto = quarto;
+                q.TopLevel = false;
+                q.Parent = this;
+                q.Visible = true;
+                pnlExibicaoQuartos.Controls.Add(q);
+            }
         }
 
         private void FrmDashboard_Load(object sender, EventArgs e)
         {
 
-            // STATUS EXEMPLOS VISUAIS
-            // 1 - Disponivel, 2 - Agendado, 3 - Ocupado, 4 - Não Disponivel
-
-
-            FrmDescricaoQuarto quarto1 = new FrmDescricaoQuarto();
-            quarto1.NumeroQuarto = 101;
-            quarto1.StatusQuarto = 1;
-            quarto1.TopLevel = false;
-            quarto1.Parent = this;
-            quarto1.Visible = true;
-            pnlExibicaoQuartos.Controls.Add(quarto1);
-
-
-            FrmDescricaoQuarto quarto2 = new FrmDescricaoQuarto();
-            quarto2.NumeroQuarto = 102;
-            quarto2.StatusQuarto = 4;
-            quarto2.TopLevel = false;
-            quarto2.Parent = this;
-            quarto2.Visible = true;
-            pnlExibicaoQuartos.Controls.Add(quarto2);
-
-            FrmDescricaoQuarto quarto3 = new FrmDescricaoQuarto();
-            quarto3.NumeroQuarto = 103;
-            quarto3.StatusQuarto = 1;
-            quarto3.TopLevel = false;
-            quarto3.Parent = this;
-            quarto3.Visible = true;
-            pnlExibicaoQuartos.Controls.Add(quarto3);
-
-            FrmDescricaoQuarto quarto4 = new FrmDescricaoQuarto();
-            quarto4.NumeroQuarto = 104;
-            quarto4.StatusQuarto = 2;
-            quarto4.TopLevel = false;
-            quarto4.Parent = this;
-            quarto4.Visible = true;
-            pnlExibicaoQuartos.Controls.Add(quarto4);
-
-            FrmDescricaoQuarto quarto5 = new FrmDescricaoQuarto();
-            quarto5.NumeroQuarto = 105;
-            quarto5.StatusQuarto = 3;
-            quarto5.TopLevel = false;
-            quarto5.Parent = this;
-            quarto5.Visible = true;
-            pnlExibicaoQuartos.Controls.Add(quarto5);
-
-            /*
-            for (int i = 1; i <= 5; i++)
-            {
-                FrmDescricaoQuarto quarto = new FrmDescricaoQuarto();
-                quarto.NumeroQuarto = i;
-                quarto.TopLevel = false;
-                quarto.Parent = this;
-                quarto.Visible = true;
-                pnlExibicaoQuartos.Controls.Add(quarto);
-            }
-            */
-
-
-
-
+            AtualizarDashboard();
 
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void tmrBuscarQuartos_Tick(object sender, EventArgs e)
+        {
+            if (this.ContainsFocus)
+            {
+                AtualizarDashboard();
+            }
         }
     }
 }

@@ -21,6 +21,11 @@ namespace VallezHotels.Source.Servicos
             _quartoServico = new QuartoServico();
         }
 
+        public DisponibilidadeServico(QuartoServico quartoServico)
+        {
+            _db = new DisponibilidadeDB(new PGConexao());
+            _quartoServico = quartoServico;
+        }
 
         public Disponibilidade InserirDisponibilidade(Disponibilidade disponibilidade)
         {
@@ -100,6 +105,47 @@ namespace VallezHotels.Source.Servicos
 
                 return d;
 
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public List<Disponibilidade> InserirRangePeloQuarto(Quarto quarto)
+        {
+            
+            try
+            {
+
+                List<Disponibilidade> disponibilidades = new List<Disponibilidade>();
+
+                foreach (Disponibilidade d in quarto.Disponibilidades)
+                {
+
+                    d.Quarto.Id = quarto.Id;
+                    Disponibilidade disponibilidadeInserida = this.InserirDisponibilidade(d);
+                    disponibilidades.Add(disponibilidadeInserida);
+                }
+
+                return disponibilidades;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
+        }
+
+        public List<Disponibilidade> BuscarPeloQuarto(Quarto quarto)
+        {
+            try
+            {
+
+                List<Disponibilidade> d = _db.BuscarPeloQuarto(quarto);
+
+                return d;
             }
             catch (Exception e)
             {

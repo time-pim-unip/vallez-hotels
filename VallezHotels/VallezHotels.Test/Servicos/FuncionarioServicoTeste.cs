@@ -22,7 +22,7 @@ namespace VallezHotels.Test.Servicos
                 Email = "funcionario@email.com",
                 Telefone = "(11) 11111-1111",
                 Celular = "(11) 11111-1111",
-                CTPS = 111,
+                CTPS = "111",
                 Admissao = new DateTime(2021, 01,01)
             };
 
@@ -59,7 +59,7 @@ namespace VallezHotels.Test.Servicos
                 Email = "funcionario@email.com",
                 Telefone = "(11) 11111-1111",
                 Celular = "(11) 11111-1111",
-                CTPS = 111,
+                CTPS = "111",
                 Admissao = new DateTime(2021, 01, 01)
             };
 
@@ -90,7 +90,7 @@ namespace VallezHotels.Test.Servicos
                 Email = "funcionario@email.com",
                 Telefone = "(11) 11111-1111",
                 Celular = "(11) 11111-1111",
-                CTPS = 111,
+                CTPS = "111",
                 Admissao = new DateTime(2021, 01, 01)
             };
 
@@ -131,7 +131,7 @@ namespace VallezHotels.Test.Servicos
                 Email = "funcionario@email.com",
                 Telefone = "(11) 11111-1111",
                 Celular = "(11) 11111-1111",
-                CTPS = 111,
+                CTPS = "111",
                 Admissao = new DateTime(2021, 01, 01)
             };
 
@@ -152,7 +152,7 @@ namespace VallezHotels.Test.Servicos
                 Email = "funcionario@email.com",
                 Telefone = "(11) 11111-1111",
                 Celular = "(11) 11111-1111",
-                CTPS = 111,
+                CTPS = "222",
                 Admissao = new DateTime(2021, 01, 01)
             };
 
@@ -173,7 +173,7 @@ namespace VallezHotels.Test.Servicos
                 Email = "funcionario@email.com",
                 Telefone = "(11) 11111-1111",
                 Celular = "(11) 11111-1111",
-                CTPS = 111,
+                CTPS = "333",
                 Admissao = new DateTime(2021, 01, 01)
             };
 
@@ -216,7 +216,7 @@ namespace VallezHotels.Test.Servicos
                 Email = "funcionario@email.com",
                 Telefone = "(11) 11111-1111",
                 Celular = "(11) 11111-1111",
-                CTPS = 111,
+                CTPS = "111",
                 Admissao = new DateTime(2021, 01, 01)
             };
 
@@ -248,7 +248,7 @@ namespace VallezHotels.Test.Servicos
                 UpdatedAtPessoa = criado.UpdatedAtPessoa,
                 IdFuncionario = criado.IdFuncionario,
                 UuidFuncionario = criado.UuidFuncionario,
-                CTPS = 777,
+                CTPS = "777",
                 Admissao = criado.Admissao,
                 CreatedAtFuncionario = criado.CreatedAtFuncionario,
                 UpdatedAtFuncionario = criado.UpdatedAtFuncionario
