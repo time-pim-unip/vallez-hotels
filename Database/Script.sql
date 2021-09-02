@@ -17,7 +17,12 @@ template template0;
  */
 
 /* Criar schema do sistema */
-create schema vallez authorization vallez;
+create schema vallez  authorization vallez;
+
+/* Direitos de usuário */
+grant all privileges on database db_vallez to vallez;
+grant all privileges on schema vallez to vallez;
+grant all privileges on all tables in schema vallez to vallez;
 
 /* Habilitar UUID */
 create extension if not exists "uuid-ossp";
