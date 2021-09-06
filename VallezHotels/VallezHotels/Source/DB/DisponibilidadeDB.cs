@@ -24,6 +24,7 @@ namespace VallezHotels.Source.DB
             d.Id = int.Parse(reader["id_disponibilidade"].ToString());
             d.Uuid = reader["uuid_disponibilidade"].ToString();
             d.Quarto.Id = int.Parse(reader["id_quarto"].ToString());
+            d.Locacao.Id = (reader["id_locacao"].ToString() != "" ) ? int.Parse(reader["id_locacao"].ToString()) : 0;
             d.Data = DateTime.Parse(reader["data"].ToString());
             d.Disponivel = bool.Parse(reader["dia_disponivel"].ToString());
             d.CreatedAt = DateTime.Parse(reader["created_at"].ToString());
@@ -41,11 +42,20 @@ namespace VallezHotels.Source.DB
 
                     using (var update = conn.CreateCommand())
                     {
-                        update.CommandText = "UPDATE vallez.disponibilidades SET id_quarto=@QUARTO, data=@DATA, dia_disponivel=@DISPONIVEL, updated_at=now() WHERE id_disponibilidade=@ID; ";
+                        update.CommandText = "UPDATE vallez.disponibilidades SET id_quarto=@QUARTO, id_locacao=@LOCACAO, data=@DATA, dia_disponivel=@DISPONIVEL, updated_at=now() WHERE id_disponibilidade=@ID; ";
                         update.AddParameter("@ID", disponibilidade.Id, System.Data.DbType.Int32);
                         update.AddParameter("@QUARTO", disponibilidade.Quarto.Id, System.Data.DbType.Int32);
                         update.AddParameter("@DATA", disponibilidade.Data, System.Data.DbType.Date);
                         update.AddParameter("@DISPONIVEL", disponibilidade.Disponivel, System.Data.DbType.Boolean);
+
+                        if (disponibilidade.Locacao == null || disponibilidade.Locacao.Id == 0)
+                        {
+                            update.AddParameter("@LOCACAO", DBNull.Value);
+                        }
+                        else
+                        {
+                            update.AddParameter("@LOCACAO", disponibilidade.Locacao.Id, System.Data.DbType.Int32);
+                        }
 
                         var affectedRows = (int)update.ExecuteNonQuery();
 
@@ -169,10 +179,19 @@ namespace VallezHotels.Source.DB
                     conn.Open();
                     using (var insert = conn.CreateCommand())
                     {
-                        insert.CommandText = "INSERT INTO vallez.disponibilidades (uuid_disponibilidade, id_quarto, data, dia_disponivel, created_at, updated_at) VALUES(vallez.uuid_generate_v4(), @QUARTO, @DATA, @DISPONIVEL, now(), now()) returning *;";
+                        insert.CommandText = "INSERT INTO vallez.disponibilidades (uuid_disponibilidade, id_quarto, id_locacao, data, dia_disponivel, created_at, updated_at) VALUES(vallez.uuid_generate_v4(), @QUARTO, @LOCACAO, @DATA, @DISPONIVEL, now(), now()) returning *;";
                         insert.AddParameter("@QUARTO", disponibilidade.Quarto.Id, System.Data.DbType.Int32);
                         insert.AddParameter("@DATA", disponibilidade.Data, System.Data.DbType.Date);
                         insert.AddParameter("@DISPONIVEL", disponibilidade.Disponivel, System.Data.DbType.Boolean);
+
+                        if (disponibilidade.Locacao == null || disponibilidade.Locacao.Id == 0)
+                        {
+                            insert.AddParameter("@LOCACAO", DBNull.Value);
+                        }
+                        else
+                        {
+                            insert.AddParameter("@LOCACAO", disponibilidade.Locacao.Id, System.Data.DbType.Int32);
+                        }
 
                         var reader = insert.ExecuteReader();
 
