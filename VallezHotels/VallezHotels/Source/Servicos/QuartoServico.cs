@@ -127,6 +127,7 @@ namespace VallezHotels.Source.Servicos
 
                         Disponibilidade d = disponibilidade.FirstOrDefault();
                         d.Disponivel = false;
+                        d.Locacao = locacao;
                         _disponibilidadeServico.EditarDisponibilidade(d);
                     }
                 }
@@ -154,6 +155,7 @@ namespace VallezHotels.Source.Servicos
 
                         Disponibilidade d = disponibilidade.FirstOrDefault();
                         d.Disponivel = true;
+                        d.Locacao = null;
                         _disponibilidadeServico.EditarDisponibilidade(d);
                     }
                 }

@@ -116,10 +116,10 @@
     <Compile Include="Forms\Hospedes\FrmListagemHospedes.Designer.cs">
       <DependentUpon>FrmListagemHospedes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Locações\FrmLocacao.cs">
+    <Compile Include="Forms\Locacoes\FrmLocacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Locações\FrmLocacao.Designer.cs">
+    <Compile Include="Forms\Locacoes\FrmLocacao.Designer.cs">
       <DependentUpon>FrmLocacao.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Login\FrmLogin.cs">
@@ -258,7 +258,7 @@
     <EmbeddedResource Include="Forms\Hospedes\FrmListagemHospedes.resx">
       <DependentUpon>FrmListagemHospedes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Locações\FrmLocacao.resx">
+    <EmbeddedResource Include="Forms\Locacoes\FrmLocacao.resx">
       <DependentUpon>FrmLocacao.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

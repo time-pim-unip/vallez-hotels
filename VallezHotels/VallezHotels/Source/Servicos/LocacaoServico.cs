@@ -28,7 +28,7 @@ namespace VallezHotels.Source.Servicos
             {
                 Locacao l = _db.Inserir(locacao);
                 l.Quarto = _quartoServico.BuscarPeloId(l.Quarto.Id);
-                _quartoServico.RemoverDisponibilidades(l.Quarto, locacao);
+                _quartoServico.RemoverDisponibilidades(l.Quarto, l);
 
                 return l;
 

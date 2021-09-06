@@ -60,6 +60,11 @@ create table usuarios(
 	constraint pk_usuario primary key (id_usuario)
 );
 
+insert into vallez.usuarios(uuid_usuario, usuario, senha, tipo_usuario, status, created_at, updated_at)
+values (uuid_generate_v4(), 'admin', 'vallez', 'A', true, now(), now());
+
+select * from usuarios u ;
+
 /* Funcionarios */
 create table funcionarios(
 	id_funcionario 		serial not null,
@@ -143,6 +148,12 @@ create table locacoes(
 	constraint fk_quarto_locacao foreign key (id_quarto) references quartos(id_quarto)
 );
 
+alter table disponibilidades 
+add column id_locacao int;
+
+alter table disponibilidades 
+add constraint fk_locacao_disponibilidade foreign key (id_locacao) references locacoes(id_locacao);
+
 /* Faturamentos */
 create table faturamentos(
 	id_faturamento		serial not null,
@@ -195,11 +206,3 @@ create table servicos_solicitados(
 	constraint fk_servico_serv_solic foreign key (id_servico) references servicos(id_servico),
 	constraint fk_locacao_serv_solic foreign key (id_locacao) references locacoes(id_locacao)
 );
-
-
-
-
-
-
-
-

@@ -145,20 +145,33 @@ namespace VallezHotels
         {
 
             // Verificar disponibilidade das datas selecionadas para locação.
-            /*
+            
             List<Disponibilidade> disponibilidades = _disponibilidadeServico.BuscarPeloQuarto(Quarto);
             List<DateTime> datasPeriodo = dtEntrada.Value.RetornarPeriodo(dtSaida.Value);
 
             foreach (DateTime dt in datasPeriodo)
             {
-                if (disponibilidades.Where(d => d.Data.Date == dt.Date && d.Disponivel == false).Count() != 0)
+
+                var disponibilidade = disponibilidades.Where(d => d.Data.Date == dt.Date).FirstOrDefault();
+
+
+                // Verifica se as datas selecionadas existem.
+                if (disponibilidade == null)
                 {
-                    MessageBox.Show("O periodo selecionado é invalido !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning) ;
+                    MessageBox.Show($"O dia {dt.Date.ToString("dd/MM/yyyy")} não foi criado !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
+                // Verifica se a data esta disponivel
+                if (disponibilidade.Disponivel == false && (disponibilidade.Locacao.Id != Locacao.Id && disponibilidade.Disponivel == false ))
+                {
+                    MessageBox.Show($"O dia {dt.Date.ToString("dd/MM/yyyy")} não esta disponivel para locação !", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning) ;
+                    return;
+                }
+
+
+
             }
-            */
 
             // Verificar se existe um hospede ao inserir nova locação
             if (string.IsNullOrEmpty(txtCodigo.Text))
