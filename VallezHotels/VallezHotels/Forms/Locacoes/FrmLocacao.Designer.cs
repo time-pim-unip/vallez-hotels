@@ -251,6 +251,7 @@ namespace VallezHotels
             this.btnPesquisar.Size = new System.Drawing.Size(30, 22);
             this.btnPesquisar.TabIndex = 17;
             this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // txtCodigo
             // 

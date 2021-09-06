@@ -56,6 +56,16 @@ namespace VallezHotels
             InitializeComponent();
         }
 
+        private void BuscarQuarto(Quarto q)
+        {
+
+        }
+
+        private void BuscarLocacao(Locacao L)
+        {
+
+        }
+
         private void FrmLocacao_Load(object sender, EventArgs e)
         {
 
@@ -436,6 +446,28 @@ namespace VallezHotels
 
             AdicionarServicos = true;
             AtualizarValorDaLocacao();
+
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            FrmListagemGenerica lg = new FrmListagemGenerica();
+            List<Locacao> locacoes = _locacaoServico.BuscarTodos();
+            List<ListagemGenericaDTO> lista = new List<ListagemGenericaDTO>();
+
+            foreach (Locacao l in locacoes)
+            {
+                lista.Add(new ListagemGenericaDTO { 
+                    Codigo = l.Id,
+                    Descricao = $"Quarto: {l.Quarto.Id} | Entrada: {l.DataEntrada.ToString("dd/MM/yyyy")}"
+                });
+            }
+
+            lg.Lista = lista;
+            lg.ShowDialog();
+
+
+
 
         }
     }
