@@ -130,5 +130,33 @@ namespace VallezHotels.Source.Servicos
             return this.BuscarPelaDataEQuarto(q, DateTime.Now);
         }
 
+        public void InserirCheckin(Locacao l)
+        {
+            try
+            {
+
+                _db.InserirCheckin(l);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void InserirCheckout(Locacao l)
+        {
+            try
+            {
+
+                _db.InserirCheckout(l);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

@@ -81,8 +81,8 @@ namespace VallezHotels
                 txtCodigo.Text = Locacao.Id.ToString();
                 dtEntrada.Value = Locacao.DataEntrada;
                 dtSaida.Value = Locacao.DataSaida;
-                dtCheckin.Value = Locacao.CheckIn;
-                dtCheckout.Value = Locacao.CheckOut;
+                txtCheckin.Text = Locacao.CheckIn.ToString();
+                txtCheckout.Text = Locacao.CheckOut.ToString();
                     
                 Locacao.Hospedagems = _hospedagemServico.BuscarPelaLocacao(Locacao);
                 //dgHospedes.DataSource = null;
@@ -198,9 +198,10 @@ namespace VallezHotels
             Locacao.Quarto = Quarto;
             Locacao.DataEntrada = dtEntrada.Value;
             Locacao.DataSaida = dtSaida.Value;
-            Locacao.CheckIn = dtCheckin.Value;
-            Locacao.CheckOut = dtCheckout.Value;
-
+            //Locacao.CheckIn = DateTime.Parse(txtCheckin.Text);
+            //Locacao.CheckOut = DateTime.Parse(txtCheckout.Text);
+            Locacao.CheckIn = null;
+            Locacao.CheckOut = null;
 
             try
             {
@@ -214,6 +215,8 @@ namespace VallezHotels
                 {
                    l =  _locacaoServico.InserirLocacao(Locacao);
                 }
+
+                Locacao = l;
 
                 if (AdicionarHospedes)
                 {
@@ -469,6 +472,61 @@ namespace VallezHotels
 
 
 
+        }
+
+        private void btnCheckin_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show($"Deseja marcar o check-in para {DateTime.Now} ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Information) ;
+
+            if (result == DialogResult.Yes)
+            {
+                Locacao.CheckIn = DateTime.Now;
+                
+
+                try
+                {
+                    _locacaoServico.InserirCheckin(Locacao);
+                    txtCheckin.Text = Locacao.CheckIn.Value.ToString();
+                    MessageBox.Show("Check-in realizado !", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information) ;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ocorreu um erro ao tentar inserir o check-in \n \n {ex.Message} ", "ERROR !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    AtualizarDetalhes = true;
+                }
+
+            }
+
+        }
+
+        private void btnCheckout_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show($"Deseja marcar o check-out para {DateTime.Now} ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (result == DialogResult.Yes)
+            {
+                Locacao.CheckOut = DateTime.Now;
+
+                try
+                {
+                    _locacaoServico.InserirCheckout(Locacao);
+                    txtCheckout.Text = Locacao.CheckOut.Value.ToString();
+                    MessageBox.Show("Check-out realizado !", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ocorreu um erro ao tentar inserir o check-out \n \n {ex.Message} ", "ERROR !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    AtualizarDetalhes = true;
+                }
+
+            }
         }
     }
 }

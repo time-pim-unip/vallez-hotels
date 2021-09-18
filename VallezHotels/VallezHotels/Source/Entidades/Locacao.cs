@@ -15,8 +15,8 @@ namespace VallezHotels.Source.Entidades
         public List<ServicoSolicitado> ServicosSolicitados { get; set; } 
         public DateTime DataEntrada { get; set; }
         public DateTime DataSaida { get; set; }
-        public DateTime CheckIn { get; set; }
-        public DateTime CheckOut { get; set; }
+        public DateTime? CheckIn { get; set; }
+        public DateTime? CheckOut { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 

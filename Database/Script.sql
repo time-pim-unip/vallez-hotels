@@ -120,19 +120,6 @@ create table quartos(
 	constraint fk_tipo_quarto foreign key (id_tipo_quarto) references tipo_quarto(id_tipo)
 );
 
-/* Disponibilidades */
-create table disponibilidades(
-	id_disponibilidade 		serial not null,
-	uuid_disponibilidade	uuid not null default uuid_generate_v4(),
-	id_quarto				int not null,
-	data					date not null,
-	dia_disponivel			boolean not null,
-	created_at				timestamp not null default now(),
-	updated_at				timestamp not null default now(),
-	constraint pk_disponibilidade primary key (id_disponibilidade),
-	constraint fk_quarto_disponibilidade foreign key (id_quarto) references quartos(id_quarto)	
-);
-
 /* Locacoes */
 create table locacoes(
 	id_locacao 		serial not null,
@@ -146,6 +133,19 @@ create table locacoes(
 	updated_at		timestamp not null default now(),
 	constraint pk_locacao primary key (id_locacao),
 	constraint fk_quarto_locacao foreign key (id_quarto) references quartos(id_quarto)
+);
+
+/* Disponibilidades */
+create table disponibilidades(
+	id_disponibilidade 		serial not null,
+	uuid_disponibilidade	uuid not null default uuid_generate_v4(),
+	id_quarto				int not null,
+	data					date not null,
+	dia_disponivel			boolean not null,
+	created_at				timestamp not null default now(),
+	updated_at				timestamp not null default now(),
+	constraint pk_disponibilidade primary key (id_disponibilidade),
+	constraint fk_quarto_disponibilidade foreign key (id_quarto) references quartos(id_quarto)	
 );
 
 alter table disponibilidades 
