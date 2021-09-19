@@ -117,6 +117,21 @@ namespace VallezHotels
                 return;
             }
 
+            List<Hospede> hospedes = _hospedeServico.BuscarTodos();
+            var h2 = hospedes.Where(h => h.Cpf == txtCPF.Text);
+            if (h2.Count() != 0)
+            {
+                MessageBox.Show($"Este CPF já esta cadastrada no sistema !", "Atenção !!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var h3 = hospedes.Where(h => h.RG == txtRG.Text);
+            if (h3.Count() != 0)
+            {
+                MessageBox.Show($"Este RG já esta cadastrada no sistema !", "Atenção !!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
 
 
             Hospede.Nome = txtNome.Text.Trim().ToString();

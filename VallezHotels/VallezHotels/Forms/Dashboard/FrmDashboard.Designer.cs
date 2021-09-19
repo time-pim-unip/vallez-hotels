@@ -92,7 +92,7 @@ namespace VallezHotels
             this.dtLocacao.Name = "dtLocacao";
             this.dtLocacao.Size = new System.Drawing.Size(102, 22);
             this.dtLocacao.TabIndex = 7;
-            this.dtLocacao.Value = new System.DateTime(2021, 9, 18, 21, 32, 44, 0);
+            this.dtLocacao.Value = new System.DateTime(2021, 9, 19, 0, 0, 31, 0);
             this.dtLocacao.ValueChanged += new System.EventHandler(this.dtLocacao_ValueChanged);
             // 
             // comboBox1
