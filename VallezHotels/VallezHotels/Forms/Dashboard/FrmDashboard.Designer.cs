@@ -31,6 +31,8 @@ namespace VallezHotels
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtLocacao = new System.Windows.Forms.DateTimePicker();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.lblQuartosNãoDisponiveis = new System.Windows.Forms.Label();
@@ -59,6 +61,8 @@ namespace VallezHotels
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.dtLocacao);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.lblQuartosNãoDisponiveis);
@@ -71,6 +75,25 @@ namespace VallezHotels
             this.panel1.Size = new System.Drawing.Size(1312, 52);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(224, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Data Locação";
+            // 
+            // dtLocacao
+            // 
+            this.dtLocacao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtLocacao.Location = new System.Drawing.Point(305, 25);
+            this.dtLocacao.Name = "dtLocacao";
+            this.dtLocacao.Size = new System.Drawing.Size(102, 22);
+            this.dtLocacao.TabIndex = 7;
+            this.dtLocacao.Value = new System.DateTime(2021, 9, 18, 21, 32, 44, 0);
+            this.dtLocacao.ValueChanged += new System.EventHandler(this.dtLocacao_ValueChanged);
             // 
             // comboBox1
             // 
@@ -299,5 +322,7 @@ namespace VallezHotels
         private System.Windows.Forms.Label lblQuartosNãoDisponiveis;
         private System.Windows.Forms.Label lblCheckouts;
         private System.Windows.Forms.Timer tmrBuscarQuartos;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtLocacao;
     }
 }

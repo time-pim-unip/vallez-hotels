@@ -31,6 +31,8 @@ namespace VallezHotels
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLocacao));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCheckout = new System.Windows.Forms.TextBox();
+            this.txtCheckin = new System.Windows.Forms.TextBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtBloco = new System.Windows.Forms.TextBox();
@@ -74,8 +76,6 @@ namespace VallezHotels
             this.lblValorLocacao = new System.Windows.Forms.Label();
             this.btnCheckin = new System.Windows.Forms.Button();
             this.btnCheckout = new System.Windows.Forms.Button();
-            this.txtCheckin = new System.Windows.Forms.TextBox();
-            this.txtCheckout = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgHospedes)).BeginInit();
@@ -112,6 +112,22 @@ namespace VallezHotels
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Descrição Locação";
+            // 
+            // txtCheckout
+            // 
+            this.txtCheckout.Enabled = false;
+            this.txtCheckout.Location = new System.Drawing.Point(427, 34);
+            this.txtCheckout.Name = "txtCheckout";
+            this.txtCheckout.Size = new System.Drawing.Size(100, 22);
+            this.txtCheckout.TabIndex = 34;
+            // 
+            // txtCheckin
+            // 
+            this.txtCheckin.Enabled = false;
+            this.txtCheckin.Location = new System.Drawing.Point(320, 34);
+            this.txtCheckin.Name = "txtCheckin";
+            this.txtCheckin.Size = new System.Drawing.Size(100, 22);
+            this.txtCheckin.TabIndex = 33;
             // 
             // txtNumero
             // 
@@ -211,6 +227,7 @@ namespace VallezHotels
             this.button1.Size = new System.Drawing.Size(30, 22);
             this.button1.TabIndex = 20;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtQuarto
             // 
@@ -542,6 +559,7 @@ namespace VallezHotels
             // btnCheckin
             // 
             this.btnCheckin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCheckin.Enabled = false;
             this.btnCheckin.Image = global::VallezHotels.Properties.Resources.log_in;
             this.btnCheckin.Location = new System.Drawing.Point(12, 520);
             this.btnCheckin.Name = "btnCheckin";
@@ -556,6 +574,7 @@ namespace VallezHotels
             // btnCheckout
             // 
             this.btnCheckout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCheckout.Enabled = false;
             this.btnCheckout.Image = global::VallezHotels.Properties.Resources.log_in;
             this.btnCheckout.Location = new System.Drawing.Point(108, 520);
             this.btnCheckout.Name = "btnCheckout";
@@ -566,22 +585,6 @@ namespace VallezHotels
             this.btnCheckout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCheckout.UseVisualStyleBackColor = true;
             this.btnCheckout.Click += new System.EventHandler(this.btnCheckout_Click);
-            // 
-            // txtCheckin
-            // 
-            this.txtCheckin.Enabled = false;
-            this.txtCheckin.Location = new System.Drawing.Point(320, 34);
-            this.txtCheckin.Name = "txtCheckin";
-            this.txtCheckin.Size = new System.Drawing.Size(100, 22);
-            this.txtCheckin.TabIndex = 33;
-            // 
-            // txtCheckout
-            // 
-            this.txtCheckout.Enabled = false;
-            this.txtCheckout.Location = new System.Drawing.Point(427, 34);
-            this.txtCheckout.Name = "txtCheckout";
-            this.txtCheckout.Size = new System.Drawing.Size(100, 22);
-            this.txtCheckout.TabIndex = 34;
             // 
             // FrmLocacao
             // 

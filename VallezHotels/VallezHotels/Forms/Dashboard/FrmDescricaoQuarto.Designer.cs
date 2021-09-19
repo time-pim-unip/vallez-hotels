@@ -39,17 +39,19 @@ namespace VallezHotels
             this.lblTipoQuarto = new System.Windows.Forms.Label();
             this.lblSituacao = new System.Windows.Forms.Label();
             this.lblValor = new System.Windows.Forms.Label();
+            this.lblLocacao = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblNumQuarto
             // 
             this.lblNumQuarto.AutoSize = true;
             this.lblNumQuarto.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumQuarto.Location = new System.Drawing.Point(116, 9);
+            this.lblNumQuarto.Location = new System.Drawing.Point(116, 14);
             this.lblNumQuarto.Name = "lblNumQuarto";
             this.lblNumQuarto.Size = new System.Drawing.Size(106, 30);
             this.lblNumQuarto.TabIndex = 0;
             this.lblNumQuarto.Text = "Numero: ";
+            this.lblNumQuarto.Click += new System.EventHandler(this.lblNumQuarto_Click);
             // 
             // lblHospedes
             // 
@@ -67,7 +69,7 @@ namespace VallezHotels
             this.lblEntrada.AutoSize = true;
             this.lblEntrada.Location = new System.Drawing.Point(12, 102);
             this.lblEntrada.Name = "lblEntrada";
-            this.lblEntrada.Size = new System.Drawing.Size(151, 13);
+            this.lblEntrada.Size = new System.Drawing.Size(136, 13);
             this.lblEntrada.TabIndex = 2;
             this.lblEntrada.Text = "Data Entrada: 01/01/2021";
             this.lblEntrada.Visible = false;
@@ -77,7 +79,7 @@ namespace VallezHotels
             this.lblSaida.AutoSize = true;
             this.lblSaida.Location = new System.Drawing.Point(12, 115);
             this.lblSaida.Name = "lblSaida";
-            this.lblSaida.Size = new System.Drawing.Size(139, 13);
+            this.lblSaida.Size = new System.Drawing.Size(124, 13);
             this.lblSaida.TabIndex = 3;
             this.lblSaida.Text = "Data Saída: 07/01/2021";
             this.lblSaida.Visible = false;
@@ -87,7 +89,7 @@ namespace VallezHotels
             this.lblCheckout.AutoSize = true;
             this.lblCheckout.Location = new System.Drawing.Point(12, 149);
             this.lblCheckout.Name = "lblCheckout";
-            this.lblCheckout.Size = new System.Drawing.Size(133, 13);
+            this.lblCheckout.Size = new System.Drawing.Size(122, 13);
             this.lblCheckout.TabIndex = 5;
             this.lblCheckout.Text = "Check-out: 07/01/2021";
             this.lblCheckout.Visible = false;
@@ -97,7 +99,7 @@ namespace VallezHotels
             this.lblCheckin.AutoSize = true;
             this.lblCheckin.Location = new System.Drawing.Point(12, 136);
             this.lblCheckin.Name = "lblCheckin";
-            this.lblCheckin.Size = new System.Drawing.Size(127, 13);
+            this.lblCheckin.Size = new System.Drawing.Size(114, 13);
             this.lblCheckin.TabIndex = 4;
             this.lblCheckin.Text = "Check-in: 02/01/2021";
             this.lblCheckin.Visible = false;
@@ -106,11 +108,12 @@ namespace VallezHotels
             // 
             this.lblBloco.AutoSize = true;
             this.lblBloco.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBloco.Location = new System.Drawing.Point(12, 9);
+            this.lblBloco.Location = new System.Drawing.Point(12, 14);
             this.lblBloco.Name = "lblBloco";
             this.lblBloco.Size = new System.Drawing.Size(74, 30);
             this.lblBloco.TabIndex = 6;
             this.lblBloco.Text = "Bloco:";
+            this.lblBloco.Click += new System.EventHandler(this.lblBloco_Click);
             // 
             // lblTipoQuarto
             // 
@@ -143,12 +146,24 @@ namespace VallezHotels
             this.lblValor.Text = "Valor: R$ 000,00";
             this.lblValor.Visible = false;
             // 
+            // lblLocacao
+            // 
+            this.lblLocacao.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocacao.Location = new System.Drawing.Point(194, 175);
+            this.lblLocacao.Name = "lblLocacao";
+            this.lblLocacao.Size = new System.Drawing.Size(99, 21);
+            this.lblLocacao.TabIndex = 10;
+            this.lblLocacao.Text = "#";
+            this.lblLocacao.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblLocacao.Click += new System.EventHandler(this.lblLocacao_Click);
+            // 
             // FrmDescricaoQuarto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(296, 214);
+            this.Controls.Add(this.lblLocacao);
             this.Controls.Add(this.lblValor);
             this.Controls.Add(this.lblSituacao);
             this.Controls.Add(this.lblTipoQuarto);
@@ -159,7 +174,7 @@ namespace VallezHotels
             this.Controls.Add(this.lblEntrada);
             this.Controls.Add(this.lblHospedes);
             this.Controls.Add(this.lblNumQuarto);
-            this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmDescricaoQuarto";
             this.Text = "FrmDescricaoQuarto";
@@ -182,5 +197,6 @@ namespace VallezHotels
         private System.Windows.Forms.Label lblTipoQuarto;
         private System.Windows.Forms.Label lblSituacao;
         private System.Windows.Forms.Label lblValor;
+        private System.Windows.Forms.Label lblLocacao;
     }
 }

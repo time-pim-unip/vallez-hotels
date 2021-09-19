@@ -34,16 +34,28 @@ namespace VallezHotels
             List<Quarto> quartos = _quartoServico.BuscarTodos();
             List<Locacao> locacoes = new List<Locacao>();
 
-            foreach (Quarto q in quartos)
-            {
-                Locacao l = _locacaoServico.BuscarPelaDataEQuarto(q);
-                l.Hospedagems = _hospedagemServico.BuscarPelaLocacao(l);
+            pnlExibicaoQuartos.Controls.Clear();
 
+            var listQuartos = from q in quartos
+                              orderby q.Bloco, q.Numero
+                              select q;
+
+            foreach (Quarto quarto in listQuartos)
+            {
+                Locacao l = _locacaoServico.BuscarPelaDataEQuarto(quarto, dtLocacao.Value.Date);
+                l.Hospedagems = _hospedagemServico.BuscarPelaLocacao(l);
                 locacoes.Add(l);
+
+                FrmDescricaoQuarto q = new FrmDescricaoQuarto();
+                q.Quarto = quarto;
+                q.DataSelecionada = dtLocacao.Value;
+                q.Locacao = l;
+                q.TopLevel = false;
+                q.Parent = this;
+                q.Visible = true;
+                pnlExibicaoQuartos.Controls.Add(q);
             }
 
-
-            pnlExibicaoQuartos.Controls.Clear();
 
             int quantidadeQuartosDisponiveis = quartos.Where(q => q.Disponibilidades.Where(d => d.Data.Date == DateTime.Now.Date && d.Disponivel == true).Count() != 0).Count();
             lblQuartosDisponiveis.Text = $"Quartos disponiveis: {quantidadeQuartosDisponiveis}";
@@ -54,19 +66,9 @@ namespace VallezHotels
             int quantidadeQuartosOcupados = locacoes.Where(l => l.Hospedagems.Count > 0).Count();
             lblQuartosOcupados.Text = $"Quartos ocupados: {quantidadeQuartosOcupados}";
 
-            var listQuartos = from q in quartos
-                              orderby q.Bloco, q.Numero
-                              select q;
+            int quantidadeCheckIn = locacoes.Where(l => l.DataEntrada == DateTime.Now.Date && l.CheckIn == null).Count();
+            lblCheckins.Text = $"Check-in para hoje: {quantidadeCheckIn}";
 
-            foreach (Quarto quarto in listQuartos)
-            {
-                FrmDescricaoQuarto q = new FrmDescricaoQuarto();
-                q.Quarto = quarto;
-                q.TopLevel = false;
-                q.Parent = this;
-                q.Visible = true;
-                pnlExibicaoQuartos.Controls.Add(q);
-            }
         }
 
         private void FrmDashboard_Load(object sender, EventArgs e)
@@ -83,10 +85,12 @@ namespace VallezHotels
 
         private void tmrBuscarQuartos_Tick(object sender, EventArgs e)
         {
-            if (this.ContainsFocus)
-            {
-                AtualizarDashboard();
-            }
+            AtualizarDashboard();
+        }
+
+        private void dtLocacao_ValueChanged(object sender, EventArgs e)
+        {
+            AtualizarDashboard();
         }
     }
 }

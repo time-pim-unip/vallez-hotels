@@ -56,10 +56,13 @@ namespace VallezHotels.Source.Servicos
         {
             try
             {
-
-                Locacao l = _db.BuscarPeloID(id);
-                l.Quarto = _quartoServico.BuscarPeloId(l.Quarto.Id);
-
+                Locacao l = new Locacao();
+                l = _db.BuscarPeloID(id);
+                if (l.Uuid != null)
+                {
+                    l.Quarto = _quartoServico.BuscarPeloId(l.Quarto.Id);
+                }
+                
                 return l;
             }
             catch (Exception e)

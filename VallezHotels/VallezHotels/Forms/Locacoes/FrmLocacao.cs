@@ -30,7 +30,7 @@ namespace VallezHotels
         private List<Object> ListaHospedagem;
         private List<Object> ListaServicos;
 
-        private Locacao Locacao;
+        public Locacao Locacao;
         private Locacao LocacaoAntiga;
         
         public Quarto Quarto;
@@ -72,7 +72,8 @@ namespace VallezHotels
             dtEntrada.Value = DateTime.Now.Date;
             dtSaida.Value = DateTime.Now.Date;
 
-            Locacao = _locacaoServico.BuscarPelaDataEQuarto(Quarto, DateTime.Now);
+            //Locacao = _locacaoServico.BuscarPelaDataEQuarto(Quarto, DateTime.Now);
+            Locacao = _locacaoServico.BuscarPeloId(Locacao.Id);
             Locacao.Quarto = Quarto;
 
             if (Locacao.Uuid != null)
@@ -83,6 +84,16 @@ namespace VallezHotels
                 dtSaida.Value = Locacao.DataSaida;
                 txtCheckin.Text = Locacao.CheckIn.ToString();
                 txtCheckout.Text = Locacao.CheckOut.ToString();
+
+                if (Locacao.Id != 0 && Locacao.CheckIn == null)
+                {
+                    btnCheckin.Enabled = true;
+                }
+
+                if (Locacao.CheckIn != null && Locacao.CheckOut == null)
+                {
+                    btnCheckout.Enabled = true;
+                }
                     
                 Locacao.Hospedagems = _hospedagemServico.BuscarPelaLocacao(Locacao);
                 //dgHospedes.DataSource = null;
@@ -198,10 +209,18 @@ namespace VallezHotels
             Locacao.Quarto = Quarto;
             Locacao.DataEntrada = dtEntrada.Value;
             Locacao.DataSaida = dtSaida.Value;
-            //Locacao.CheckIn = DateTime.Parse(txtCheckin.Text);
-            //Locacao.CheckOut = DateTime.Parse(txtCheckout.Text);
             Locacao.CheckIn = null;
             Locacao.CheckOut = null;
+
+            if (txtCheckin.Text != "")
+            {
+              Locacao.CheckIn = DateTime.Parse(txtCheckin.Text);
+            }
+
+            if (txtCheckout.Text != "")
+            {
+              Locacao.CheckOut = DateTime.Parse(txtCheckout.Text);
+            }
 
             try
             {
@@ -264,6 +283,18 @@ namespace VallezHotels
                 {
                     MessageBox.Show("Locação gerênciada com sucesso", "Sucesso !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     AtualizarDetalhes = true;
+
+                    txtCodigo.Text = l.Id.ToString();
+
+                    if (Locacao.Id != 0 && Locacao.CheckIn == null)
+                    {
+                        btnCheckin.Enabled = true;
+                    }
+
+                    if (Locacao.CheckIn != null && Locacao.CheckOut == null)
+                    {
+                        btnCheckout.Enabled = true;
+                    }
                 }
 
             }
@@ -488,6 +519,8 @@ namespace VallezHotels
                 {
                     _locacaoServico.InserirCheckin(Locacao);
                     txtCheckin.Text = Locacao.CheckIn.Value.ToString();
+                    btnCheckin.Enabled = false;
+                    btnCheckout.Enabled = true;
                     MessageBox.Show("Check-in realizado !", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information) ;
                 }
                 catch (Exception ex)
@@ -515,6 +548,8 @@ namespace VallezHotels
                 {
                     _locacaoServico.InserirCheckout(Locacao);
                     txtCheckout.Text = Locacao.CheckOut.Value.ToString();
+                    btnCheckin.Enabled = false;
+                    btnCheckout.Enabled = false;
                     MessageBox.Show("Check-out realizado !", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -527,6 +562,39 @@ namespace VallezHotels
                 }
 
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrmListagemGenerica lg = new FrmListagemGenerica();
+            List<Quarto> quartos = _quartoServico.BuscarTodos();
+
+            var lista = from q in quartos
+                        select new ListagemGenericaDTO
+                        {
+                            Codigo = q.Id,
+                            Descricao = q.Bloco + "|" + q.Numero
+                        };
+
+            lg.Lista = lista.ToList();
+            lg.ShowDialog();
+
+            if (lg.CodigoSelecionado != 0)
+            {
+
+                Quarto quarto = _quartoServico.BuscarPeloId(lg.CodigoSelecionado);
+
+                txtQuarto.Text = quarto.Id.ToString();
+                txtBloco.Text = quarto.Bloco.ToString();
+                txtNumero.Text = quarto.Numero.ToString();
+
+                Quarto = quarto;
+
+            }
+
+
+
+
         }
     }
 }

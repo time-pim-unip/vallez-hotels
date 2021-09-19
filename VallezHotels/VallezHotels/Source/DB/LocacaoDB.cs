@@ -66,8 +66,28 @@ namespace VallezHotels.Source.DB
                         update.AddParameter("@QUARTO", locacao.Quarto.Id, System.Data.DbType.Int32);
                         update.AddParameter("@ENTRADA", locacao.DataEntrada, System.Data.DbType.Date);
                         update.AddParameter("@SAIDA", locacao.DataSaida, System.Data.DbType.Date);
-                        update.AddParameter("@CHECKIN", locacao.CheckIn, System.Data.DbType.Date);
-                        update.AddParameter("@CHECKOUT", locacao.CheckOut, System.Data.DbType.Date);
+
+                        if (locacao.CheckIn != null)
+                        {
+                            update.AddParameter("@CHECKIN", locacao.CheckIn, System.Data.DbType.DateTime);
+
+                        }else
+                        {
+                            update.AddParameter("@CHECKIN", DBNull.Value, System.Data.DbType.DateTime);
+                        }
+
+                        if (locacao.CheckOut != null)
+                        {
+
+                            update.AddParameter("@CHECKOUT", locacao.CheckOut, System.Data.DbType.DateTime);
+
+                        } else
+                        {
+                            update.AddParameter("@CHECKOUT", DBNull.Value, System.Data.DbType.DateTime);
+
+                        }
+
+
 
                         var affectedRows = (int)update.ExecuteNonQuery();
 
@@ -102,16 +122,13 @@ namespace VallezHotels.Source.DB
                         select.AddParameter("@ID", id, System.Data.DbType.Int32);
 
                         var reader = select.ExecuteReader();
+                        Locacao l = new Locacao();
                         if (reader.Read())
                         {
-                            Locacao l = this.PreencherLocacao(reader);
+                            l = this.PreencherLocacao(reader);
 
-                            return l;
                         }
-                        else
-                        {
-                            return null;
-                        }
+                        return l;
 
                     }
 
