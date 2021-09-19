@@ -51,7 +51,6 @@ namespace VallezHotels
             this.lblNumQuarto.Size = new System.Drawing.Size(106, 30);
             this.lblNumQuarto.TabIndex = 0;
             this.lblNumQuarto.Text = "Numero: ";
-            this.lblNumQuarto.Click += new System.EventHandler(this.lblNumQuarto_Click);
             // 
             // lblHospedes
             // 
@@ -113,7 +112,6 @@ namespace VallezHotels
             this.lblBloco.Size = new System.Drawing.Size(74, 30);
             this.lblBloco.TabIndex = 6;
             this.lblBloco.Text = "Bloco:";
-            this.lblBloco.Click += new System.EventHandler(this.lblBloco_Click);
             // 
             // lblTipoQuarto
             // 
@@ -155,7 +153,6 @@ namespace VallezHotels
             this.lblLocacao.TabIndex = 10;
             this.lblLocacao.Text = "#";
             this.lblLocacao.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblLocacao.Click += new System.EventHandler(this.lblLocacao_Click);
             // 
             // FrmDescricaoQuarto
             // 
