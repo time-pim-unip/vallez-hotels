@@ -26,10 +26,28 @@ namespace VallezHotels.Source.DB
             l.Quarto.Id = int.Parse(reader["id_quarto"].ToString());
             l.DataEntrada = DateTime.Parse(reader["dt_entrada"].ToString());
             l.DataSaida = DateTime.Parse(reader["dt_saida"].ToString());
-            l.CheckIn = DateTime.Parse(reader["dt_checkin"].ToString());
-            l.CheckOut = DateTime.Parse(reader["dt_checkout"].ToString());
+            //l.CheckIn = (reader["dt_checkin"].ToString() != "") ? DateTime.Parse(reader["dt_checkin"].ToString()) : new DateTime() ;
+            //l.CheckOut = DateTime.Parse(reader["dt_checkout"].ToString());
             l.CreatedAt = DateTime.Parse(reader["created_at"].ToString());
             l.UpdatedAt = DateTime.Parse(reader["updated_at"].ToString());
+
+            if (reader["dt_checkin"].ToString() != "")
+            {
+                l.CheckIn = DateTime.Parse(reader["dt_checkin"].ToString());
+            } else
+            {
+                l.CheckIn = null;
+            }
+
+            if (reader["dt_checkout"].ToString() != "")
+            {
+                l.CheckOut = DateTime.Parse(reader["dt_checkout"].ToString());
+            } else
+            {
+                l.CheckOut = null;
+            }
+
+
             return l;
         }
 
@@ -48,8 +66,28 @@ namespace VallezHotels.Source.DB
                         update.AddParameter("@QUARTO", locacao.Quarto.Id, System.Data.DbType.Int32);
                         update.AddParameter("@ENTRADA", locacao.DataEntrada, System.Data.DbType.Date);
                         update.AddParameter("@SAIDA", locacao.DataSaida, System.Data.DbType.Date);
-                        update.AddParameter("@CHECKIN", locacao.CheckIn, System.Data.DbType.Date);
-                        update.AddParameter("@CHECKOUT", locacao.CheckOut, System.Data.DbType.Date);
+
+                        if (locacao.CheckIn != null)
+                        {
+                            update.AddParameter("@CHECKIN", locacao.CheckIn, System.Data.DbType.DateTime);
+
+                        }else
+                        {
+                            update.AddParameter("@CHECKIN", DBNull.Value, System.Data.DbType.DateTime);
+                        }
+
+                        if (locacao.CheckOut != null)
+                        {
+
+                            update.AddParameter("@CHECKOUT", locacao.CheckOut, System.Data.DbType.DateTime);
+
+                        } else
+                        {
+                            update.AddParameter("@CHECKOUT", DBNull.Value, System.Data.DbType.DateTime);
+
+                        }
+
+
 
                         var affectedRows = (int)update.ExecuteNonQuery();
 
@@ -84,16 +122,13 @@ namespace VallezHotels.Source.DB
                         select.AddParameter("@ID", id, System.Data.DbType.Int32);
 
                         var reader = select.ExecuteReader();
+                        Locacao l = new Locacao();
                         if (reader.Read())
                         {
-                            Locacao l = this.PreencherLocacao(reader);
+                            l = this.PreencherLocacao(reader);
 
-                            return l;
                         }
-                        else
-                        {
-                            return null;
-                        }
+                        return l;
 
                     }
 
@@ -173,12 +208,12 @@ namespace VallezHotels.Source.DB
                     conn.Open();
                     using (var insert = conn.CreateCommand())
                     {
-                        insert.CommandText = "INSERT INTO vallez.locacoes (uuid_locacao, id_quarto, dt_entrada, dt_saida, dt_checkin, dt_checkout, created_at, updated_at) VALUES(vallez.uuid_generate_v4(), @QUARTO, @ENTRADA, @SAIDA, @CHECKIN, @CHECKOUT, now(), now()) returning *;";
+                        insert.CommandText = "INSERT INTO vallez.locacoes (uuid_locacao, id_quarto, dt_entrada, dt_saida, created_at, updated_at) VALUES(vallez.uuid_generate_v4(), @QUARTO, @ENTRADA, @SAIDA, now(), now()) returning *;";
                         insert.AddParameter("@QUARTO", locacao.Quarto.Id, System.Data.DbType.Int32);
                         insert.AddParameter("@ENTRADA", locacao.DataEntrada, System.Data.DbType.Date);
                         insert.AddParameter("@SAIDA", locacao.DataSaida, System.Data.DbType.Date);
-                        insert.AddParameter("@CHECKIN", locacao.CheckIn, System.Data.DbType.Date);
-                        insert.AddParameter("@CHECKOUT", locacao.CheckOut, System.Data.DbType.Date);
+                        //insert.AddParameter("@CHECKIN", locacao.CheckIn);
+                        //insert.AddParameter("@CHECKOUT", locacao.CheckOut);
 
                         var reader = insert.ExecuteReader();
 
@@ -241,6 +276,62 @@ namespace VallezHotels.Source.DB
         public Locacao BuscarPelaDataEQuarto(Quarto q)
         {
             return this.BuscarPelaDataEQuarto(q, DateTime.Now);
+        }
+
+        public void InserirCheckin(Locacao l)
+        {
+            try
+            {
+                using (var conn = _conn.Conexao())
+                {
+
+                    conn.Open();
+
+                    using (var update = conn.CreateCommand())
+                    {
+
+                        update.CommandText = "UPDATE vallez.locacoes SET dt_checkin = @CHECKIN WHERE id_locacao = @ID";
+                        update.AddParameter("@CHECKIN", l.CheckIn.Value, System.Data.DbType.DateTime);
+                        update.AddParameter("@ID", l.Id, System.Data.DbType.Int32);
+
+                        update.ExecuteNonQuery();
+
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public void InserirCheckout(Locacao l)
+        {
+            try
+            {
+                using (var conn = _conn.Conexao())
+                {
+
+                    conn.Open();
+
+                    using (var update = conn.CreateCommand())
+                    {
+
+                        update.CommandText = "UPDATE vallez.locacoes SET dt_checkout = @CHECKOUT WHERE id_locacao = @ID";
+                        update.AddParameter("@CHECKOUT", l.CheckOut.Value, System.Data.DbType.DateTime);
+                        update.AddParameter("@ID", l.Id, System.Data.DbType.Int32);
+
+                        update.ExecuteNonQuery();
+
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

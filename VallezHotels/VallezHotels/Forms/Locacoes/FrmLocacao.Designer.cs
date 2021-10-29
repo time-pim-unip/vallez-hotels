@@ -31,13 +31,13 @@ namespace VallezHotels
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLocacao));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCheckout = new System.Windows.Forms.TextBox();
+            this.txtCheckin = new System.Windows.Forms.TextBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtBloco = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.dtCheckout = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.dtCheckin = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.dtSaida = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
@@ -74,6 +74,8 @@ namespace VallezHotels
             this.btnSalvar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblValorLocacao = new System.Windows.Forms.Label();
+            this.btnCheckin = new System.Windows.Forms.Button();
+            this.btnCheckout = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgHospedes)).BeginInit();
@@ -86,13 +88,13 @@ namespace VallezHotels
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txtCheckout);
+            this.groupBox1.Controls.Add(this.txtCheckin);
             this.groupBox1.Controls.Add(this.txtNumero);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.txtBloco);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.dtCheckout);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.dtCheckin);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.dtSaida);
             this.groupBox1.Controls.Add(this.label4);
@@ -110,6 +112,22 @@ namespace VallezHotels
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Descrição Locação";
+            // 
+            // txtCheckout
+            // 
+            this.txtCheckout.Enabled = false;
+            this.txtCheckout.Location = new System.Drawing.Point(427, 34);
+            this.txtCheckout.Name = "txtCheckout";
+            this.txtCheckout.Size = new System.Drawing.Size(100, 22);
+            this.txtCheckout.TabIndex = 34;
+            // 
+            // txtCheckin
+            // 
+            this.txtCheckin.Enabled = false;
+            this.txtCheckin.Location = new System.Drawing.Point(320, 34);
+            this.txtCheckin.Name = "txtCheckin";
+            this.txtCheckin.Size = new System.Drawing.Size(100, 22);
+            this.txtCheckin.TabIndex = 33;
             // 
             // txtNumero
             // 
@@ -145,14 +163,6 @@ namespace VallezHotels
             this.label13.TabIndex = 29;
             this.label13.Text = "Bloco";
             // 
-            // dtCheckout
-            // 
-            this.dtCheckout.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtCheckout.Location = new System.Drawing.Point(427, 34);
-            this.dtCheckout.Name = "dtCheckout";
-            this.dtCheckout.Size = new System.Drawing.Size(101, 22);
-            this.dtCheckout.TabIndex = 28;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -161,14 +171,6 @@ namespace VallezHotels
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 27;
             this.label5.Text = "Check-out";
-            // 
-            // dtCheckin
-            // 
-            this.dtCheckin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtCheckin.Location = new System.Drawing.Point(320, 34);
-            this.dtCheckin.Name = "dtCheckin";
-            this.dtCheckin.Size = new System.Drawing.Size(101, 22);
-            this.dtCheckin.TabIndex = 26;
             // 
             // label6
             // 
@@ -225,6 +227,7 @@ namespace VallezHotels
             this.button1.Size = new System.Drawing.Size(30, 22);
             this.button1.TabIndex = 20;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtQuarto
             // 
@@ -251,6 +254,7 @@ namespace VallezHotels
             this.btnPesquisar.Size = new System.Drawing.Size(30, 22);
             this.btnPesquisar.TabIndex = 17;
             this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
             // 
             // txtCodigo
             // 
@@ -552,11 +556,43 @@ namespace VallezHotels
             this.lblValorLocacao.TabIndex = 0;
             this.lblValorLocacao.Text = "RS 0";
             // 
+            // btnCheckin
+            // 
+            this.btnCheckin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCheckin.Enabled = false;
+            this.btnCheckin.Image = global::VallezHotels.Properties.Resources.log_in;
+            this.btnCheckin.Location = new System.Drawing.Point(12, 520);
+            this.btnCheckin.Name = "btnCheckin";
+            this.btnCheckin.Size = new System.Drawing.Size(90, 38);
+            this.btnCheckin.TabIndex = 23;
+            this.btnCheckin.Text = "Check-In";
+            this.btnCheckin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCheckin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCheckin.UseVisualStyleBackColor = true;
+            this.btnCheckin.Click += new System.EventHandler(this.btnCheckin_Click);
+            // 
+            // btnCheckout
+            // 
+            this.btnCheckout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCheckout.Enabled = false;
+            this.btnCheckout.Image = global::VallezHotels.Properties.Resources.log_in;
+            this.btnCheckout.Location = new System.Drawing.Point(108, 520);
+            this.btnCheckout.Name = "btnCheckout";
+            this.btnCheckout.Size = new System.Drawing.Size(90, 38);
+            this.btnCheckout.TabIndex = 24;
+            this.btnCheckout.Text = "Check-Out";
+            this.btnCheckout.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCheckout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCheckout.UseVisualStyleBackColor = true;
+            this.btnCheckout.Click += new System.EventHandler(this.btnCheckout_Click);
+            // 
             // FrmLocacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(768, 570);
+            this.Controls.Add(this.btnCheckout);
+            this.Controls.Add(this.btnCheckin);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSalvar);
@@ -590,9 +626,7 @@ namespace VallezHotels
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnPesquisar;
-        private System.Windows.Forms.DateTimePicker dtCheckout;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dtCheckin;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dtSaida;
         private System.Windows.Forms.Label label4;
@@ -630,5 +664,9 @@ namespace VallezHotels
         private System.Windows.Forms.TextBox txtNomeHospede;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtValorServico;
+        private System.Windows.Forms.TextBox txtCheckout;
+        private System.Windows.Forms.TextBox txtCheckin;
+        private System.Windows.Forms.Button btnCheckin;
+        private System.Windows.Forms.Button btnCheckout;
     }
 }

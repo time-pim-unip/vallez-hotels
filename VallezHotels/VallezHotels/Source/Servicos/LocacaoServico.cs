@@ -56,10 +56,13 @@ namespace VallezHotels.Source.Servicos
         {
             try
             {
-
-                Locacao l = _db.BuscarPeloID(id);
-                l.Quarto = _quartoServico.BuscarPeloId(l.Quarto.Id);
-
+                Locacao l = new Locacao();
+                l = _db.BuscarPeloID(id);
+                if (l.Uuid != null)
+                {
+                    l.Quarto = _quartoServico.BuscarPeloId(l.Quarto.Id);
+                }
+                
                 return l;
             }
             catch (Exception e)
@@ -128,6 +131,34 @@ namespace VallezHotels.Source.Servicos
         public Locacao BuscarPelaDataEQuarto(Quarto q)
         {
             return this.BuscarPelaDataEQuarto(q, DateTime.Now);
+        }
+
+        public void InserirCheckin(Locacao l)
+        {
+            try
+            {
+
+                _db.InserirCheckin(l);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void InserirCheckout(Locacao l)
+        {
+            try
+            {
+
+                _db.InserirCheckout(l);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
     }

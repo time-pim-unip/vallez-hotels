@@ -30,7 +30,7 @@ namespace VallezHotels
         private List<Object> ListaHospedagem;
         private List<Object> ListaServicos;
 
-        private Locacao Locacao;
+        public Locacao Locacao;
         private Locacao LocacaoAntiga;
         
         public Quarto Quarto;
@@ -56,13 +56,24 @@ namespace VallezHotels
             InitializeComponent();
         }
 
+        private void BuscarQuarto(Quarto q)
+        {
+
+        }
+
+        private void BuscarLocacao(Locacao L)
+        {
+
+        }
+
         private void FrmLocacao_Load(object sender, EventArgs e)
         {
 
             dtEntrada.Value = DateTime.Now.Date;
             dtSaida.Value = DateTime.Now.Date;
 
-            Locacao = _locacaoServico.BuscarPelaDataEQuarto(Quarto, DateTime.Now);
+            //Locacao = _locacaoServico.BuscarPelaDataEQuarto(Quarto, DateTime.Now);
+            Locacao = _locacaoServico.BuscarPeloId(Locacao.Id);
             Locacao.Quarto = Quarto;
 
             if (Locacao.Uuid != null)
@@ -71,8 +82,18 @@ namespace VallezHotels
                 txtCodigo.Text = Locacao.Id.ToString();
                 dtEntrada.Value = Locacao.DataEntrada;
                 dtSaida.Value = Locacao.DataSaida;
-                dtCheckin.Value = Locacao.CheckIn;
-                dtCheckout.Value = Locacao.CheckOut;
+                txtCheckin.Text = Locacao.CheckIn.ToString();
+                txtCheckout.Text = Locacao.CheckOut.ToString();
+
+                if (Locacao.Id != 0 && Locacao.CheckIn == null)
+                {
+                    btnCheckin.Enabled = true;
+                }
+
+                if (Locacao.CheckIn != null && Locacao.CheckOut == null)
+                {
+                    btnCheckout.Enabled = true;
+                }
                     
                 Locacao.Hospedagems = _hospedagemServico.BuscarPelaLocacao(Locacao);
                 //dgHospedes.DataSource = null;
@@ -188,9 +209,18 @@ namespace VallezHotels
             Locacao.Quarto = Quarto;
             Locacao.DataEntrada = dtEntrada.Value;
             Locacao.DataSaida = dtSaida.Value;
-            Locacao.CheckIn = dtCheckin.Value;
-            Locacao.CheckOut = dtCheckout.Value;
+            Locacao.CheckIn = null;
+            Locacao.CheckOut = null;
 
+            if (txtCheckin.Text != "")
+            {
+              Locacao.CheckIn = DateTime.Parse(txtCheckin.Text);
+            }
+
+            if (txtCheckout.Text != "")
+            {
+              Locacao.CheckOut = DateTime.Parse(txtCheckout.Text);
+            }
 
             try
             {
@@ -204,6 +234,8 @@ namespace VallezHotels
                 {
                    l =  _locacaoServico.InserirLocacao(Locacao);
                 }
+
+                Locacao = l;
 
                 if (AdicionarHospedes)
                 {
@@ -251,6 +283,18 @@ namespace VallezHotels
                 {
                     MessageBox.Show("Locação gerênciada com sucesso", "Sucesso !", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     AtualizarDetalhes = true;
+
+                    txtCodigo.Text = l.Id.ToString();
+
+                    if (Locacao.Id != 0 && Locacao.CheckIn == null)
+                    {
+                        btnCheckin.Enabled = true;
+                    }
+
+                    if (Locacao.CheckIn != null && Locacao.CheckOut == null)
+                    {
+                        btnCheckout.Enabled = true;
+                    }
                 }
 
             }
@@ -436,6 +480,120 @@ namespace VallezHotels
 
             AdicionarServicos = true;
             AtualizarValorDaLocacao();
+
+        }
+
+        private void btnPesquisar_Click(object sender, EventArgs e)
+        {
+            FrmListagemGenerica lg = new FrmListagemGenerica();
+            List<Locacao> locacoes = _locacaoServico.BuscarTodos();
+            List<ListagemGenericaDTO> lista = new List<ListagemGenericaDTO>();
+
+            foreach (Locacao l in locacoes)
+            {
+                lista.Add(new ListagemGenericaDTO { 
+                    Codigo = l.Id,
+                    Descricao = $"Quarto: {l.Quarto.Id} | Entrada: {l.DataEntrada.ToString("dd/MM/yyyy")}"
+                });
+            }
+
+            lg.Lista = lista;
+            lg.ShowDialog();
+
+
+
+
+        }
+
+        private void btnCheckin_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show($"Deseja marcar o check-in para {DateTime.Now} ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Information) ;
+
+            if (result == DialogResult.Yes)
+            {
+                Locacao.CheckIn = DateTime.Now;
+                
+
+                try
+                {
+                    _locacaoServico.InserirCheckin(Locacao);
+                    txtCheckin.Text = Locacao.CheckIn.Value.ToString();
+                    btnCheckin.Enabled = false;
+                    btnCheckout.Enabled = true;
+                    MessageBox.Show("Check-in realizado !", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information) ;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ocorreu um erro ao tentar inserir o check-in \n \n {ex.Message} ", "ERROR !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    AtualizarDetalhes = true;
+                }
+
+            }
+
+        }
+
+        private void btnCheckout_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show($"Deseja marcar o check-out para {DateTime.Now} ?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (result == DialogResult.Yes)
+            {
+                Locacao.CheckOut = DateTime.Now;
+
+                try
+                {
+                    _locacaoServico.InserirCheckout(Locacao);
+                    txtCheckout.Text = Locacao.CheckOut.Value.ToString();
+                    btnCheckin.Enabled = false;
+                    btnCheckout.Enabled = false;
+                    MessageBox.Show("Check-out realizado !", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ocorreu um erro ao tentar inserir o check-out \n \n {ex.Message} ", "ERROR !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    AtualizarDetalhes = true;
+                }
+
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FrmListagemGenerica lg = new FrmListagemGenerica();
+            List<Quarto> quartos = _quartoServico.BuscarTodos();
+
+            var lista = from q in quartos
+                        select new ListagemGenericaDTO
+                        {
+                            Codigo = q.Id,
+                            Descricao = q.Bloco + "|" + q.Numero
+                        };
+
+            lg.Lista = lista.ToList();
+            lg.ShowDialog();
+
+            if (lg.CodigoSelecionado != 0)
+            {
+
+                Quarto quarto = _quartoServico.BuscarPeloId(lg.CodigoSelecionado);
+
+                txtQuarto.Text = quarto.Id.ToString();
+                txtBloco.Text = quarto.Bloco.ToString();
+                txtNumero.Text = quarto.Numero.ToString();
+
+                Quarto = quarto;
+
+            }
+
+
+
 
         }
     }

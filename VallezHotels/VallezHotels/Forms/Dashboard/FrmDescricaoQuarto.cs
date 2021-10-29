@@ -22,9 +22,10 @@ namespace VallezHotels
         
 
         public Quarto Quarto;
+        public Locacao Locacao;
+        public DateTime DataSelecionada;
         public bool Disponivel;
 
-        private Locacao Locacao;
 
         public FrmDescricaoQuarto()
         {
@@ -36,6 +37,7 @@ namespace VallezHotels
 
             Quarto = new Quarto();
             Locacao = new Locacao();
+            DataSelecionada = new DateTime();
 
             Disponivel = false;
             InitializeComponent();
@@ -43,7 +45,8 @@ namespace VallezHotels
 
         public void AtualizarDetalhes()
         {
-            Locacao = _locacaoServico.BuscarPelaDataEQuarto(Quarto, DateTime.Now.Date);
+            Locacao = _locacaoServico.BuscarPeloId(Locacao.Id);
+            //Locacao = _locacaoServico.BuscarPelaDataEQuarto(Quarto, DataSelecionada);
             Quarto = _quartoServico.BuscarPeloId(Quarto.Id);
 
             if (Locacao.Uuid != null)
@@ -59,12 +62,13 @@ namespace VallezHotels
                 lblCheckout.Visible = true;
                 lblValor.Visible = true;
 
+                lblLocacao.Text = $"#{Locacao.Id}";
                 lblHospedes.Text = $"Quantidade de hospedes: {Locacao.Hospedagems.Count}";
                 lblEntrada.Text  = $"Data entrada   : {Locacao.DataEntrada.ToString("dd/MM/yyyy")}";
                 lblSaida.Text    = $"Data saida     : {Locacao.DataSaida.ToString("dd/MM/yyyy")}";
 
-                lblCheckin.Text  = $"Data check-in  : {Locacao.CheckIn.ToString("dd/MM/yyyy")}";
-                lblCheckout.Text = $"Data check-out : {Locacao.CheckOut.ToString("dd/MM/yyyy")}";
+                lblCheckin.Text  = $"Data check-in  : {Locacao.CheckIn.ToString()}";
+                lblCheckout.Text = $"Data check-out : {Locacao.CheckOut.ToString()}";
 
                 lblValor.Text = $"Valor: R${Locacao.ValorDaLocacao()}";
 
@@ -75,7 +79,7 @@ namespace VallezHotels
             lblNumQuarto.Text = $"Quarto: {this.Quarto.Numero}";
             lblTipoQuarto.Text = this.Quarto.TipoQuarto.Descricao;
 
-            var disponibilidade = this.Quarto.Disponibilidades.Where(x => x.Data.Date.ToString() == DateTime.Now.Date.ToString());
+            var disponibilidade = this.Quarto.Disponibilidades.Where(x => x.Data.Date.ToString() == DataSelecionada.Date.ToString());
             Disponibilidade d = null;
             if (disponibilidade.Count() == 0)
             {
@@ -117,12 +121,10 @@ namespace VallezHotels
         {
             FrmLocacao locacao = new FrmLocacao();
             locacao.Quarto = Quarto;
+            locacao.Locacao = Locacao;
             locacao.ShowDialog();
 
-            if (locacao.AtualizarDetalhes)
-            {
-                AtualizarDetalhes();
-            }
+            AtualizarDetalhes();
 
         }
     }
