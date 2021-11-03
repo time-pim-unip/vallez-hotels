@@ -10,6 +10,7 @@ namespace VallezHotels.Source.Entidades
     {
         public int Id { get; set; }
         public string Uuid { get; set; }
+        public string Descricao { get; set; }
         public TipoQuarto TipoQuarto { get; set; }
         public List<Disponibilidade> Disponibilidades { get; set; }
         public string Bloco { get; set; }

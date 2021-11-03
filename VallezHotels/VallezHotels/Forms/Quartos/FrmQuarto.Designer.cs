@@ -57,6 +57,8 @@ namespace VallezHotels
             this.label9 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
+            this.txtDescricaoQuarto = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -65,6 +67,8 @@ namespace VallezHotels
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.txtDescricaoQuarto);
             this.groupBox1.Controls.Add(this.txtValorDiaria);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtNumero);
@@ -78,7 +82,7 @@ namespace VallezHotels
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(240, 149);
+            this.groupBox1.Size = new System.Drawing.Size(240, 183);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Descrições";
@@ -180,7 +184,7 @@ namespace VallezHotels
             this.groupBox2.Controls.Add(this.txtCamas);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(12, 167);
+            this.groupBox2.Location = new System.Drawing.Point(12, 201);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(240, 74);
             this.groupBox2.TabIndex = 1;
@@ -341,6 +345,22 @@ namespace VallezHotels
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
+            // txtDescricaoQuarto
+            // 
+            this.txtDescricaoQuarto.Location = new System.Drawing.Point(9, 157);
+            this.txtDescricaoQuarto.Name = "txtDescricaoQuarto";
+            this.txtDescricaoQuarto.Size = new System.Drawing.Size(215, 20);
+            this.txtDescricaoQuarto.TabIndex = 23;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 141);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 13);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "Descrição";
+            // 
             // FrmQuarto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -397,5 +417,7 @@ namespace VallezHotels
         private System.Windows.Forms.TextBox txtBanheiros;
         private System.Windows.Forms.TextBox txtCamas;
         private System.Windows.Forms.Button btnAdicionarDisponibilidade;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtDescricaoQuarto;
     }
 }

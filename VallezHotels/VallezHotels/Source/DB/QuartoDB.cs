@@ -23,6 +23,7 @@ namespace VallezHotels.Source.DB
             Quarto q = new Quarto();
             q.Id = int.Parse(reader["id_quarto"].ToString());
             q.Uuid = reader["uuid_quarto"].ToString();
+            q.Descricao = reader["descricao"].ToString();
             q.TipoQuarto.Id = int.Parse(reader["id_tipo_quarto"].ToString());
             q.Bloco = reader["bloco"].ToString();
             q.Numero = int.Parse(reader["numero"].ToString());
@@ -44,8 +45,9 @@ namespace VallezHotels.Source.DB
 
                     using (var update = conn.CreateCommand())
                     {
-                        update.CommandText = "UPDATE vallez.quartos SET id_tipo_quarto=@TIPOQUARTO, bloco=@BLOCO, numero=@NUMERO, qtde_banheiros=@QTDEBANHEIROS, qtde_camas=@QTDECAMAS, valor_diaria=@VALORDIARIA, updated_at=now() WHERE id_quarto=@ID; ";
+                        update.CommandText = "UPDATE vallez.quartos SET descricao=@DESCRICAO, id_tipo_quarto=@TIPOQUARTO, bloco=@BLOCO, numero=@NUMERO, qtde_banheiros=@QTDEBANHEIROS, qtde_camas=@QTDECAMAS, valor_diaria=@VALORDIARIA, updated_at=now() WHERE id_quarto=@ID; ";
                         update.AddParameter("@ID", quarto.Id, System.Data.DbType.Int32);
+                        update.AddParameter("@DESCRICAO", quarto.Descricao);
                         update.AddParameter("@TIPOQUARTO", quarto.TipoQuarto.Id, System.Data.DbType.Int32);
                         update.AddParameter("@BLOCO", quarto.Bloco);
                         update.AddParameter("@NUMERO", quarto.Numero, System.Data.DbType.Int32);
@@ -175,7 +177,8 @@ namespace VallezHotels.Source.DB
                     conn.Open();
                     using (var insert = conn.CreateCommand())
                     {
-                        insert.CommandText = "INSERT INTO vallez.quartos (uuid_quarto, id_tipo_quarto, bloco, numero, qtde_banheiros, qtde_camas, valor_diaria, created_at, updated_at) VALUES(vallez.uuid_generate_v4(), @TIPOQUARTO, @BLOCO, @NUMERO, @QTDEBANHEIROS, @QTDECAMAS, @VALORDIARIA, now(), now()) returning *;";
+                        insert.CommandText = "INSERT INTO vallez.quartos (uuid_quarto, descricao, id_tipo_quarto, bloco, numero, qtde_banheiros, qtde_camas, valor_diaria, created_at, updated_at) VALUES(vallez.uuid_generate_v4(), @DESCRICAO, @TIPOQUARTO, @BLOCO, @NUMERO, @QTDEBANHEIROS, @QTDECAMAS, @VALORDIARIA, now(), now()) returning *;";
+                        insert.AddParameter("@DESCRICAO", quarto.Descricao.ToString(), System.Data.DbType.String);
                         insert.AddParameter("@TIPOQUARTO", quarto.TipoQuarto.Id, System.Data.DbType.Int32);
                         insert.AddParameter("@BLOCO", quarto.Bloco);
                         insert.AddParameter("@NUMERO", quarto.Numero, System.Data.DbType.Int32);
@@ -196,7 +199,6 @@ namespace VallezHotels.Source.DB
                         {
                             return null;
                         }
-
 
                     }
                 }
