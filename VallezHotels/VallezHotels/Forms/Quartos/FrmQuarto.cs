@@ -45,6 +45,7 @@ namespace VallezHotels
             txtValorDiaria.Text = q.ValorDiaria.ToString("F2");
             txtCamas.Text = q.QuantidadeCamas.ToString();
             txtBanheiros.Text = q.QuantidadeBanheiros.ToString();
+            txtDescricaoQuarto.Text = q.Descricao.ToString();
 
             var disponibilidadesView = from d in q.Disponibilidades
                         orderby d.Data
@@ -126,6 +127,7 @@ namespace VallezHotels
             Quarto.ValorDiaria = double.Parse(txtValorDiaria.Text.Trim().ToString());
             Quarto.QuantidadeCamas = int.Parse(txtCamas.Text.Trim().ToString());
             Quarto.QuantidadeBanheiros = int.Parse(txtBanheiros.Text.Trim().ToString());
+            Quarto.Descricao = txtDescricaoQuarto.Text.ToString();
 
             if (InserirDisponibilidades)
             {
