@@ -31,6 +31,8 @@ namespace VallezHotels
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmQuarto));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtDescricaoQuarto = new System.Windows.Forms.TextBox();
             this.txtValorDiaria = new System.Windows.Forms.MaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtNumero = new System.Windows.Forms.TextBox();
@@ -57,8 +59,6 @@ namespace VallezHotels
             this.label9 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
-            this.txtDescricaoQuarto = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -87,6 +87,23 @@ namespace VallezHotels
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Descrições";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 141);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 13);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "Descrição";
+            // 
+            // txtDescricaoQuarto
+            // 
+            this.txtDescricaoQuarto.Location = new System.Drawing.Point(9, 157);
+            this.txtDescricaoQuarto.MaxLength = 30;
+            this.txtDescricaoQuarto.Name = "txtDescricaoQuarto";
+            this.txtDescricaoQuarto.Size = new System.Drawing.Size(215, 20);
+            this.txtDescricaoQuarto.TabIndex = 23;
+            // 
             // txtValorDiaria
             // 
             this.txtValorDiaria.Location = new System.Drawing.Point(9, 117);
@@ -105,6 +122,7 @@ namespace VallezHotels
             // 
             // txtNumero
             // 
+            this.txtNumero.Enabled = false;
             this.txtNumero.Location = new System.Drawing.Point(168, 32);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(56, 20);
@@ -121,10 +139,13 @@ namespace VallezHotels
             // 
             // txtBloco
             // 
+            this.txtBloco.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtBloco.Location = new System.Drawing.Point(106, 32);
             this.txtBloco.Name = "txtBloco";
             this.txtBloco.Size = new System.Drawing.Size(56, 20);
             this.txtBloco.TabIndex = 18;
+            this.txtBloco.TextChanged += new System.EventHandler(this.txtBloco_TextChanged);
+            this.txtBloco.Leave += new System.EventHandler(this.txtBloco_Leave);
             // 
             // label3
             // 
@@ -344,22 +365,6 @@ namespace VallezHotels
             this.btnSalvar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
-            // 
-            // txtDescricaoQuarto
-            // 
-            this.txtDescricaoQuarto.Location = new System.Drawing.Point(9, 157);
-            this.txtDescricaoQuarto.Name = "txtDescricaoQuarto";
-            this.txtDescricaoQuarto.Size = new System.Drawing.Size(215, 20);
-            this.txtDescricaoQuarto.TabIndex = 23;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 141);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 13);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "Descrição";
             // 
             // FrmQuarto
             // 

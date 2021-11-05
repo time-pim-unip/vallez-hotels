@@ -108,7 +108,7 @@ create table tipo_quarto(
 create table quartos(
 	id_quarto		serial not null,
 	uuid_quarto		uuid not null default uuid_generate_v4(),
-	descricao		varchar(16),
+	descricao		varchar(30),
 	id_tipo_quarto	int not null,
 	bloco 			varchar(2) not null,
 	numero 			int not null,
