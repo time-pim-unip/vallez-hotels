@@ -166,5 +166,20 @@ namespace VallezHotels.Source.Servicos
                 throw new Exception(e.Message);
             }
         }
+
+        public int BuscarProximoNumeroDisponivelPeloBloco(string bloco)
+        {
+            try
+            {
+                int ultimoNumero = _db.BuscarUltimoNumeroDeQuarto(bloco);
+
+                return ultimoNumero + 1;
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

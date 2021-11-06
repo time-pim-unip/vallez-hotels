@@ -209,5 +209,42 @@ namespace VallezHotels.Source.DB
                 throw new Exception(e.Message);
             }
         }
+
+        public int BuscarUltimoNumeroDeQuarto(string bloco)
+        {
+            try
+            {
+
+                using (var conn = _conn.Conexao())
+                {
+
+                    conn.Open();
+
+                    using (var select = conn.CreateCommand())
+                    {
+                        select.CommandText = "SELECT COALESCE(MAX(Q.NUMERO), 0) AS ULTIMO_NUMERO FROM QUARTOS Q WHERE Q.BLOCO = @BLOCO;";
+                        select.AddParameter("@BLOCO", bloco);
+
+                        var reader = select.ExecuteReader();
+
+                        int lastValue = 0;
+
+                        if (reader.Read())
+                        {
+                            lastValue = int.Parse(reader["ULTIMO_NUMERO"].ToString());
+                        }
+
+                        return lastValue;
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

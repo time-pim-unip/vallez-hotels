@@ -216,5 +216,24 @@ namespace VallezHotels
             }
             
         }
+
+        private void txtBloco_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtBloco.Text))
+            {
+                int proximoNumero = _quartoServico.BuscarProximoNumeroDisponivelPeloBloco(txtBloco.Text);
+
+                txtNumero.Text = proximoNumero.ToString();
+
+            }else
+            {
+                txtNumero.Text = "";
+            }
+        }
+
+        private void txtBloco_Leave(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
