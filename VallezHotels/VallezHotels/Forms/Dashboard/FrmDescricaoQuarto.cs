@@ -75,6 +75,7 @@ namespace VallezHotels
             }
 
 
+            lblDescricao.Text = Quarto.Descricao;
             lblBloco.Text = $"Bloco: {this.Quarto.Bloco}";
             lblNumQuarto.Text = $"Quarto: {this.Quarto.Numero}";
             lblTipoQuarto.Text = this.Quarto.TipoQuarto.Descricao;
@@ -125,6 +126,41 @@ namespace VallezHotels
             locacao.ShowDialog();
 
             AtualizarDetalhes();
+
+        }
+
+        private void lblSituacao_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTipoQuarto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCheckout_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCheckin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSaida_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEntrada_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblHospedes_Click(object sender, EventArgs e)
+        {
 
         }
     }

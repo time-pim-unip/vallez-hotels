@@ -131,7 +131,7 @@ namespace VallezHotels
             this.dtNascimento.Name = "dtNascimento";
             this.dtNascimento.Size = new System.Drawing.Size(85, 22);
             this.dtNascimento.TabIndex = 7;
-            this.dtNascimento.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtNascimento.Value = new System.DateTime(2021, 11, 11, 19, 23, 37, 0);
             // 
             // label4
             // 

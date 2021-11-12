@@ -74,6 +74,8 @@ namespace VallezHotels
         private void FrmDashboard_Load(object sender, EventArgs e)
         {
 
+            dtLocacao.Value = DateTime.Now;
+
             AtualizarDashboard();
 
         }

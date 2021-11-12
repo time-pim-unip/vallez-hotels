@@ -40,13 +40,14 @@ namespace VallezHotels
             this.lblSituacao = new System.Windows.Forms.Label();
             this.lblValor = new System.Windows.Forms.Label();
             this.lblLocacao = new System.Windows.Forms.Label();
+            this.lblDescricao = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblNumQuarto
             // 
             this.lblNumQuarto.AutoSize = true;
             this.lblNumQuarto.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumQuarto.Location = new System.Drawing.Point(116, 14);
+            this.lblNumQuarto.Location = new System.Drawing.Point(116, 26);
             this.lblNumQuarto.Name = "lblNumQuarto";
             this.lblNumQuarto.Size = new System.Drawing.Size(106, 30);
             this.lblNumQuarto.TabIndex = 0;
@@ -62,6 +63,7 @@ namespace VallezHotels
             this.lblHospedes.TabIndex = 1;
             this.lblHospedes.Text = "Quantidade hospedes: 0";
             this.lblHospedes.Visible = false;
+            this.lblHospedes.Click += new System.EventHandler(this.lblHospedes_Click);
             // 
             // lblEntrada
             // 
@@ -72,6 +74,7 @@ namespace VallezHotels
             this.lblEntrada.TabIndex = 2;
             this.lblEntrada.Text = "Data Entrada: 01/01/2021";
             this.lblEntrada.Visible = false;
+            this.lblEntrada.Click += new System.EventHandler(this.lblEntrada_Click);
             // 
             // lblSaida
             // 
@@ -82,6 +85,7 @@ namespace VallezHotels
             this.lblSaida.TabIndex = 3;
             this.lblSaida.Text = "Data Saída: 07/01/2021";
             this.lblSaida.Visible = false;
+            this.lblSaida.Click += new System.EventHandler(this.lblSaida_Click);
             // 
             // lblCheckout
             // 
@@ -92,6 +96,7 @@ namespace VallezHotels
             this.lblCheckout.TabIndex = 5;
             this.lblCheckout.Text = "Check-out: 07/01/2021";
             this.lblCheckout.Visible = false;
+            this.lblCheckout.Click += new System.EventHandler(this.lblCheckout_Click);
             // 
             // lblCheckin
             // 
@@ -102,12 +107,13 @@ namespace VallezHotels
             this.lblCheckin.TabIndex = 4;
             this.lblCheckin.Text = "Check-in: 02/01/2021";
             this.lblCheckin.Visible = false;
+            this.lblCheckin.Click += new System.EventHandler(this.lblCheckin_Click);
             // 
             // lblBloco
             // 
             this.lblBloco.AutoSize = true;
             this.lblBloco.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBloco.Location = new System.Drawing.Point(12, 14);
+            this.lblBloco.Location = new System.Drawing.Point(12, 26);
             this.lblBloco.Name = "lblBloco";
             this.lblBloco.Size = new System.Drawing.Size(74, 30);
             this.lblBloco.TabIndex = 6;
@@ -117,21 +123,23 @@ namespace VallezHotels
             // 
             this.lblTipoQuarto.AutoSize = true;
             this.lblTipoQuarto.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTipoQuarto.Location = new System.Drawing.Point(14, 39);
+            this.lblTipoQuarto.Location = new System.Drawing.Point(14, 51);
             this.lblTipoQuarto.Name = "lblTipoQuarto";
             this.lblTipoQuarto.Size = new System.Drawing.Size(39, 17);
             this.lblTipoQuarto.TabIndex = 7;
             this.lblTipoQuarto.Text = "Suite";
+            this.lblTipoQuarto.Click += new System.EventHandler(this.lblTipoQuarto_Click);
             // 
             // lblSituacao
             // 
             this.lblSituacao.AutoSize = true;
             this.lblSituacao.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSituacao.Location = new System.Drawing.Point(14, 56);
+            this.lblSituacao.Location = new System.Drawing.Point(14, 66);
             this.lblSituacao.Name = "lblSituacao";
             this.lblSituacao.Size = new System.Drawing.Size(129, 17);
             this.lblSituacao.TabIndex = 8;
             this.lblSituacao.Text = "Situação: Disponivel";
+            this.lblSituacao.Click += new System.EventHandler(this.lblSituacao_Click);
             // 
             // lblValor
             // 
@@ -154,12 +162,23 @@ namespace VallezHotels
             this.lblLocacao.Text = "#";
             this.lblLocacao.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // lblDescricao
+            // 
+            this.lblDescricao.AutoSize = true;
+            this.lblDescricao.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescricao.Location = new System.Drawing.Point(14, 13);
+            this.lblDescricao.Name = "lblDescricao";
+            this.lblDescricao.Size = new System.Drawing.Size(69, 19);
+            this.lblDescricao.TabIndex = 11;
+            this.lblDescricao.Text = "Descrição";
+            // 
             // FrmDescricaoQuarto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(296, 214);
+            this.Controls.Add(this.lblDescricao);
             this.Controls.Add(this.lblLocacao);
             this.Controls.Add(this.lblValor);
             this.Controls.Add(this.lblSituacao);
@@ -195,5 +214,6 @@ namespace VallezHotels
         private System.Windows.Forms.Label lblSituacao;
         private System.Windows.Forms.Label lblValor;
         private System.Windows.Forms.Label lblLocacao;
+        private System.Windows.Forms.Label lblDescricao;
     }
 }
