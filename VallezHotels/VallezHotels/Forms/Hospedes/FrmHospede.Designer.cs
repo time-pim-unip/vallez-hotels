@@ -131,7 +131,7 @@ namespace VallezHotels
             this.dtNascimento.Name = "dtNascimento";
             this.dtNascimento.Size = new System.Drawing.Size(85, 22);
             this.dtNascimento.TabIndex = 7;
-            this.dtNascimento.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtNascimento.Value = new System.DateTime(2021, 11, 11, 19, 23, 37, 0);
             // 
             // label4
             // 
@@ -150,6 +150,7 @@ namespace VallezHotels
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.Size = new System.Drawing.Size(88, 22);
             this.txtCPF.TabIndex = 5;
+            this.txtCPF.Leave += new System.EventHandler(this.txtCPF_Leave);
             // 
             // label3
             // 
@@ -299,6 +300,7 @@ namespace VallezHotels
             // 
             this.txtSenha.Location = new System.Drawing.Point(129, 34);
             this.txtSenha.Name = "txtSenha";
+            this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(113, 22);
             this.txtSenha.TabIndex = 5;
             // 
@@ -317,6 +319,8 @@ namespace VallezHotels
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(113, 22);
             this.txtUsuario.TabIndex = 3;
+            this.txtUsuario.Layout += new System.Windows.Forms.LayoutEventHandler(this.txtUsuario_Layout);
+            this.txtUsuario.Leave += new System.EventHandler(this.txtUsuario_Leave);
             // 
             // label9
             // 

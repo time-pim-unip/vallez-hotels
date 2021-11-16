@@ -145,7 +145,7 @@ namespace VallezHotels
 
             Hospede.Usuario.NomeUsuario = txtUsuario.Text.Trim().ToString();
             Hospede.Usuario.Senha = txtSenha.Text.Trim().ToString();
-            Hospede.Usuario.TipoUsuario = "F";
+            Hospede.Usuario.TipoUsuario = "H";
             Hospede.Usuario.Status = chkAtivo.Checked;
 
             try
@@ -181,7 +181,25 @@ namespace VallezHotels
                 
         }
 
+        private void txtUsuario_Layout(object sender, LayoutEventArgs e)
+        {
 
+        }
 
+        private void txtUsuario_Leave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtCPF_Leave(object sender, EventArgs e)
+        {
+            string cpf = txtCPF.Text.Replace(".", "").Replace("-", "");
+
+            if (!string.IsNullOrEmpty(cpf.Trim()) || !string.IsNullOrWhiteSpace(cpf.Trim()))
+            {
+                txtUsuario.Text = cpf;
+                txtSenha.Text = cpf;
+            }
+        }
     }
 }
