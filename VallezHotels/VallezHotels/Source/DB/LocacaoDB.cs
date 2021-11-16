@@ -251,7 +251,7 @@ namespace VallezHotels.Source.DB
                     using (var select = conn.CreateCommand())
                     {
 
-                        select.CommandText = "SELECT * FROM vallez.locacoes l WHERE id_quarto = @QUARTO AND (@DATA::date - l.dt_entrada ::date) >= 0 AND ((@DATA::date - l.dt_entrada::date) <= (l.dt_saida::date - l.dt_entrada::date));";
+                        select.CommandText = "select * from vallez.locacoes l join vallez.disponibilidades d on (d.id_locacao = l.id_locacao) where l.id_quarto = @QUARTO and d.data = to_date(to_char(@DATA, 'yyyy-mm-dd') , 'yyyy-mm-dd');";
                         select.AddParameter("@QUARTO", q.Id, System.Data.DbType.Int32);
                         select.AddParameter("@DATA", data.Date, System.Data.DbType.Date);
 

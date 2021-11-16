@@ -68,6 +68,9 @@ namespace VallezHotels
         private void FrmQuarto_Load(object sender, EventArgs e)
         {
             List<TipoQuarto> tipoQuartos = _tipoQuartoServico.BuscarTodos();
+            txtDataInicial.Value = DateTime.Now;
+            txtDataFinal.Value = DateTime.Now;
+            
 
             foreach (TipoQuarto tq in tipoQuartos)
             {

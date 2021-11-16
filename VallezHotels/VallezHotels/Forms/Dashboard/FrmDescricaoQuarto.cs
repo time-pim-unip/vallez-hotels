@@ -122,6 +122,7 @@ namespace VallezHotels
             FrmLocacao locacao = new FrmLocacao();
             locacao.Quarto = Quarto;
             locacao.Locacao = Locacao;
+            locacao.DataSelecionada = DataSelecionada;
             locacao.ShowDialog();
 
             AtualizarDetalhes();

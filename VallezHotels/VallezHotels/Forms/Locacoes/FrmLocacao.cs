@@ -24,6 +24,7 @@ namespace VallezHotels
         private readonly QuartoServico _quartoServico;
         private readonly ServicoServico _servicoServico;
         private readonly ServicoSolicitadoServico _servicoSolicitadoServico;
+        private readonly FaturamentoServico _faturamentoServico;
 
         private bool AdicionarHospedes;
         private bool AdicionarServicos;
@@ -36,6 +37,8 @@ namespace VallezHotels
         public Quarto Quarto;
         public Boolean AtualizarDetalhes;
 
+        public DateTime DataSelecionada;
+
         public FrmLocacao()
         {
             _locacaoServico = new LocacaoServico();
@@ -45,6 +48,7 @@ namespace VallezHotels
             _quartoServico = new QuartoServico();
             _servicoServico = new ServicoServico();
             _servicoSolicitadoServico = new ServicoSolicitadoServico();
+            _faturamentoServico = new FaturamentoServico();
             AdicionarHospedes = false;
             AdicionarServicos = false;
             Quarto = new Quarto();
@@ -52,6 +56,7 @@ namespace VallezHotels
             ListaHospedagem = new List<Object>();
             ListaServicos = new List<Object>();
             AtualizarDetalhes = false;
+            DataSelecionada = new DateTime();
 
             InitializeComponent();
         }
@@ -69,8 +74,8 @@ namespace VallezHotels
         private void FrmLocacao_Load(object sender, EventArgs e)
         {
 
-            dtEntrada.Value = DateTime.Now.Date;
-            dtSaida.Value = DateTime.Now.Date;
+            dtEntrada.Value = DataSelecionada;
+            dtSaida.Value = DataSelecionada;
 
             //Locacao = _locacaoServico.BuscarPelaDataEQuarto(Quarto, DateTime.Now);
             Locacao = _locacaoServico.BuscarPeloId(Locacao.Id);
@@ -93,6 +98,11 @@ namespace VallezHotels
                 if (Locacao.CheckIn != null && Locacao.CheckOut == null)
                 {
                     btnCheckout.Enabled = true;
+                }
+
+                if (Locacao.CheckOut != null)
+                {
+                    btnSalvar.Enabled = false;
                 }
                     
                 Locacao.Hospedagems = _hospedagemServico.BuscarPelaLocacao(Locacao);
@@ -550,6 +560,41 @@ namespace VallezHotels
                     txtCheckout.Text = Locacao.CheckOut.Value.ToString();
                     btnCheckin.Enabled = false;
                     btnCheckout.Enabled = false;
+
+
+                    Faturamento fat = new Faturamento()
+                    {
+                        Locacao = Locacao,
+                        ValorTotal = Locacao.ValorDaLocacao(),
+                        ValorPago = Locacao.ValorDaLocacao(),
+                        ValorDesconto = 0.0
+                    };
+
+                    _faturamentoServico.InserirFaturamento(fat);
+
+
+                    List<Disponibilidade> disponibilidades = _disponibilidadeServico.BuscarPeloQuarto(Quarto);
+                    DateTime dataCheckOut = Locacao.CheckOut.Value.AddDays(1);
+
+                    List<DateTime> periodo = dataCheckOut.RetornarPeriodo(dtSaida.Value);
+
+                    foreach (DateTime dt in periodo)
+                    {
+
+                        var disponibilidade = disponibilidades.Where(d => d.Data.Date == dt.Date);
+
+                        if (disponibilidade.Count() != 0)
+                        {
+
+                            Disponibilidade d = disponibilidade.FirstOrDefault();
+                            d.Disponivel = true;
+                            d.Locacao = null;
+                            _disponibilidadeServico.EditarDisponibilidade(d);
+                        }
+
+                    }
+
+
                     MessageBox.Show("Check-out realizado !", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
