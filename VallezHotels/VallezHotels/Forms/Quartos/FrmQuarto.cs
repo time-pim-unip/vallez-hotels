@@ -67,6 +67,10 @@ namespace VallezHotels
 
         private void FrmQuarto_Load(object sender, EventArgs e)
         {
+
+            txtDataInicial.Value = DateTime.Now;
+            txtDataFinal.Value = DateTime.Now;
+
             List<TipoQuarto> tipoQuartos = _tipoQuartoServico.BuscarTodos();
             txtDataInicial.Value = DateTime.Now;
             txtDataFinal.Value = DateTime.Now;
