@@ -44,18 +44,27 @@ namespace VallezHotels
         private void btnLogin_Click(object sender, EventArgs e)
         {
 
-            string usuario = txtUsuario.Text.ToString().Trim();
-            string senha = txtSenha.Text.ToString().Trim();
-
-            Usuario u = _usuarioServico.BuscarUsuarioESenha(usuario, senha);
-
-            if (u == null)
+            try
             {
-                MessageBox.Show("Usuário ou senha não encontrados !");
-            } else
+                string usuario = txtUsuario.Text.ToString().Trim();
+                string senha = txtSenha.Text.ToString().Trim();
+
+                Usuario u = _usuarioServico.BuscarUsuarioESenha(usuario, senha);
+
+                if (u == null)
+                {
+                    MessageBox.Show("Usuário ou senha não encontrados !");
+                }
+                else
+                {
+                    this.UsuarioValido = true;
+                    this.Close();
+                }
+
+            }
+            catch (Exception ex)
             {
-                this.UsuarioValido = true;
-                this.Close();
+                MessageBox.Show(ex.Message, "Erro !", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
 

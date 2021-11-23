@@ -56,7 +56,6 @@ namespace VallezHotels
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(219, 22);
             this.txtUsuario.TabIndex = 1;
-            this.txtUsuario.Text = "admin";
             // 
             // txtSenha
             // 
@@ -65,7 +64,6 @@ namespace VallezHotels
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(219, 22);
             this.txtSenha.TabIndex = 2;
-            this.txtSenha.Text = "vallez";
             // 
             // label1
             // 
