@@ -611,6 +611,7 @@ namespace VallezHotels
 
         private void button1_Click(object sender, EventArgs e)
         {
+            /*
             FrmListagemGenerica lg = new FrmListagemGenerica();
             List<Quarto> quartos = _quartoServico.BuscarTodos();
 
@@ -636,9 +637,17 @@ namespace VallezHotels
                 Quarto = quarto;
 
             }
+            */
+
+            FrmQuarto quarto = new FrmQuarto();
+            quarto.IdQuarto = int.Parse(txtQuarto.Text);             
+            quarto.ShowDialog();
 
 
+        }
 
+        private void txtQuarto_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

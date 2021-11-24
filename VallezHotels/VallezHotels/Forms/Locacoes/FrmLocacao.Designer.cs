@@ -236,6 +236,7 @@ namespace VallezHotels
             this.txtQuarto.Name = "txtQuarto";
             this.txtQuarto.Size = new System.Drawing.Size(55, 22);
             this.txtQuarto.TabIndex = 19;
+            this.txtQuarto.TextChanged += new System.EventHandler(this.txtQuarto_TextChanged);
             // 
             // label2
             // 

@@ -141,19 +141,15 @@ create table disponibilidades(
 	id_disponibilidade 		serial not null,
 	uuid_disponibilidade	uuid not null default uuid_generate_v4(),
 	id_quarto				int not null,
+	id_locacao				int not null,
 	data					date not null,
 	dia_disponivel			boolean not null,
 	created_at				timestamp not null default now(),
 	updated_at				timestamp not null default now(),
 	constraint pk_disponibilidade primary key (id_disponibilidade),
-	constraint fk_quarto_disponibilidade foreign key (id_quarto) references quartos(id_quarto)	
+	constraint fk_quarto_disponibilidade foreign key (id_quarto) references quartos(id_quarto),
+	constraint fk_locacao_disponibilidade foreign key (id_locacao) references locacoes(id_locacao)
 );
-
-alter table disponibilidades 
-add column id_locacao int;
-
-alter table disponibilidades 
-add constraint fk_locacao_disponibilidade foreign key (id_locacao) references locacoes(id_locacao);
 
 /* Faturamentos */
 create table faturamentos(
