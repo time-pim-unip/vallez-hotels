@@ -1,9 +1,5 @@
-/*
- *  CONFIGURACOES DO BANCO
- */
-
 /* Criar usuario do sistema */
-create user  vallez with encrypted password '#vallez123@';
+create user vallez with encrypted password '#vallez123@';
 
 /* Criando banco principal do sistema */
 create database db_vallez
@@ -12,14 +8,14 @@ connection limit -1
 encoding 'UTF8'
 template template0;
 
-/*
- *  CONECTAR COM USUÁRIO VALLEZ NO BANCO DB_VALLEZ PARA CONTINUAR O SCRIPT.
- */
+\connect db_vallez;
 
 /* Criar schema do sistema */
-create schema vallez  authorization vallez;
+create schema vallez authorization vallez;
 
-/* Direitos de usuário */
+set search_path to vallez;
+
+/* Direitos de usuï¿½rio */
 grant all privileges on database db_vallez to vallez;
 grant all privileges on schema vallez to vallez;
 grant all privileges on all tables in schema vallez to vallez;
@@ -60,10 +56,8 @@ create table usuarios(
 	constraint pk_usuario primary key (id_usuario)
 );
 
-insert into vallez.usuarios(uuid_usuario, usuario, senha, tipo_usuario, status, created_at, updated_at)
+insert into usuarios(uuid_usuario, usuario, senha, tipo_usuario, status, created_at, updated_at)
 values (uuid_generate_v4(), 'admin', 'vallez', 'A', true, now(), now());
-
-select * from usuarios u ;
 
 /* Funcionarios */
 create table funcionarios(
